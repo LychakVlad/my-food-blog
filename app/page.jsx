@@ -1,4 +1,4 @@
-import React from 'react';
+import Feed from '@components/Feed';
 
 const Home = () => {
   return (
@@ -16,6 +16,8 @@ const Home = () => {
         dishes shared by fellow food enthusiasts. Explore, create, and celebrate
         the joy of cooking together!
       </p>
+
+      <Feed />
     </section>
   );
 };
