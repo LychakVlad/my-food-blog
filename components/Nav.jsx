@@ -6,18 +6,18 @@ import { useEffect, useState } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, settoggleDropdown] = useState(false);
 
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
       setProviders(response);
     };
-    console.log(isUserLoggedIn);
-    setProviders();
+    console.log(providers);
+    setUpProviders();
   }, []);
 
   return (
@@ -27,7 +27,7 @@ const Nav = () => {
         <p className="logo_text"> Cook's Compass</p>
       </Link>
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-recipe" className="black_btn">
               Create new recipe
@@ -37,7 +37,7 @@ const Nav = () => {
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/profile.svg"
+                src={session?.user.image}
                 width={36}
                 height={36}
                 className="rounded-full"
@@ -60,11 +60,11 @@ const Nav = () => {
         )}
       </div>
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             {' '}
             <Image
-              src="/assets/images/profile.svg"
+              src={session?.user.image}
               width={36}
               height={36}
               className="rounded-full"
