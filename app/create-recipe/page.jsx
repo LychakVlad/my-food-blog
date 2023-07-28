@@ -1,10 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 import Form from '@components/Form';
+import { useSession } from 'next-auth/react';
 
 const CreateRecipe = () => {
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     text: '',
@@ -39,6 +43,7 @@ const CreateRecipe = () => {
     <Form
       type="Create"
       post={post}
+      setPost={setPost}
       submitting={submitting}
       handleSubmit={createRecipe}
     />

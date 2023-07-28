@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-const Form = ({ type, post, submitting, handleSubmit }) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
