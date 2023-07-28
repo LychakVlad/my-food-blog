@@ -16,7 +16,7 @@ const CreateRecipe = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/prompt/new', {
+      const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify({
           text: post.text,
