@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Profile from '@components/profile';
 import { useSession } from 'next-auth/react';
@@ -11,8 +11,10 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/recipe`);
+      const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
+
+      console.log(response);
 
       setPosts(data);
     };
