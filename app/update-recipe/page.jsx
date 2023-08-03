@@ -29,29 +29,30 @@ const EditRecipe = () => {
     if (recipeId) getRecipeDetails();
   }, [recipeId]);
 
-  // const createRecipe = async (e) => {
-  //   e.preventDefault();
-  //   setSubmitting(true);
+  const updateRecipe = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
 
-  //   try {
-  //     const response = await fetch('/api/recipe/new', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         text: post.text,
-  //         userId: session?.user.id,
-  //         tag: post.tag,
-  //       }),
-  //     });
+    if (!recipeId) return alert('Recipe ID not found');
 
-  //     if (response.ok) {
-  //       router.push('/');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
+    try {
+      const response = await fetch(`/api/recipe/${recipeId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          text: post.text,
+          tag: post.tag,
+        }),
+      });
+
+      if (response.ok) {
+        router.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Form
@@ -59,7 +60,7 @@ const EditRecipe = () => {
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={() => {}}
+      handleSubmit={updateRecipe}
     />
   );
 };

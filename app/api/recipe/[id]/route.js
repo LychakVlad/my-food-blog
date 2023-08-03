@@ -15,7 +15,7 @@ export const GET = async (request, { params }) => {
 };
 
 export const PATCH = async (request, { params }) => {
-  const { recipe, tag } = await request.json();
+  const { text, tag } = await request.json();
   try {
     await connectToDB();
 
@@ -23,12 +23,12 @@ export const PATCH = async (request, { params }) => {
     if (!existingRecipe)
       return new Response('Recipe not found', { status: 404 });
 
-    existingRecipe.text = recipe;
+    existingRecipe.text = text;
     existingRecipe.tag = tag;
 
     await existingRecipe.save();
 
-    return new Response(JSON.stringify(recipe), { status: 200 });
+    return new Response(JSON.stringify(existingRecipe), { status: 200 });
   } catch (error) {
     return new Response('Failed to update recipe', { status: 500 });
   }
