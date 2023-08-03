@@ -1,0 +1,35 @@
+import { connectToDB } from '@utils/database';
+import Text from '@models/recipe';
+
+export const GET = async (request, { params }) => {
+  try {
+    await connectToDB();
+
+    const recipe = await Text.findById(params.id).populate('creator');
+    if (!recipe) return new Response('Recipe not found', { status: 404 });
+
+    return new Response(JSON.stringify(recipe), { status: 200 });
+  } catch (error) {
+    return new Response('Failed to fetch recipe', { status: 500 });
+  }
+};
+
+export const PATCH = async (request, { params }) => {
+  const { recipe, tag } = await request.json();
+  try {
+    await connectToDB();
+
+    const existingRecipe = await Text.findById(params.id);
+    if (!existingRecipe)
+      return new Response('Recipe not found', { status: 404 });
+
+    existingRecipe.text = recipe;
+    existingRecipe.tag = tag;
+
+    await existingRecipe.save();
+
+    return new Response(JSON.stringify(recipe), { status: 200 });
+  } catch (error) {
+    return new Response('Failed to update recipe', { status: 500 });
+  }
+};
