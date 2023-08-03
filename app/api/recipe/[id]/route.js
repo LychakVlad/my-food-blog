@@ -33,3 +33,15 @@ export const PATCH = async (request, { params }) => {
     return new Response('Failed to update recipe', { status: 500 });
   }
 };
+
+export const DELETE = async (request, { params }) => {
+  try {
+    await connectToDB();
+
+    await Text.findByIdAndRemove(params.id);
+
+    return new Response('Recipe deleted successfully', { status: 200 });
+  } catch (error) {
+    return new Response('Failed to delete recipe', { status: 500 });
+  }
+};
