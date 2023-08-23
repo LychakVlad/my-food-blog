@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  console.log(post);
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
@@ -17,6 +18,18 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
+            Title
+          </span>
+          <input
+            value={post.title}
+            onChange={(e) => setPost({ ...post, title: e.target.value })}
+            placeholder="Recipe title"
+            required
+            className="form_input"
+          />
+        </label>
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
             Your recipe
           </span>
           <textarea
@@ -27,6 +40,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             className="form_textarea"
           ></textarea>
         </label>
+
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Tag

@@ -5,6 +5,10 @@ const RecipeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  title: {
+    type: String,
+    required: [true, 'Title is required'],
+  },
   text: {
     type: String,
     required: [true, 'Text is required'],

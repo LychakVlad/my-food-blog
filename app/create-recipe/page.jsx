@@ -11,6 +11,7 @@ const CreateRecipe = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
+    title: '',
     text: '',
     tag: '',
   });
@@ -19,13 +20,17 @@ const CreateRecipe = () => {
     e.preventDefault();
     setSubmitting(true);
 
+    console.log(post);
+
     try {
+      console.log(post.title);
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify({
           text: post.text,
           userId: session?.user.id,
           tag: post.tag,
+          title: post.title,
         }),
       });
 

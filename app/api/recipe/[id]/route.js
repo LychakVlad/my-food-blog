@@ -15,7 +15,7 @@ export const GET = async (request, { params }) => {
 };
 
 export const PATCH = async (request, { params }) => {
-  const { text, tag } = await request.json();
+  const { text, tag, title } = await request.json();
   try {
     await connectToDB();
 
@@ -25,6 +25,7 @@ export const PATCH = async (request, { params }) => {
 
     existingRecipe.text = text;
     existingRecipe.tag = tag;
+    existingRecipe.title = title;
 
     await existingRecipe.save();
 

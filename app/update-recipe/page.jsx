@@ -11,6 +11,7 @@ const EditRecipe = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
+    title: '',
     text: '',
     tag: '',
   });
@@ -21,6 +22,7 @@ const EditRecipe = () => {
       const data = await response.json();
 
       setPost({
+        title: data.title,
         text: data.text,
         tag: data.tag,
       });
@@ -39,6 +41,7 @@ const EditRecipe = () => {
       const response = await fetch(`/api/recipe/${recipeId}`, {
         method: 'PATCH',
         body: JSON.stringify({
+          title: post.title,
           text: post.text,
           tag: post.tag,
         }),
