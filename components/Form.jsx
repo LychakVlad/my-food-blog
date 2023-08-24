@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  console.log(post);
+  post.ingredients.map((item) => console.log(item));
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
@@ -30,16 +30,43 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </label>
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Your recipe
+            Description
           </span>
           <textarea
             value={post.text}
             onChange={(e) => setPost({ ...post, text: e.target.value })}
-            placeholder="Write your recipe here..."
+            placeholder="Description..."
             required
             className="form_textarea"
           ></textarea>
         </label>
+        <div>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Ingredients
+          </span>
+          <p className=" opacity-50">
+            Enter one ingredient per line. Include the quantity (i.e. cups,
+            tablespoons) and any special preparation (i.e. sifted, softened,
+            chopped). Use optional headers to organize the different parts of
+            the recipe (i.e. Cake, Frosting, Dressing).
+          </p>
+          <div>
+            {post.ingredients.map((item, index) => (
+              <input
+                value={post.ingredients[index]}
+                onChange={(e) =>
+                  setPost({
+                    ...post,
+                    ingredients: [...post.ingredients, e.target.value],
+                  })
+                }
+                placeholder="Add ingredient"
+                required
+                className="form_input"
+              />
+            ))}
+          </div>
+        </div>
 
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">

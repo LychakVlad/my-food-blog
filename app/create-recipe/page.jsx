@@ -13,14 +13,17 @@ const CreateRecipe = () => {
   const [post, setPost] = useState({
     title: '',
     text: '',
+    ingredients: [
+      'e.g. 2 cups flour, sifted',
+      'e.g. 1 cup sugar',
+      'e.g. 2 tablespoons butter, softened',
+    ],
     tag: '',
   });
 
   const createRecipe = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-
-    console.log(post);
 
     try {
       console.log(post.title);
@@ -29,6 +32,7 @@ const CreateRecipe = () => {
         body: JSON.stringify({
           text: post.text,
           userId: session?.user.id,
+          ingredients: post.ingredients,
           tag: post.tag,
           title: post.title,
         }),
