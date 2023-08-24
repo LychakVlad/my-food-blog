@@ -2,7 +2,29 @@ import Link from 'next/link';
 import React from 'react';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  post.ingredients.map((item) => console.log(item));
+  console.log(post.ingredients);
+
+  const ingredientChangeInput = (e, index) => {
+    const updateArr = [...post.ingredients];
+    updateArr[index] = e.target.value;
+
+    setPost({
+      ...post,
+      ingredients: updateArr,
+    });
+  };
+
+  const ingredientRemove = (e, index) => {
+    e.preventDefault();
+    const updateArr = [...post.ingredients];
+    updateArr.splice(index, 1);
+
+    setPost({
+      ...post,
+      ingredients: updateArr,
+    });
+  };
+
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
@@ -52,18 +74,18 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           </p>
           <div>
             {post.ingredients.map((item, index) => (
-              <input
-                value={post.ingredients[index]}
-                onChange={(e) =>
-                  setPost({
-                    ...post,
-                    ingredients: [...post.ingredients, e.target.value],
-                  })
-                }
-                placeholder="Add ingredient"
-                required
-                className="form_input"
-              />
+              <div className="flex items-center">
+                <input
+                  value={item}
+                  onChange={(e) => ingredientChangeInput(e, index)}
+                  placeholder="Add ingredient"
+                  required
+                  className="form_input"
+                />
+                <button onClick={(e) => ingredientRemove(e, index)}>
+                  Remove
+                </button>
+              </div>
             ))}
           </div>
         </div>
