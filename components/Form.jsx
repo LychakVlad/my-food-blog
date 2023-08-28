@@ -2,8 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  console.log(post.ingredients);
-
   const ingredientChangeInput = (e, index) => {
     const updateArr = [...post.ingredients];
     updateArr[index] = e.target.value;
@@ -18,6 +16,17 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
     e.preventDefault();
     const updateArr = [...post.ingredients];
     updateArr.splice(index, 1);
+
+    setPost({
+      ...post,
+      ingredients: updateArr,
+    });
+  };
+
+  const addIngredient = (e) => {
+    e.preventDefault();
+    const updateArr = [...post.ingredients];
+    updateArr.push('');
 
     setPost({
       ...post,
@@ -72,7 +81,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             chopped). Use optional headers to organize the different parts of
             the recipe (i.e. Cake, Frosting, Dressing).
           </p>
-          <div>
+          <div className="flex  flex-col">
             {post.ingredients.map((item, index) => (
               <div className="flex items-center">
                 <input
@@ -87,6 +96,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
                 </button>
               </div>
             ))}
+            <button onClick={(e) => addIngredient(e)}>Add ingredient</button>
           </div>
         </div>
 
