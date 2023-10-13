@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
 
-interface CardProps {
-  data: Array<object>;
+interface IDataItem {
+  data: IPost[];
   handleTagClick: Function;
 }
 
-function RecipeCardList({ data, handleTagClick }: CardProps) {
+const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
@@ -20,11 +20,11 @@ function RecipeCardList({ data, handleTagClick }: CardProps) {
       ))}
     </div>
   );
-}
+};
 
-const Feed = () => {
+const Feed: FC = () => {
   const [searchText, setSearchText] = useState('');
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<IPost[]>([]);
 
   const handleSearchChange = () => {};
 
