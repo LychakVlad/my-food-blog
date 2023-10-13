@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Form from '@components/Form';
+import Form from '../../components/Form';
 import { useSession } from 'next-auth/react';
 
 const CreateRecipe = () => {
