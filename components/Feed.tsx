@@ -3,7 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
 
-const RecipeCardList = ({ data, handleTagClick }) => {
+interface CardProps {
+  data: Array<object>;
+  handleTagClick: Function;
+}
+
+function RecipeCardList({ data, handleTagClick }: CardProps) {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
@@ -15,13 +20,13 @@ const RecipeCardList = ({ data, handleTagClick }) => {
       ))}
     </div>
   );
-};
+}
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
 
-  const handleSearchChange = (e) => {};
+  const handleSearchChange = () => {};
 
   useEffect(() => {
     const fetchPosts = async () => {

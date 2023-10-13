@@ -1,8 +1,7 @@
 import React from 'react';
 import RecipeCard from './RecipeCard';
 
-const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
-  console.log(data);
+function Profile({ name, desc, data, handleEdit, handleDelete }) {
   return (
     <section className="w-full">
       <h1 className="head_text text-left">
@@ -21,6 +20,6 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
       </div>
     </section>
   );
-};
+}
 
 export default Profile;
