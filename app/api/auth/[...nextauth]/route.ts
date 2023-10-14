@@ -15,19 +15,16 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async session({ session, token, user }) {
-      console.log('session callback ', { token, user, session });
-
+    session({ session, token }) {
       return {
         ...session,
         user: {
           ...session.user,
-          accessToken: token.accessToken as string,
-          refreshToken: token.refreshToken as string,
-          role: token.role,
-          id: token.id,
+          id: token.sub,
+          isAdmin: token.isAdmin,
+          vendorId: token.vendorId,
+          stripe_id: token.stripeId,
         },
-        error: token.error,
       };
     },
     async signIn(params) {

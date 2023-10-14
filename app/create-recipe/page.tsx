@@ -1,16 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '../../components/Form';
 import { useSession } from 'next-auth/react';
+import { IPost } from '../../types/recipe.interface';
 
-const CreateRecipe = () => {
+interface RecipeData {
+  text: string;
+  userId: string | null;
+  ingredients: string[];
+  tag: string;
+  title: string;
+}
+
+const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
+  console.log(session?.user.id);
+
   const [submitting, setSubmitting] = useState(false);
-  const [post, setPost] = useState({
+  const [post, setPost] = useState<IPost>({
     title: '',
     text: '',
     ingredients: [
@@ -19,19 +30,18 @@ const CreateRecipe = () => {
       'e.g. 2 tablespoons butter, softened',
     ],
     tag: '',
+    userId: session?.user?.id,
   });
-
-  const createRecipe = async (e) => {
+  const createRecipe = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
     try {
-      console.log(post.title);
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify({
           text: post.text,
-          userId: session?.user.id,
+          userId: session?.user?.id,
           ingredients: post.ingredients,
           tag: post.tag,
           title: post.title,

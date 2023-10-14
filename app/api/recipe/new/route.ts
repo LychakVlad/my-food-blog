@@ -1,7 +1,7 @@
-import { connectToDB } from '@utils/database';
-import Text from '@models/recipe';
+import { connectToDB } from '../../../../utils/database';
+import Text from '../../../../models/recipe';
 
-export const POST = async (req, res) => {
+export const POST = async (req: Request) => {
   const { userId, text, tag, title } = await req.json();
 
   try {
