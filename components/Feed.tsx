@@ -2,6 +2,7 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
+import { IPost } from '../types/recipe.interface';
 
 interface IDataItem {
   data: IPost[];

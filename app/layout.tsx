@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from 'react';
 import Nav from '../components/Nav';
 import Provider from '../components/Provider';
 import '../styles/global.css';
@@ -7,7 +8,7 @@ export const metadata = {
   description: 'Navigating the Culinary World',
 };
 
-const RootLayout = ({ children }) => {
+const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
   return (
     <html lang="en">
       <body>
