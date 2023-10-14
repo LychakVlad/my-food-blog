@@ -1,7 +1,7 @@
 import { connectToDB } from '../../../../utils/database';
 import Text from '../../../../models/recipe';
 
-export const GET = async (request, { params }) => {
+export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
@@ -14,7 +14,7 @@ export const GET = async (request, { params }) => {
   }
 };
 
-export const PATCH = async (request, { params }) => {
+export const PATCH = async (request: Request, { params }: any) => {
   const { text, tag, title } = await request.json();
   try {
     await connectToDB();
@@ -35,7 +35,7 @@ export const PATCH = async (request, { params }) => {
   }
 };
 
-export const DELETE = async (request, { params }) => {
+export const DELETE = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
