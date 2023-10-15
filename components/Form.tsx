@@ -1,8 +1,26 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { FC } from 'react';
+import { IPost } from '../types/recipe.interface';
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  const ingredientChangeInput = (e, index) => {
+interface FormProps {
+  type: string;
+  post: IPost;
+  setPost: React.Dispatch<React.SetStateAction<IPost>>;
+  submitting: boolean;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
+const Form: FC<FormProps> = ({
+  type,
+  post,
+  setPost,
+  submitting,
+  handleSubmit,
+}) => {
+  const ingredientChangeInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
     const updateArr = [...post.ingredients];
     updateArr[index] = e.target.value;
 
@@ -12,7 +30,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
     });
   };
 
-  const ingredientRemove = (e, index) => {
+  const ingredientRemove = (e: React.FormEvent, index: number) => {
     e.preventDefault();
     const updateArr = [...post.ingredients];
     updateArr.splice(index, 1);
@@ -23,7 +41,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
     });
   };
 
-  const addIngredient = (e) => {
+  const addIngredient = (e: React.FormEvent) => {
     e.preventDefault();
     const updateArr = [...post.ingredients];
     updateArr.push('');
@@ -82,7 +100,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             the recipe (i.e. Cake, Frosting, Dressing).
           </p>
           <div className="flex  flex-col">
-            {post.ingredients.map((item, index) => (
+            {post.ingredients.map((item: string, index: number) => (
               <div className="flex items-center">
                 <input
                   value={item}
