@@ -1,5 +1,6 @@
 import NextAuth, { Session } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+
 import User from '../../../../models/user';
 import { connectToDB } from '../../../../utils/database';
 import { JWT } from 'next-auth/jwt';
@@ -14,6 +15,9 @@ const handler = NextAuth({
       clientSecret: googleClientSecret,
     }),
   ],
+  session: {
+    strategy: 'jwt',
+  },
   callbacks: {
     session: async ({ session, token }: { session: Session; token: JWT }) => {
       if (session?.user) {
@@ -27,7 +31,7 @@ const handler = NextAuth({
       }
       return token;
     },
-    async signIn(user, account, profile) {
+    async signIn({ profile }) {
       if (profile) {
         try {
           await connectToDB();
@@ -53,9 +57,6 @@ const handler = NextAuth({
       }
       return false;
     },
-  },
-  session: {
-    strategy: 'jwt',
   },
 });
 
