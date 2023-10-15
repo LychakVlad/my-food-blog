@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Session } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-
 import User from '../../../../models/user';
 import { connectToDB } from '../../../../utils/database';
+import { JWT } from 'next-auth/jwt';
 
 const googleClientSecret: string = process.env.GOOGLE_CLIENT_SECRET;
 const googleIdSecret: string = process.env.GOOGLE_ID;
@@ -15,20 +15,19 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    session({ session, token }) {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.sub,
-          isAdmin: token.isAdmin,
-          vendorId: token.vendorId,
-          stripe_id: token.stripeId,
-        },
-      };
+    session: async ({ session, token }: { session: Session; token: JWT }) => {
+      if (session?.user) {
+        session.user.id = token.uid;
+      }
+      return session;
     },
-    async signIn(params) {
-      const { profile } = params;
+    jwt: async ({ user, token }: { user: { id: string }; token: JWT }) => {
+      if (user) {
+        token.uid = user.id;
+      }
+      return token;
+    },
+    async signIn(user, account, profile) {
       if (profile) {
         try {
           await connectToDB();
@@ -40,6 +39,7 @@ const handler = NextAuth({
               email: profile.email,
               username: profile.name?.replace(' ', '').toLowerCase(),
               image: profile.image,
+              id: profile.sub,
             });
           }
 
@@ -53,6 +53,9 @@ const handler = NextAuth({
       }
       return false;
     },
+  },
+  session: {
+    strategy: 'jwt',
   },
 });
 

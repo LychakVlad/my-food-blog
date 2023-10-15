@@ -17,6 +17,10 @@ const RecipeSchema = new Schema({
     type: String,
     required: [true, 'Tag is required'],
   },
+  ingredients: {
+    type: Array,
+    required: [true, 'Ingredients is required'],
+  },
 });
 
 const Text = models.Text || model('Text', RecipeSchema);

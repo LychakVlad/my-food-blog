@@ -4,11 +4,10 @@ import React, { FC, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '../../components/Form';
 import { useSession } from 'next-auth/react';
-import { IPost } from '../../types/recipe.interface';
 
 interface RecipeData {
   text: string;
-  userId: string | null;
+  userId: string | null | undefined;
   ingredients: string[];
   tag: string;
   title: string;
@@ -18,10 +17,8 @@ const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
-  console.log(session?.user.id);
-
   const [submitting, setSubmitting] = useState(false);
-  const [post, setPost] = useState<IPost>({
+  const [post, setPost] = useState<RecipeData>({
     title: '',
     text: '',
     ingredients: [
@@ -41,11 +38,14 @@ const CreateRecipe: FC = () => {
         method: 'POST',
         body: JSON.stringify({
           text: post.text,
-          userId: session?.user?.id,
+          userId: post.userId,
           ingredients: post.ingredients,
           tag: post.tag,
           title: post.title,
         }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
 
       if (response.ok) {
