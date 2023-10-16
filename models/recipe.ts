@@ -18,7 +18,7 @@ const RecipeSchema = new Schema({
     required: [true, 'Tag is required'],
   },
   ingredients: {
-    type: Array,
+    type: [String],
     required: [true, 'Ingredients is required'],
   },
 });

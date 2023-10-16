@@ -101,7 +101,7 @@ const Form: FC<FormProps> = ({
           </p>
           <div className="flex  flex-col">
             {post.ingredients.map((item: string, index: number) => (
-              <div className="flex items-center">
+              <div className="flex items-center" key={index}>
                 <input
                   value={item}
                   onChange={(e) => ingredientChangeInput(e, index)}

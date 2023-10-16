@@ -3,7 +3,5 @@ export interface IPost {
   text: string;
   tag: string;
   ingredients: string[];
-  userId: string;
+  userId: string | undefined;
 }
-
-export interface IPostData extends Omit<IPost, '_id'> {}
