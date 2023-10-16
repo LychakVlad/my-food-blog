@@ -5,9 +5,10 @@ export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipes = await Text.find({ creator: params._id }).populate(
-      'creator'
-    );
+    // Use the correct field name and query structure to find recipes associated with a specific creator's ID
+    const recipes = await Text.find({
+      'creator.id': params.creatorId,
+    }).populate('creator');
 
     console.log(recipes);
 

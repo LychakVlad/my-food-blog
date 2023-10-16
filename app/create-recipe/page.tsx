@@ -12,7 +12,7 @@ const CreateRecipe: FC = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const [post, setPost] = useState({
+  const [post, setPost] = useState<IPost>({
     title: '',
     text: '',
     ingredients: [
@@ -21,8 +21,9 @@ const CreateRecipe: FC = () => {
       'e.g. 2 tablespoons butter, softened',
     ],
     tag: '',
-    userId: session?.user?.id,
   });
+
+  console.log(session?.user);
 
   const createRecipe = async (
     e: React.FormEvent<HTMLFormElement>

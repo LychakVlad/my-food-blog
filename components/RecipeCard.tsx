@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import User from '../models/user';
+import { data } from 'autoprefixer';
 
 const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState('');
@@ -18,8 +19,6 @@ const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     navigator.clipboard.writeText(post.text);
     setTimeout(() => setCopied(''), 3000);
   };
-
-  console.log(post.creator);
 
   return (
     <>
