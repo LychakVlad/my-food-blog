@@ -8,6 +8,18 @@ import { JWT } from 'next-auth/jwt';
 const googleClientSecret: string = process.env.GOOGLE_CLIENT_SECRET;
 const googleIdSecret: string = process.env.GOOGLE_ID;
 
+async function mapGoogleIdToObjectId(googleId) {
+  try {
+    const user = await User.findOne({ googleId: googleId });
+    if (user) {
+      return user._id;
+    }
+  } catch (error) {
+    console.error('Error mapping Google ID to ObjectId:', error);
+  }
+  return null;
+}
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -21,7 +33,8 @@ const handler = NextAuth({
   callbacks: {
     session: async ({ session, token }: { session: Session; token: JWT }) => {
       if (session?.user) {
-        session.user.id = token.uid;
+        const userId = await mapGoogleIdToObjectId(token.sub);
+        session.user.id = userId;
       }
       return session;
     },

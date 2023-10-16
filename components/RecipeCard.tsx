@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import User from '../models/user';
 
 const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState('');
@@ -17,6 +18,9 @@ const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     navigator.clipboard.writeText(post.text);
     setTimeout(() => setCopied(''), 3000);
   };
+
+  console.log(post.creator);
+
   return (
     <>
       {' '}
@@ -24,7 +28,7 @@ const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         <div className="flex justify-between items-start gap-5">
           <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
             <Image
-              src={post.creator?.image}
+              src={post?.creator?.image}
               alt="user_image"
               width={40}
               height={40}
@@ -33,10 +37,10 @@ const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
             <div className="flex flex-col">
               <h3 className="font-satoshi font-semibold text-gray-900">
-                {post.creator?.username}
+                {post?.creator?.username}
               </h3>
               <p className="font-inter text-sm text-gray-500">
-                {post.creator?.email}
+                {post?.creator?.email}
               </p>
             </div>
           </div>
@@ -49,6 +53,7 @@ const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               }
               width={12}
               height={12}
+              alt="copy-btn"
             />
           </div>
         </div>

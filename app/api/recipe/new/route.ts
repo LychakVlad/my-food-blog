@@ -15,8 +15,16 @@ export const POST = async (req: Request, res: Response) => {
       ingredients,
     });
 
+    console.log(newRecipe);
+
     await newRecipe.save();
-    console.log('Received Data:', { userId, text, tag, title, ingredients });
+    console.log('Received Data:', {
+      userId,
+      text,
+      tag,
+      title,
+      ingredients,
+    });
 
     return new Response(JSON.stringify(newRecipe), { status: 201 });
   } catch (error) {

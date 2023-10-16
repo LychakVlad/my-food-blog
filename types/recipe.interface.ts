@@ -3,5 +3,4 @@ export interface IPost {
   text: string;
   tag: string;
   ingredients: string[];
-  userId: string | undefined;
 }

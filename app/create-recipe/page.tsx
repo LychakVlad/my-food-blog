@@ -12,7 +12,7 @@ const CreateRecipe: FC = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const [post, setPost] = useState<IPost>({
+  const [post, setPost] = useState({
     title: '',
     text: '',
     ingredients: [
