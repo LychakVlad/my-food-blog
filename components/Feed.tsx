@@ -6,7 +6,7 @@ import { IPost } from '../types/recipe.interface';
 
 interface IDataItem {
   data: IPost[];
-  handleTagClick: Function;
+  handleTagClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
@@ -17,6 +17,8 @@ const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
+          handleDelete={() => {}}
+          handleEdit={() => {}}
         />
       ))}
     </div>

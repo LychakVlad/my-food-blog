@@ -16,7 +16,8 @@ const EditRecipe = () => {
     text: '',
     tag: '',
     ingredients: [],
-    _id: '',
+    _id: null,
+    creator: null,
   });
 
   useEffect(() => {
@@ -30,13 +31,14 @@ const EditRecipe = () => {
         tag: data.tag,
         ingredients: data.ingredients,
         _id: data._id,
+        creator: data.creator,
       });
     };
 
     if (recipeId) getRecipeDetails();
   }, [recipeId]);
 
-  const updateRecipe = async (e) => {
+  const updateRecipe = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 

@@ -22,6 +22,7 @@ const CreateRecipe: FC = () => {
     ],
     tag: '',
     _id: null,
+    creator: null,
   });
 
   const createRecipe = async (

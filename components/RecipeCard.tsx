@@ -1,11 +1,24 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
+import { IPost } from '../types/recipe.interface';
 
-const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+interface IRecipeCardData {
+  post: IPost;
+  handleTagClick: (event: React.MouseEvent<HTMLElement>) => void;
+  handleEdit: (event: React.MouseEvent<HTMLElement>) => void;
+  handleDelete: (event: React.MouseEvent<HTMLElement>) => void;
+}
+
+const RecipeCard: FC<IRecipeCardData> = ({
+  post,
+  handleTagClick,
+  handleEdit,
+  handleDelete,
+}) => {
   const [copied, setCopied] = useState('');
   const { data: session } = useSession();
   const pathName = usePathname();
@@ -59,7 +72,7 @@ const RecipeCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         <p className="my-4 font-satoshi text-sm text-gray-700">{post.text}</p>
         <p
           className="font-inter text-sm blue_gradient cursor-pointer"
-          onClick={() => handleTagClick && handleTagClick(post.tag)}
+          onClick={() => handleTagClick}
         >
           {post.tag}
         </p>
