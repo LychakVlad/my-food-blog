@@ -37,7 +37,11 @@ const RecipeCard: FC<IRecipeCardData> = ({
         <div className="flex justify-between items-start gap-5">
           <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
             <Image
-              src={post?.creator?.image}
+              src={
+                post?.creator?.image
+                  ? post.creator.image
+                  : 'https://cdn.pixabay.com/photo/2017/04/05/15/04/chicken-2205233_1280.jpg'
+              }
               alt="user_image"
               width={40}
               height={40}
@@ -46,10 +50,10 @@ const RecipeCard: FC<IRecipeCardData> = ({
 
             <div className="flex flex-col">
               <h3 className="font-satoshi font-semibold text-gray-900">
-                {post?.creator?.username}
+                {post?.creator?.username ? post.creator.username : 'User name '}
               </h3>
               <p className="font-inter text-sm text-gray-500">
-                {post?.creator?.email}
+                {post?.creator?.email ? post.creator.email : 'User email'}
               </p>
             </div>
           </div>

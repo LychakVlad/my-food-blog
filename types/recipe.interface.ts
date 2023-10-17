@@ -1,3 +1,5 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+
 export interface IPost {
   title: string;
   text: string;
@@ -6,9 +8,9 @@ export interface IPost {
   _id: string | undefined | null;
   creator:
     | {
-        name: string;
+        username: string;
         email: string;
-        image: string;
+        image: string | StaticImport;
         _id: string;
       }
     | undefined
