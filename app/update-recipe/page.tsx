@@ -25,6 +25,8 @@ const EditRecipe = () => {
       const response = await fetch(`/api/recipe/${recipeId}`);
       const data = await response.json();
 
+      console.log(data);
+
       setPost({
         title: data.title,
         text: data.text,

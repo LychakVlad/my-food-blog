@@ -3,23 +3,44 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import {
+  signIn,
+  signOut,
+  useSession,
+  getProviders,
+  LiteralUnion,
+  ClientSafeProvider,
+} from 'next-auth/react';
+import { BuiltInProviderType } from 'next-auth/providers';
+
+type ProviderResponse = Record<
+  LiteralUnion<BuiltInProviderType, string>,
+  ClientSafeProvider
+> | null;
 
 const Nav = () => {
   const { data: session } = useSession();
 
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState<ProviderResponse>(null);
   const [toggleDropdown, settoggleDropdown] = useState(false);
 
   useEffect(() => {
     const setUpProviders = async () => {
-      const response = await getProviders();
+      const response: ProviderResponse = await getProviders();
 
       setProviders(response);
     };
 
     setUpProviders();
   }, []);
+
+  const handleSignOutClick = async () => {
+    try {
+      const response = await signOut();
+    } catch (error) {
+      console.log(`Failed to sign out, ${error}`);
+    }
+  };
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -33,7 +54,11 @@ const Nav = () => {
             <Link href="/create-recipe" className="black_btn">
               Create new recipe
             </Link>
-            <button type="button" onClick={signOut} className="outline_btn">
+            <button
+              type="button"
+              onClick={handleSignOutClick}
+              className="outline_btn"
+            >
               Sign out
             </button>
             <Link href="/profile">
@@ -53,7 +78,7 @@ const Nav = () => {
                 <button
                   type="button"
                   key={provider.name}
-                  onClick={() => signIn(provider._id)}
+                  onClick={() => signIn(provider.id)}
                   className="black_btn"
                 >
                   Sign in
