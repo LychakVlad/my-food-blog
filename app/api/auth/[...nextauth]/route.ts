@@ -8,7 +8,7 @@ import { JWT } from 'next-auth/jwt';
 const googleClientSecret: string = process.env.GOOGLE_CLIENT_SECRET;
 const googleIdSecret: string = process.env.GOOGLE_ID;
 
-async function mapGoogleIdToObjectId(googleId) {
+async function mapGoogleIdToObjectId(googleId: string | undefined) {
   try {
     const user = await User.findOne({ googleId: googleId });
     if (user) {

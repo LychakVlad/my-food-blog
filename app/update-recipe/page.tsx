@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Form from '../../components/Form';
+import { IPost } from '../../types/recipe.interface';
 
 const EditRecipe = () => {
   const router = useRouter();
@@ -10,10 +11,12 @@ const EditRecipe = () => {
   const recipeId = searchParams.get('id');
 
   const [submitting, setSubmitting] = useState(false);
-  const [post, setPost] = useState({
+  const [post, setPost] = useState<IPost>({
     title: '',
     text: '',
     tag: '',
+    ingredients: [],
+    _id: '',
   });
 
   useEffect(() => {
@@ -25,6 +28,8 @@ const EditRecipe = () => {
         title: data.title,
         text: data.text,
         tag: data.tag,
+        ingredients: data.ingredients,
+        _id: data._id,
       });
     };
 

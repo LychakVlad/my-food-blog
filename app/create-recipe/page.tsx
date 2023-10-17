@@ -21,9 +21,8 @@ const CreateRecipe: FC = () => {
       'e.g. 2 tablespoons butter, softened',
     ],
     tag: '',
+    _id: null,
   });
-
-  console.log(session?.user);
 
   const createRecipe = async (
     e: React.FormEvent<HTMLFormElement>
