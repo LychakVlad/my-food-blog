@@ -53,6 +53,9 @@ const EditRecipe = () => {
           title: post.title,
           text: post.text,
           tag: post.tag,
+          ingredients: post.ingredients,
+          _id: post._id,
+          creator: post.creator,
         }),
       });
 

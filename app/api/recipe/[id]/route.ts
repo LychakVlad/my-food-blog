@@ -5,7 +5,7 @@ export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipe = await Text.findById(params._id).populate('creator');
+    const recipe = await Text.findById(params.id).populate('creator');
     if (!recipe) return new Response('Recipe not found', { status: 404 });
 
     return new Response(JSON.stringify(recipe), { status: 200 });
@@ -15,11 +15,12 @@ export const GET = async (request: Request, { params }: any) => {
 };
 
 export const PATCH = async (request: Request, { params }: any) => {
-  const { text, tag, title, ingredients } = await request.json();
+  const { text, tag, title, ingredients, creator } = await request.json();
+
   try {
     await connectToDB();
 
-    const existingRecipe = await Text.findById(params._id);
+    const existingRecipe = await Text.findById(params.id);
     if (!existingRecipe)
       return new Response('Recipe not found', { status: 404 });
 
@@ -27,6 +28,7 @@ export const PATCH = async (request: Request, { params }: any) => {
     existingRecipe.tag = tag;
     existingRecipe.title = title;
     existingRecipe.ingredients = ingredients;
+    existingRecipe.creator = creator;
 
     await existingRecipe.save();
 
