@@ -40,7 +40,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
               src={
                 post?.creator?.image
                   ? post.creator.image
-                  : 'https://cdn.pixabay.com/photo/2017/04/05/15/04/chicken-2205233_1280.jpg'
+                  : '/assets/icons/profile-undefined.svg'
               }
               alt="user_image"
               width={40}

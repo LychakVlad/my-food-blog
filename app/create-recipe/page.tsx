@@ -20,6 +20,12 @@ const CreateRecipe: FC = () => {
       'e.g. 1 cup sugar',
       'e.g. 2 tablespoons butter, softened',
     ],
+    steps: [
+      'e.g. Preheat oven to 350 degrees F…',
+      'e.g. Combine all dry ingredients in a large bowl…',
+      'e.g. Pour into greased trays and bake for 15-20 minutes…',
+    ],
+    photo: '',
     tag: '',
     _id: null,
     creator: null,
@@ -38,8 +44,10 @@ const CreateRecipe: FC = () => {
           text: post.text,
           userId: session?.user?.id,
           ingredients: post.ingredients,
+          steps: post.steps,
           tag: post.tag,
           title: post.title,
+          photo: post.photo,
         }),
       });
 

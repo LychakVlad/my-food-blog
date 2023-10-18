@@ -36,16 +36,24 @@ const Nav = () => {
 
   const handleSignOutClick = async () => {
     try {
+      console.log('lol');
       const response = await signOut();
+      return response;
     } catch (error) {
       console.log(`Failed to sign out, ${error}`);
     }
   };
 
   return (
-    <nav className="flex-between w-full mb-16 pt-3">
+    <nav className="flex-between w-full mb-16 pt-5 ">
       <Link href="/" className="flex gap-2 flex-center">
-        Logo
+        <Image
+          src={'/assets/icons/logo.svg'}
+          width={36}
+          height={36}
+          className="rounded-full"
+          alt="logo"
+        ></Image>
         <p className="logo_text"> Cook's Compass</p>
       </Link>
       <div className="sm:flex hidden">

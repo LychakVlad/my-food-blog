@@ -17,12 +17,19 @@ const RecipeSchema = new Schema({
     type: String,
     required: [true, 'Tag is required'],
   },
+  steps: {
+    type: [String],
+    required: [true, 'Steps are required'],
+  },
+  photo: {
+    type: Buffer,
+  },
   ingredients: {
     type: [String],
-    required: [true, 'Ingredients is required'],
+    required: [true, 'Ingredients are required'],
   },
 });
 
-const Text = models.Text || model('Text', RecipeSchema);
+const Recipe = models.Recipe || model('Recipe', RecipeSchema);
 
-export default Text;
+export default Recipe;

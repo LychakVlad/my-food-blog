@@ -16,6 +16,8 @@ const EditRecipe = () => {
     text: '',
     tag: '',
     ingredients: [],
+    photo: '',
+    steps: [],
     _id: null,
     creator: null,
   });
@@ -31,7 +33,9 @@ const EditRecipe = () => {
         title: data.title,
         text: data.text,
         tag: data.tag,
+        steps: data.steps,
         ingredients: data.ingredients,
+        photo: data.photo,
         _id: data._id,
         creator: data.creator,
       });
@@ -54,6 +58,8 @@ const EditRecipe = () => {
           text: post.text,
           tag: post.tag,
           ingredients: post.ingredients,
+          steps: post.steps,
+          photo: post.photo,
           _id: post._id,
           creator: post.creator,
         }),

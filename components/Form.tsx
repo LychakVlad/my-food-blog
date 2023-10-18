@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { IPost } from '../types/recipe.interface';
 
 interface FormProps {
@@ -52,6 +52,42 @@ const Form: FC<FormProps> = ({
     });
   };
 
+  const addStep = (e: React.FormEvent) => {
+    e.preventDefault();
+    const updateArr = [...post.steps];
+    updateArr.push('');
+
+    setPost({
+      ...post,
+      steps: updateArr,
+    });
+  };
+
+  const stepChangeInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const updateArr = [...post.steps];
+    updateArr[index] = e.target.value;
+
+    setPost({
+      ...post,
+      steps: updateArr,
+    });
+  };
+
+  const stepRemove = (e: React.FormEvent, index: number) => {
+    e.preventDefault();
+    const updateArr = [...post.steps];
+    updateArr.splice(index, 1);
+
+    setPost({
+      ...post,
+      steps: updateArr,
+    });
+  };
+
+  console.log(post);
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
@@ -65,6 +101,15 @@ const Form: FC<FormProps> = ({
         onSubmit={handleSubmit}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
+        <input
+          value={post.photo}
+          onChange={(e) => setPost({ ...post, photo: e.target.value })}
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/png, image/jpeg"
+        />
+
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Title
@@ -115,6 +160,36 @@ const Form: FC<FormProps> = ({
               </div>
             ))}
             <button onClick={(e) => addIngredient(e)}>Add ingredient</button>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="font-satoshi font-semibold text-base text-gray-700">
+            Directions
+          </h2>
+          <p className=" opacity-50">
+            Explain how to make your recipe, including oven temperatures, baking
+            or cooking times, and pan sizes, etc. Use optional headers to
+            organize the different parts of the recipe (i.e. Prep, Bake,
+            Decorate).
+          </p>
+          <div className="flex  flex-col">
+            {post.steps.map((item: string, index: number) => (
+              <div className="py-3">
+                <h3>Step {index + 1}</h3>
+                <div className="flex items-center" key={index}>
+                  <textarea
+                    value={item}
+                    onChange={(e) => stepChangeInput(e, index)}
+                    placeholder="Add step"
+                    required
+                    className="form_input min-h-[50px]"
+                  />
+                  <button onClick={(e) => stepRemove(e, index)}>Remove</button>
+                </div>
+              </div>
+            ))}
+            <button onClick={(e) => addStep(e)}>Add step</button>
           </div>
         </div>
 

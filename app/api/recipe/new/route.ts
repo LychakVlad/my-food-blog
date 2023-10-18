@@ -1,30 +1,24 @@
 import { connectToDB } from '../../../../utils/database';
-import Text from '../../../../models/recipe';
+import Recipe from '../../../../models/recipe';
 
 export const POST = async (req: Request, res: Response) => {
-  const { userId, text, tag, title, ingredients } = await req.json();
+  const { userId, text, tag, title, ingredients, steps, photo } =
+    await req.json();
 
   try {
     await connectToDB();
 
-    const newRecipe = new Text({
+    const newRecipe = new Recipe({
       creator: userId,
       title,
       text,
       tag,
       ingredients,
+      steps,
+      photo,
     });
-
-    console.log(newRecipe);
 
     await newRecipe.save();
-    console.log('Received Data:', {
-      userId,
-      text,
-      tag,
-      title,
-      ingredients,
-    });
 
     return new Response(JSON.stringify(newRecipe), { status: 201 });
   } catch (error) {
