@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { IPost } from '../types/recipe.interface';
 
 interface FormProps {
@@ -64,7 +64,7 @@ const Form: FC<FormProps> = ({
   };
 
   const stepChangeInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: ChangeEvent<HTMLTextAreaElement>,
     index: number
   ) => {
     const updateArr = [...post.steps];

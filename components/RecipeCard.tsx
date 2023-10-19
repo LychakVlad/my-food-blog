@@ -5,6 +5,7 @@ import { FC, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { IPost } from '../types/recipe.interface';
+import Link from 'next/link';
 
 interface IRecipeCardData {
   post: IPost;
@@ -35,6 +36,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
       {' '}
       <div className="prompt_card">
         <div className="flex justify-between items-start gap-5">
+          <Link href="/recipes">View Recipe</Link>
           <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
             <Image
               src={
