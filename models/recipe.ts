@@ -22,7 +22,8 @@ const RecipeSchema = new Schema({
     required: [true, 'Steps are required'],
   },
   photo: {
-    type: Buffer,
+    data: Buffer,
+    contentType: String,
   },
   ingredients: {
     type: [String],

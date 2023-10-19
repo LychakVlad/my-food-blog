@@ -26,10 +26,7 @@ const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
 };
 
 const Feed: FC = () => {
-  const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState<IPost[]>([]);
-
-  const handleSearchChange = () => {};
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -41,9 +38,6 @@ const Feed: FC = () => {
 
     fetchPosts();
   }, []);
-
-  console.log(posts);
-
   return (
     <section className="feed">
       <RecipeCardList data={posts} handleTagClick={() => {}} />

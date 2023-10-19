@@ -18,18 +18,19 @@ const Recipe = ({ post }: { post: IPost }) => {
         height={60}
         className="rounded-full object-contain"
       />
+
       <h1>Title: {post.title} </h1>
       <h2>Text: {post.text}</h2>
       <h2>Ingredients</h2>
       <p>
         {post.ingredients.map((ingredient: string) => (
-          <p>{ingredient}</p>
+          <span>{ingredient}</span>
         ))}
       </p>
       <h2>Steps</h2>
       <p>
         {post.steps.map((step: string) => (
-          <p>{step}</p>
+          <span>{step}</span>
         ))}
       </p>
       <p>#{post.tag}</p>

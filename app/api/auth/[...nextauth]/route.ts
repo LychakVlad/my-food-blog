@@ -21,6 +21,7 @@ async function mapGoogleIdToObjectId(googleId: string | undefined) {
 }
 
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRETs,
   providers: [
     GoogleProvider({
       clientId: googleIdSecret,

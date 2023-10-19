@@ -20,7 +20,6 @@ async function getRecipe(id: string) {
 }
 
 export default async function RecipePage({ params }: { params: Params }) {
-  console.log(params);
   const recipe = await getRecipe(params.id);
   return <Recipe post={recipe} />;
 }
