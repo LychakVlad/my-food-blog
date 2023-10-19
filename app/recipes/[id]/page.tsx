@@ -1,10 +1,14 @@
 import Recipe from '../../../components/Recipe';
+import { IPost } from '../../../types/recipe.interface';
 
+interface Params {
+  id: string;
+}
 export async function generateStaticParams() {
   const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
   const data = await posts.json();
 
-  return data.map((post) => ({
+  return data.map((post: IPost) => ({
     id: post._id,
   }));
 }
@@ -15,7 +19,8 @@ async function getRecipe(id: string) {
   return data;
 }
 
-export default async function RecipePage({ params }) {
+export default async function RecipePage({ params }: { params: Params }) {
+  console.log(params);
   const recipe = await getRecipe(params.id);
   return <Recipe post={recipe} />;
 }

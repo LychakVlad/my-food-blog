@@ -1,11 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
+import { IPost } from '../types/recipe.interface';
 
-const Recipe = ({ post }) => {
+const Recipe = ({ post }: { post: IPost }) => {
   return (
     <div>
-      <h3>{post.creator.username}</h3>
-      <h3>{post.creator.email}</h3>
+      <h3>{post?.creator?.username}</h3>
+      <h3>{post?.creator?.email}</h3>
       <Image
         src={
           post?.creator?.image
