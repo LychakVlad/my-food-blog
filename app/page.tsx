@@ -28,7 +28,7 @@ const Home: FC = () => {
           </p>
           <Link
             href={'/#'}
-            className=" font-semibold text-3xl mt-4 bg-slate-900  bg-opacity-50 first-letter p-4 w-fit"
+            className=" font-semibold text-3xl mt-4 bg-slate-900  bg-opacity-50 first-letter p-4 w-fit "
           >
             Let's explore
           </Link>
