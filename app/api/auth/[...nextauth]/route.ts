@@ -1,4 +1,4 @@
-import NextAuth, { Session } from 'next-auth';
+import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
 import User from '../../../../models/user';
@@ -20,7 +20,7 @@ async function mapGoogleIdToObjectId(googleId: string | undefined) {
   return null;
 }
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRETs,
   providers: [
     GoogleProvider({
@@ -72,6 +72,8 @@ const handler = NextAuth({
       return false;
     },
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

@@ -87,7 +87,6 @@ const Form: FC<FormProps> = ({
     });
   };
 
-  console.log(post);
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">

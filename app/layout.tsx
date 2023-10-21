@@ -5,6 +5,7 @@ import '../styles/global.css';
 import { SessionProvider } from 'next-auth/react';
 import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
 export const metadata: Metadata = {
   title: "Cook's Compass",
@@ -16,13 +17,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let session;
-
-  async function getSessionFunction() {
-    session = await getServerSession();
-  }
-
-  getSessionFunction();
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">

@@ -12,7 +12,6 @@
   display: flex;
   justify-content: center;
   padding: 120px 24px 160px 24px;
-  pooswald-events: none;
 }
 
 @media screen and (max-width: 640px) {

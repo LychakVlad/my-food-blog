@@ -49,6 +49,8 @@ const MyProfile = () => {
     }
   };
 
+  console.log(session?.user);
+
   return (
     <Profile
       name="My"
