@@ -12,7 +12,7 @@ async function mapGoogleIdToObjectId(googleId: string | undefined) {
   try {
     const user = await User.findOne({ googleId: googleId });
     if (user) {
-      return user._id;
+      return user._id.toString();
     }
   } catch (error) {
     console.error('Error mapping Google ID to ObjectId:', error);
