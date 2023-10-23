@@ -19,16 +19,9 @@ const RecipeCard: FC<IRecipeCardData> = ({
   handleEdit,
   handleDelete,
 }) => {
-  const [copied, setCopied] = useState('');
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
-
-  const handleCopy = () => {
-    setCopied(post.text);
-    navigator.clipboard.writeText(post.text);
-    setTimeout(() => setCopied(''), 3000);
-  };
 
   function handleClick() {
     router.push(`/recipes/${post._id}`);
@@ -61,18 +54,6 @@ const RecipeCard: FC<IRecipeCardData> = ({
                 {post?.creator?.email ? post.creator.email : 'User email'}
               </p>
             </div>
-          </div>
-          <div className="copy_btn" onClick={handleCopy}>
-            <Image
-              src={
-                copied === post.text
-                  ? '/assets/icons/tick.svg'
-                  : '/assets/icons/copy.svg'
-              }
-              width={12}
-              height={12}
-              alt="copy-btn"
-            />
           </div>
         </div>
         <p className="my-4 font-satoshi text-lg font-semibold text-gray-700">
