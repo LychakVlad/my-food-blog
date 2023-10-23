@@ -94,3 +94,17 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+/* RecipePage Component */
+
+.recipe_title {
+  @apply text-6xl font-extrabold sm:text-6xl;
+}
+
+.recipe_semi-title {
+  @apply text-5xl font-bold;
+}
+
+.recipe_step-title {
+  @apply text-xl font-semibold;
+}
