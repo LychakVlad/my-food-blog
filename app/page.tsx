@@ -6,7 +6,7 @@ import Link from 'next/link';
 const Home: FC = () => {
   return (
     <section className="w-full flex-col">
-      <div className="relative  max-w-[1300px] overflow-hidden h-[700px] flex items-center ">
+      <div className="relative  max-w-[1300px] overflow-hidden h-[700px] flex items-center rounded-xl">
         <Image
           src={'/assets/images/main.jpeg'}
           width={1200}
@@ -26,10 +26,7 @@ const Home: FC = () => {
             delectable dishes shared by fellow food enthusiasts. Explore,
             create, and celebrate the joy of cooking together!
           </p>
-          <Link
-            href={'/#'}
-            className=" font-semibold text-3xl mt-4 bg-slate-900  bg-opacity-50 first-letter p-4 w-fit "
-          >
+          <Link href={'/#'} className="nav_btn">
             Let's explore
           </Link>
         </div>

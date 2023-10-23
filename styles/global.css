@@ -34,6 +34,10 @@
   @apply rounded-xl border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
 
+.nav_btn {
+  @apply rounded-xl  font-semibold text-3xl mt-4 bg-white text-black  p-4 w-fit transition-all hover:bg-black hover:text-white;
+}
+
 .head_text {
   @apply text-6xl font-extrabold sm:text-6xl;
 }

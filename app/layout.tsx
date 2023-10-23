@@ -2,7 +2,6 @@ import React, { FC, PropsWithChildren } from 'react';
 import Nav from '../components/Nav';
 import Provider from '../components/Provider';
 import '../styles/global.css';
-import { SessionProvider } from 'next-auth/react';
 import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
 import { authOptions } from './api/auth/[...nextauth]/route';
