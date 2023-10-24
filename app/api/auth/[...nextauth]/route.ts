@@ -5,9 +5,6 @@ import User from '../../../../models/user';
 import { connectToDB } from '../../../../utils/database';
 import { JWT } from 'next-auth/jwt';
 
-const googleClientSecret: string = process.env.GOOGLE_CLIENT_SECRET;
-const googleIdSecret: string = process.env.GOOGLE_ID;
-
 async function mapGoogleIdToObjectId(googleId: string | undefined) {
   try {
     const user = await User.findOne({ googleId: googleId });
@@ -24,8 +21,8 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
-      clientId: googleIdSecret,
-      clientSecret: googleClientSecret,
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   session: {
