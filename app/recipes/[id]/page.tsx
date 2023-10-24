@@ -4,7 +4,7 @@ import { IPost } from '../../../types/recipe.interface';
 interface Params {
   id: string;
 }
-export async function generateStaticParams() {
+export async function useSearchParams() {
   const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
   const data = await posts.json();
 
