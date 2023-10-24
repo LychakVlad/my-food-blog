@@ -21,7 +21,7 @@ async function mapGoogleIdToObjectId(googleId: string | undefined) {
 }
 
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRETs,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: googleIdSecret,
