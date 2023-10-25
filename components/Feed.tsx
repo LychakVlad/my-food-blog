@@ -38,7 +38,7 @@ const Feed: FC = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [posts]);
   return (
     <section className="feed">
       <RecipeCardList data={posts} handleTagClick={() => {}} />
