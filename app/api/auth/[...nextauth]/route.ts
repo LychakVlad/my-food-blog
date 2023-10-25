@@ -9,7 +9,7 @@ async function mapGoogleIdToObjectId(googleId: string | undefined) {
   try {
     const user = await User.findOne({ googleId: googleId });
     if (user) {
-      return user._id.toString();
+      return user._id;
     }
   } catch (error) {
     console.error('Error mapping Google ID to ObjectId:', error);
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
     session: async ({ session, token }: { session: Session; token: JWT }) => {
       if (session?.user) {
         const userId = await mapGoogleIdToObjectId(token.sub);
-        session.user.id = userId;
+        session.user.id = userId.toString();
       }
       return session;
     },
