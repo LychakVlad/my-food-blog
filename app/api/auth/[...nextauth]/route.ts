@@ -6,15 +6,9 @@ import { connectToDB } from '../../../../utils/database';
 import { JWT } from 'next-auth/jwt';
 
 async function mapGoogleIdToObjectId(googleId: string | undefined) {
-  try {
-    const user = await User.findOne({ googleId: googleId });
-    if (user) {
-      return user._id;
-    }
-  } catch (error) {
-    console.error('Error mapping Google ID to ObjectId:', error);
-  }
-  return null;
+  console.log('Entered the serverless function');
+
+  return { dummy: 'data' };
 }
 
 export const authOptions: NextAuthOptions = {
