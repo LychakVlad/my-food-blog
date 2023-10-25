@@ -34,6 +34,7 @@ const Feed: FC = () => {
       const data = await response.json();
 
       setPosts(data);
+      console.log(data);
     };
 
     fetchPosts();
@@ -44,6 +45,5 @@ const Feed: FC = () => {
     </section>
   );
 };
-export const dynamic = 'force-dynamic';
 
 export default Feed;
