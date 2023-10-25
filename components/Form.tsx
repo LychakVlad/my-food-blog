@@ -174,9 +174,9 @@ const Form: FC<FormProps> = ({
           </p>
           <div className="flex  flex-col">
             {post.steps.map((item: string, index: number) => (
-              <div className="py-3">
+              <div className="py-3" key={index}>
                 <h3>Step {index + 1}</h3>
-                <div className="flex items-center" key={index}>
+                <div className="flex items-center">
                   <textarea
                     value={item}
                     onChange={(e) => stepChangeInput(e, index)}

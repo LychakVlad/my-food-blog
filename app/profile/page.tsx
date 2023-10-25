@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 import Profile from '../../components/Profile';
 import { useSession } from 'next-auth/react';
@@ -48,6 +48,8 @@ const MyProfile = () => {
       }
     }
   };
+
+  console.log(session?.user);
 
   return (
     <Profile
