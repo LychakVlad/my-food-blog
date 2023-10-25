@@ -14,6 +14,8 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token, user }) {
+      await connectToDB();
+
       const userExists = await User.findOne({ email: session.user.email });
       session.user.id = userExists._id.toString();
       return session;
@@ -22,8 +24,6 @@ export const authOptions: NextAuthOptions = {
       if (profile) {
         try {
           await connectToDB();
-
-          console.log(profile);
 
           const userExists = await User.findOne({ email: profile.email });
 
