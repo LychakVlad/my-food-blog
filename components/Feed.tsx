@@ -44,5 +44,6 @@ const Feed: FC = () => {
     </section>
   );
 };
+export const dynamic = 'force-dynamic';
 
 export default Feed;
