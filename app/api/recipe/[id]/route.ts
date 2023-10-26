@@ -1,11 +1,11 @@
 import { connectToDB } from '../../../../utils/database';
-import Text from '../../../../models/recipe';
+import Recipe from '../../../../models/recipe';
 
 export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipe = await Text.findById(params.id).populate('creator');
+    const recipe = await Recipe.findById(params.id).populate('creator');
     if (!recipe) return new Response('Recipe not found', { status: 404 });
 
     return new Response(JSON.stringify(recipe), { status: 200 });
@@ -21,7 +21,7 @@ export const PATCH = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const existingRecipe = await Text.findById(params.id);
+    const existingRecipe = await Recipe.findById(params.id);
     if (!existingRecipe)
       return new Response('Recipe not found', { status: 404 });
 
@@ -45,7 +45,7 @@ export const DELETE = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    await Text.findByIdAndRemove(params.id);
+    await Recipe.findByIdAndRemove(params.id);
 
     return new Response('Recipe deleted successfully', { status: 200 });
   } catch (error) {

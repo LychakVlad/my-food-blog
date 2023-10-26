@@ -1,11 +1,11 @@
 import { connectToDB } from '../../../../../utils/database';
-import Text from '../../../../../models/recipe';
+import Recipe from '../../../../../models/recipe';
 
 export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipes = await Text.find({
+    const recipes = await Recipe.find({
       'creator.id': params.creatorId,
     }).populate('creator');
 
