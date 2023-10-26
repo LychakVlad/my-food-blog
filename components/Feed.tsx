@@ -28,19 +28,20 @@ const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
 const Feed: FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
+  const fetchPosts = async () => {
+    try {
       const response = await fetch('/api/recipe');
-      console.log(response);
       const data = await response.json();
-      console.log(data);
-
       setPosts(data);
-    };
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchPosts();
-    console.log('posts fetched');
   }, []);
+
   return (
     <section className="feed">
       <RecipeCardList data={posts} handleTagClick={() => {}} />
