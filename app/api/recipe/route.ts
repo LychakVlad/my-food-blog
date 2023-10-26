@@ -6,6 +6,8 @@ export const GET = async (request: Request, { params }: any) => {
     await connectToDB();
 
     const recipes = await Text.find({}).populate('creator');
+    console.log('call database');
+    console.log(recipes);
 
     return new Response(JSON.stringify(recipes), { status: 200 });
   } catch (error) {

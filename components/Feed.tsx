@@ -31,12 +31,15 @@ const Feed: FC = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('/api/recipe');
+      console.log(response);
       const data = await response.json();
+      console.log(data);
 
       setPosts(data);
     };
 
     fetchPosts();
+    console.log('posts fetched');
   }, []);
   return (
     <section className="feed">
