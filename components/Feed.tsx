@@ -30,15 +30,14 @@ const Feed: FC = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/recipe');
+      const response = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
       const data = await response.json();
 
       setPosts(data);
-      console.log(data);
     };
 
     fetchPosts();
-  }, [posts]);
+  }, []);
   return (
     <section className="feed">
       <RecipeCardList data={posts} handleTagClick={() => {}} />

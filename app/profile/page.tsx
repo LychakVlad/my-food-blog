@@ -1,6 +1,6 @@
 'use client';
 
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Profile from '../../components/Profile';
 import { useSession } from 'next-auth/react';
@@ -40,16 +40,12 @@ const MyProfile = () => {
 
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 
-        console.log(filteredPosts);
-
         setPosts(filteredPosts);
       } catch (error) {
         console.log(error);
       }
     }
   };
-
-  console.log(session?.user);
 
   return (
     <Profile
