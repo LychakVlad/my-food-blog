@@ -30,7 +30,7 @@ const Feed: FC = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('/api/recipe');
+      const response = await fetch('/api/recipe', { method: 'GET' });
       const data = await response.json();
       setPosts(data);
     } catch (error) {
