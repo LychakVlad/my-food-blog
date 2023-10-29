@@ -35,7 +35,7 @@
 }
 
 .nav_btn {
-  @apply rounded-xl  font-semibold text-3xl mt-4 bg-white text-black  p-4 w-fit transition-all hover:bg-black hover:text-white;
+  @apply rounded-xl  font-semibold text-2xl mt-4 bg-white text-black  p-4 w-fit transition-all hover:bg-black hover:text-white font-inter;
 }
 
 .head_text {
@@ -43,7 +43,7 @@
 }
 
 .desc {
-  @apply mt-5 text-lg sm:text-xl;
+  @apply mt-5 text-lg sm:text-xl font-inter;
 }
 
 .prompt_layout {

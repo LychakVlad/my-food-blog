@@ -15,7 +15,7 @@ const Home: FC = () => {
           className=" absolute object-cover"
         />
         <div className="relative flex flex-col justify-center   text-white bg-slate-900  bg-opacity-30 h-full p-16 ">
-          <h1 className="head_text font-noto">
+          <h1 className="head_text font-inter">
             Cook's Compass
             <br className="max-md:hidden" />
             <span className="">Navigating the Culinary World</span>
