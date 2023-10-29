@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React, { ChangeEvent, FC, useState } from 'react';
 import { IPost } from '../types/recipe.interface';
-
 interface FormProps {
   type: string;
   post: IPost;

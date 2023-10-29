@@ -19,13 +19,13 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en">
-      <body suppressHydrationWarning={true}>
+    <html lang="en" className="h-full">
+      <body suppressHydrationWarning={true} className="h-full">
         <Provider session={session}>
           <div className="main">
             <div className="gradient" />
           </div>
-          <main className="app">
+          <main className="app h-full">
             <Nav />
             {children}
           </main>
