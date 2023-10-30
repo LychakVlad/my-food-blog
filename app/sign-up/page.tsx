@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Register = () => {
+const SignUp = () => {
   return (
     <>
       <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8 font-inter">
@@ -79,4 +79,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

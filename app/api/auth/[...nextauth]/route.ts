@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 import User from '../../../../models/user';
 import { connectToDB } from '../../../../utils/database';
@@ -10,6 +11,14 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {
+        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials, req) {},
     }),
   ],
   callbacks: {
