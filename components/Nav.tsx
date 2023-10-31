@@ -46,6 +46,7 @@ const Nav = () => {
 
   return (
     <nav className="flex-between w-full mb-5 mt-5 ">
+      <Link href="/sign-up">Sign up</Link>
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src={'/assets/icons/logo.svg'}
