@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 const SignUp = () => {
   const router = useRouter();
   const [data, setData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
   });
@@ -21,7 +21,7 @@ const SignUp = () => {
       body: JSON.stringify({ data }),
     });
     const userInfo = await response.json();
-    router.push('/');
+    router.push('/login');
   };
 
   return (
@@ -73,10 +73,8 @@ const SignUp = () => {
                   id="name"
                   name="name"
                   type="text"
-                  value={data.username}
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  value={data.name}
+                  onChange={(e) => setData({ ...data, name: e.target.value })}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

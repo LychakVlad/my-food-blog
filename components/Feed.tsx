@@ -3,6 +3,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
 import { IPost } from '../types/recipe.interface';
+import { useSession } from 'next-auth/react';
 
 interface IDataItem {
   data: IPost[];
@@ -27,6 +28,7 @@ const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
 
 const Feed: FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const { data: session } = useSession();
 
   const fetchPosts = async () => {
     try {
@@ -42,8 +44,11 @@ const Feed: FC = () => {
     fetchPosts();
   }, []);
 
+  console.log(session?.user);
+
   return (
     <section className="feed">
+      <p>You logged in as {session?.user.name}</p>
       <RecipeCardList data={posts} handleTagClick={() => {}} />
     </section>
   );

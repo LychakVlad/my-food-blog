@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import bcrypt from 'bcrypt';
 
 import User from '../../../../models/user';
 import { connectToDB } from '../../../../utils/database';
@@ -8,50 +9,45 @@ import { connectToDB } from '../../../../utils/database';
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
     CredentialsProvider({
       name: 'credentials',
       credentials: {
         username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
         password: { label: 'Password', type: 'password' },
+        email: { label: 'Email', type: 'email' },
       },
-      async authorize(credentials, req) {},
+      async authorize(credentials) {
+        await connectToDB();
+
+        if (!credentials?.email || !credentials.password) {
+          return null;
+        }
+
+        const user = await User.findOne({ email: credentials.email });
+
+        if (!user) {
+          return null;
+        }
+
+        const passwordsMatch = await bcrypt.compare(
+          credentials.password,
+          user.hashedPassword
+        );
+
+        if (!passwordsMatch) {
+          return null;
+        }
+
+        return user;
+      },
     }),
   ],
   callbacks: {
     async session({ session, token, user }) {
+      await connectToDB();
       const userExists = await User.findOne({ email: session.user.email });
       session.user.id = userExists._id.toString();
       return session;
-    },
-    async signIn({ profile }) {
-      if (profile) {
-        try {
-          await connectToDB();
-
-          const userExists = await User.findOne({ email: profile.email });
-
-          if (!userExists) {
-            await User.create({
-              email: profile.email,
-              username: profile.name?.replace(' ', '').toLowerCase(),
-              image: profile.picture,
-              id: profile.sub,
-            });
-          }
-
-          return true;
-        } catch (error) {
-          const errorObject = error as Error;
-          console.error('Error message:', errorObject.message);
-          console.log('Profile object:', profile);
-          return false;
-        }
-      }
-      return false;
     },
   },
 };

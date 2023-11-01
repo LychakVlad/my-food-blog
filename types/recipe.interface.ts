@@ -10,7 +10,7 @@ export interface IPost {
   _id: string | undefined | null;
   creator:
     | {
-        username: string;
+        name: string;
         email: string;
         image: string | StaticImport;
         _id: string;
