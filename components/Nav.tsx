@@ -46,7 +46,6 @@ const Nav = () => {
 
   return (
     <nav className="flex-between w-full mb-5 mt-5 ">
-      <Link href="/sign-up">Sign up</Link>
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src={'/assets/icons/logo.svg'}
@@ -59,8 +58,8 @@ const Nav = () => {
       </Link>
       <div className="sm:flex hidden">
         {session?.user ? (
-          <div className="flex gap-3 md:gap-5">
-            <Link href="/create-recipe" className="black_btn">
+          <div className="flex ">
+            <Link href="/create-recipe" className="black_btn mr-4">
               Create new recipe
             </Link>
             <button
@@ -70,21 +69,16 @@ const Nav = () => {
             >
               Sign out
             </button>
-            <Link href="/profile"></Link>
+            <Link href="/profile">Profile link</Link>
           </div>
         ) : (
           <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                  className="black_btn"
-                >
-                  Sign in
-                </button>
-              ))}
+            <Link href="/sign-up" className="black_btn mr-4">
+              Sign up
+            </Link>
+            <Link href="/login" className="black_btn">
+              Log in
+            </Link>
           </>
         )}
       </div>

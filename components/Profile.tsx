@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import RecipeCard from './RecipeCard';
 import { IPost } from '../types/recipe.interface';
+import withAuth from './Routes/withAuth';
 
 interface IProfileProps {
   name: string;
@@ -38,4 +39,4 @@ const Profile: FC<IProfileProps> = ({
   );
 };
 
-export default Profile;
+export default withAuth(Profile);

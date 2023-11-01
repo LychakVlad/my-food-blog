@@ -1,7 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import whenLoggedIn from '../../components/Routes/whenLoggedIn';
 
 const SignUp = () => {
   const router = useRouter();
@@ -115,12 +117,12 @@ const SignUp = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{' '}
-            <a
-              href="#"
+            <Link
+              href="/login"
               className="font-semibold leading-6 text-gray-600 hover:text-gray-400 transition-colors "
             >
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>
@@ -128,4 +130,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default whenLoggedIn(SignUp);

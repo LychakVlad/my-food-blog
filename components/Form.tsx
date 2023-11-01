@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React, { ChangeEvent, FC, useState } from 'react';
 import { IPost } from '../types/recipe.interface';
+import whenLoggedIn from './Routes/whenLoggedIn';
+import withAuth from './Routes/withAuth';
 interface FormProps {
   type: string;
   post: IPost;
@@ -222,4 +224,4 @@ const Form: FC<FormProps> = ({
   );
 };
 
-export default Form;
+export default withAuth(Form);

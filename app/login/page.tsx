@@ -1,8 +1,10 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import whenLoggedIn from '../../components/Routes/whenLoggedIn';
 
 const LogIn = () => {
   const router = useRouter();
@@ -30,7 +32,7 @@ const LogIn = () => {
             alt="cooks compass"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create a new account
+            Sign in to your account
           </h2>
         </div>
 
@@ -90,13 +92,13 @@ const LogIn = () => {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Already have an account?{' '}
-            <a
-              href="#"
+            Don't have an account?{' '}
+            <Link
+              href="/sign-up"
               className="font-semibold leading-6 text-gray-600 hover:text-gray-400 transition-colors "
             >
-              Sign in
-            </a>
+              Sign up
+            </Link>
           </p>
         </div>
       </div>
@@ -104,4 +106,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default whenLoggedIn(LogIn);
