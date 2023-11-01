@@ -25,6 +25,7 @@ const RecipeSchema = new Schema({
     data: Buffer,
     contentType: String,
   },
+  time: { type: Date, default: Date.now },
   ingredients: {
     type: [String],
     required: [true, 'Ingredients are required'],

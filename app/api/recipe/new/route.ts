@@ -18,6 +18,8 @@ export const POST = async (req: Request, res: Response) => {
       photo,
     });
 
+    console.log(newRecipe);
+
     await newRecipe.save();
 
     return new Response(JSON.stringify(newRecipe), { status: 201 });
