@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { IPost } from '../types/recipe.interface';
@@ -66,7 +66,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
 
           <div className="flex flex-col">
             <h3 className="font-satoshi font-semibold text-gray-900">
-              {post?.creator?.username ? post.creator.username : 'User name '}
+              {post?.creator?.name ? post.creator.name : 'User name '}
             </h3>
             <p className="font-inter text-sm text-gray-500">
               {post?.creator?.email ? post.creator.email : 'User email'}

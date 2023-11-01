@@ -15,3 +15,16 @@ declare module 'next-auth' {
     picture: string;
   }
 }
+
+interface AuthData {
+  email: string;
+  password: string;
+  name?: string;
+}
+
+interface AuthForm {
+  data: AuthData;
+  setData: React.Dispatch<React.SetStateAction<AuthData>>;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  type: string;
+}

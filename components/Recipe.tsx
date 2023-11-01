@@ -6,7 +6,7 @@ const Recipe = ({ post }: { post: IPost }) => {
   return (
     <div className="max-w-2xl">
       <h1 className="recipe_title">{post.title} </h1>
-      <h3 className="mt-2 text-lg">Recipe by {post?.creator?.username}</h3>
+      <h3 className="mt-2 text-lg">Recipe by {post?.creator?.name}</h3>
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
       <p className="desc my-10">{post.text}</p>
 
