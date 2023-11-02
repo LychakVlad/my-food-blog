@@ -1,16 +1,22 @@
-export default function dateConvert(date: Date) {
-  const convertedDate = new Date(date);
+import { ReactNode } from 'react';
 
-  const options = {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  };
+export default function dateConvert(date: ReactNode): string | undefined {
+  if (typeof date === 'string') {
+    const convertedDate = new Date(date);
 
-  const day = convertedDate.getDate();
-  const month = convertedDate.toLocaleString('en-US', { month: 'short' });
-  const year = convertedDate.getFullYear();
+    const options = {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    };
 
-  const formattedDate = `${day} ${month} ${year}`;
-  return formattedDate;
+    const day = convertedDate.getDate();
+    const month = convertedDate.toLocaleString('en-US', { month: 'short' });
+    const year = convertedDate.getFullYear();
+
+    const formattedDate = `${day} ${month} ${year}`;
+    return formattedDate;
+  }
+
+  return undefined;
 }
