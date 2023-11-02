@@ -20,6 +20,14 @@ const EditRecipe = () => {
     steps: [],
     _id: null,
     creator: null,
+    servings: {
+      amount: 'e.g. 8',
+      yield: 'e.g. 1 9-inch cake',
+    },
+    timeToDo: {
+      prep: 5,
+      cook: 5,
+    },
   });
 
   useEffect(() => {
@@ -38,6 +46,14 @@ const EditRecipe = () => {
         photo: data.photo,
         _id: data._id,
         creator: data.creator,
+        servings: {
+          amount: data.servings.amount,
+          yield: data.servings.yield,
+        },
+        timeToDo: {
+          prep: data.timeToDo.prep,
+          cook: data.timeToDo.cook,
+        },
       });
     };
 
@@ -62,6 +78,8 @@ const EditRecipe = () => {
           photo: post.photo,
           _id: post._id,
           creator: post.creator,
+          servings: post.servings,
+          timeToDo: post.timeToDo,
         }),
       });
 

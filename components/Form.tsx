@@ -218,6 +218,43 @@ const Form: FC<FormProps> = ({
             {submitting ? `${type}...` : type}
           </button>
         </div>
+
+        <div className="flex">
+          <label className="w-full">
+            <span className="font-satoshi font-semibold text-base text-gray-700 ">
+              Servings
+            </span>
+            <input
+              value={post.servings.amount}
+              onChange={(e) =>
+                setPost({
+                  ...post,
+                  servings: { ...post.servings, amount: e.target.value },
+                })
+              }
+              placeholder="Recipe title"
+              required
+              className="form_input"
+            />
+          </label>
+          <label>
+            <span className="font-satoshi font-semibold text-base text-gray-700">
+              Yield
+            </span>
+            <input
+              value={post.servings.yield}
+              onChange={(e) =>
+                setPost({
+                  ...post,
+                  servings: { ...post.servings, yield: e.target.value },
+                })
+              }
+              placeholder="Recipe title"
+              required
+              className="form_input"
+            />
+          </label>
+        </div>
       </form>
     </section>
   );

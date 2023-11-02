@@ -21,6 +21,24 @@ const RecipeSchema = new Schema({
     type: [String],
     required: [true, 'Steps are required'],
   },
+  servings: {
+    amount: {
+      type: String,
+      required: [true, 'Servings amount is required'],
+    },
+    yield: {
+      type: String,
+    },
+  },
+  timeToDo: {
+    prep: {
+      type: Number,
+    },
+    cook: {
+      type: Number,
+      required: [true, 'Cook time is required'],
+    },
+  },
   photo: {
     data: Buffer,
     contentType: String,

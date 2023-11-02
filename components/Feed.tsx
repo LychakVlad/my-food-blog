@@ -44,8 +44,6 @@ const Feed: FC = () => {
     fetchPosts();
   }, []);
 
-  console.log(session?.user);
-
   return (
     <section className="feed">
       <p>You logged in as {session?.user.name}</p>

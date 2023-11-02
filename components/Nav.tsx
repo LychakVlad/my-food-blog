@@ -62,6 +62,9 @@ const Nav = () => {
             <Link href="/create-recipe" className="black_btn mr-4">
               Create new recipe
             </Link>
+            <Link href="/profile" className="black_btn mr-4">
+              Profile
+            </Link>
             <button
               type="button"
               onClick={handleSignOutClick}
@@ -69,7 +72,6 @@ const Nav = () => {
             >
               Sign out
             </button>
-            <Link href="/profile">Profile link</Link>
           </div>
         ) : (
           <>

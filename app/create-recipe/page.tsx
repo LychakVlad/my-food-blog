@@ -8,8 +8,7 @@ import { useSession } from 'next-auth/react';
 
 const CreateRecipe: FC = () => {
   const router = useRouter();
-  const { data: session, update } = useSession();
-
+  const { data: session } = useSession();
   const [submitting, setSubmitting] = useState(false);
 
   const [post, setPost] = useState<IPost>({
@@ -25,6 +24,15 @@ const CreateRecipe: FC = () => {
       'e.g. Combine all dry ingredients in a large bowl…',
       'e.g. Pour into greased trays and bake for 15-20 minutes…',
     ],
+    servings: {
+      amount: 'e.g. 8',
+      yield: 'e.g. 1 9-inch cake',
+    },
+    timeToDo: {
+      prep: 5,
+      cook: 5,
+    },
+
     photo: '',
     tag: '',
     _id: null,
@@ -48,6 +56,8 @@ const CreateRecipe: FC = () => {
           tag: post.tag,
           title: post.title,
           photo: post.photo,
+          servings: post.servings,
+          timeToDo: post.timeToDo,
         }),
       });
 

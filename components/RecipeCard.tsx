@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { IPost } from '../types/recipe.interface';
+import dateConvert from '../utils/dateConvert';
 
 interface IRecipeCardData {
   post: IPost;
@@ -57,7 +58,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
               {post?.creator?.name ? post.creator.name : 'User name '}
             </h3>
             <p className="font-inter text-sm text-gray-500">
-              {post?.creator?.email ? post.creator.email : 'User email'}
+              {post.time ? dateConvert(post.time) : 'Time created'}
             </p>
           </div>
         </div>

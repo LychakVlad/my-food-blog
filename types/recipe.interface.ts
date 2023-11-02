@@ -8,6 +8,9 @@ export interface IPost {
   photo: string;
   steps: string[];
   _id: string | undefined | null;
+  time?: Date;
+  servings: { amount: string; yield: string };
+  timeToDo: { prep: number; cook: number };
   creator:
     | {
         name: string;

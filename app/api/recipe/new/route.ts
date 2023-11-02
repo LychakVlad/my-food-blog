@@ -2,8 +2,18 @@ import { connectToDB } from '../../../../utils/database';
 import Recipe from '../../../../models/recipe';
 
 export const POST = async (req: Request, res: Response) => {
-  const { userId, text, tag, title, ingredients, steps, photo } =
-    await req.json();
+  const {
+    userId,
+    text,
+    tag,
+    title,
+    ingredients,
+    steps,
+    photo,
+    servings,
+    timeToDo,
+  } = await req.json();
+  console.log(timeToDo);
 
   try {
     await connectToDB();
@@ -16,6 +26,8 @@ export const POST = async (req: Request, res: Response) => {
       ingredients,
       steps,
       photo,
+      servings,
+      timeToDo,
     });
 
     console.log(newRecipe);
