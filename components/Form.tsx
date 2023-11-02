@@ -17,6 +17,7 @@ const Form: FC<FormProps> = ({
   submitting,
   handleSubmit,
 }) => {
+  console.log(post);
   const ingredientChangeInput = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number

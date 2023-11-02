@@ -12,8 +12,10 @@ export const POST = async (req: Request, res: Response) => {
     photo,
     servings,
     timeToDo,
+    nutrition,
   } = await req.json();
-  console.log(timeToDo);
+
+  console.log(nutrition);
 
   try {
     await connectToDB();
@@ -28,6 +30,7 @@ export const POST = async (req: Request, res: Response) => {
       photo,
       servings,
       timeToDo,
+      nutrition,
     });
 
     console.log(newRecipe);

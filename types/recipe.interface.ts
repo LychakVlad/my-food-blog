@@ -11,6 +11,12 @@ export interface IPost {
   time?: Date;
   servings: { amount: string; yield: string };
   timeToDo: { prep: number; cook: number };
+  nutrition: {
+    cal: string;
+    protein: string;
+    carbs: string;
+    fats: string;
+  };
   creator:
     | {
         name: string;

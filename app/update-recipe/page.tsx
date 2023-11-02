@@ -21,12 +21,18 @@ const EditRecipe = () => {
     _id: null,
     creator: null,
     servings: {
-      amount: 'e.g. 8',
-      yield: 'e.g. 1 9-inch cake',
+      amount: '',
+      yield: '',
     },
     timeToDo: {
-      prep: 5,
-      cook: 5,
+      prep: 0,
+      cook: 0,
+    },
+    nutrition: {
+      cal: '',
+      protein: '',
+      carbs: '',
+      fats: '',
     },
   });
 
@@ -34,8 +40,6 @@ const EditRecipe = () => {
     const getRecipeDetails = async () => {
       const response = await fetch(`/api/recipe/${recipeId}`);
       const data = await response.json();
-
-      console.log(data);
 
       setPost({
         title: data.title,
@@ -53,6 +57,12 @@ const EditRecipe = () => {
         timeToDo: {
           prep: data.timeToDo.prep,
           cook: data.timeToDo.cook,
+        },
+        nutrition: {
+          cal: data.nutrition.cal,
+          protein: data.nutrition.protein,
+          carbs: data.nutrition.carbs,
+          fats: data.nutrition.fats,
         },
       });
     };
@@ -80,6 +90,7 @@ const EditRecipe = () => {
           creator: post.creator,
           servings: post.servings,
           timeToDo: post.timeToDo,
+          nutrition: post.nutrition,
         }),
       });
 

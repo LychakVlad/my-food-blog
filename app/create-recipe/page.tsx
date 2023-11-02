@@ -32,7 +32,12 @@ const CreateRecipe: FC = () => {
       prep: 5,
       cook: 5,
     },
-
+    nutrition: {
+      cal: '100',
+      protein: '5',
+      carbs: '20',
+      fats: '7',
+    },
     photo: '',
     tag: '',
     _id: null,
@@ -44,6 +49,8 @@ const CreateRecipe: FC = () => {
   ): Promise<void> => {
     e.preventDefault();
     setSubmitting(true);
+
+    console.log(post);
 
     try {
       const response = await fetch('/api/recipe/new', {
@@ -58,6 +65,7 @@ const CreateRecipe: FC = () => {
           photo: post.photo,
           servings: post.servings,
           timeToDo: post.timeToDo,
+          nutrition: post.nutrition,
         }),
       });
 

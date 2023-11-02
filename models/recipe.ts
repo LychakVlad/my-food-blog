@@ -39,6 +39,12 @@ const RecipeSchema = new Schema({
       required: [true, 'Cook time is required'],
     },
   },
+  nutrition: {
+    cal: { type: String, required: [true, 'Calories amount is required'] },
+    protein: { type: String, required: [true, 'Protein amount is required'] },
+    carbs: { type: String, required: [true, 'Carbs amount is required'] },
+    fats: { type: String, required: [true, 'Fats amount is required'] },
+  },
   photo: {
     data: Buffer,
     contentType: String,
