@@ -1,4 +1,5 @@
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { ReactNode } from 'react';
 
 export interface IPost {
   title: string;
@@ -8,7 +9,7 @@ export interface IPost {
   photo: string;
   steps: string[];
   _id: string | undefined | null;
-  time?: Date;
+  time?: ReactNode;
   servings: { amount: string; yield: string };
   timeToDo: { prep: number; cook: number };
   nutrition: {
