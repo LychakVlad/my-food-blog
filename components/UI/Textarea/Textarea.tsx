@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Textarea = ({ value, onChange, label }) => {
+const Textarea = ({ value, onChange, label, placeholder }) => {
   return (
     <label>
       <span className="font-satoshi font-semibold text-base text-gray-700">

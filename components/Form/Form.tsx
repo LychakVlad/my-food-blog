@@ -5,6 +5,7 @@ import withAuth from '../Routes/withAuth';
 import Input from '../UI/Input/Input';
 import CustomInput from '../UI/Input/Input';
 import FormList from './FormList';
+import Textarea from '../UI/Textarea/Textarea';
 interface FormProps {
   type: string;
   post: IPost;
@@ -135,18 +136,14 @@ const Form: FC<FormProps> = ({
           onChange={(e) => setPost({ ...post, title: e.target.value })}
         />
 
-        <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
-            Description
-          </span>
-          <textarea
-            value={post.text}
-            onChange={(e) => setPost({ ...post, text: e.target.value })}
-            placeholder="Description..."
-            required
-            className="form_textarea"
-          ></textarea>
-        </label>
+        <Textarea
+          value={post.text}
+          placeholder="Description..."
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPost({ ...post, text: e.target.value })
+          }
+          label="Description"
+        />
 
         <FormList
           data={ingredientData}
