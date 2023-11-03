@@ -1,4 +1,4 @@
-import Recipe from '../../../components/Recipe';
+import Recipe from '../../../components/Recipe/Recipe';
 import { IPost } from '../../../types/recipe.interface';
 
 interface Params {
