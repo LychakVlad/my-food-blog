@@ -11,7 +11,7 @@ export interface IPost {
   _id: string | undefined | null;
   time?: ReactNode;
   servings: { amount: string; yield: string };
-  timeToDo: { prep: number; cook: number };
+  timeToDo: { prep: string; cook: string };
   nutrition: {
     cal: string;
     protein: string;

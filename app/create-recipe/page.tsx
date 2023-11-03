@@ -29,8 +29,8 @@ const CreateRecipe: FC = () => {
       yield: 'e.g. 1 9-inch cake',
     },
     timeToDo: {
-      prep: 5,
-      cook: 5,
+      prep: '5',
+      cook: '5',
     },
     nutrition: {
       cal: '100',

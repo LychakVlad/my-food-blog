@@ -25,8 +25,8 @@ const EditRecipe = () => {
       yield: '',
     },
     timeToDo: {
-      prep: 0,
-      cook: 0,
+      prep: '0',
+      cook: '0',
     },
     nutrition: {
       cal: '',

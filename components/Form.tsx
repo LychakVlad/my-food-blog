@@ -2,6 +2,8 @@ import Link from 'next/link';
 import React, { ChangeEvent, FC, useState } from 'react';
 import { IPost } from '../types/recipe.interface';
 import withAuth from './Routes/withAuth';
+import Input from './UI/Input/Input';
+import CustomInput from './UI/Input/Input';
 interface FormProps {
   type: string;
   post: IPost;
@@ -17,31 +19,6 @@ const Form: FC<FormProps> = ({
   submitting,
   handleSubmit,
 }) => {
-  console.log(post);
-  const ingredientChangeInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const updateArr = [...post.ingredients];
-    updateArr[index] = e.target.value;
-
-    setPost({
-      ...post,
-      ingredients: updateArr,
-    });
-  };
-
-  const ingredientRemove = (e: React.FormEvent, index: number) => {
-    e.preventDefault();
-    const updateArr = [...post.ingredients];
-    updateArr.splice(index, 1);
-
-    setPost({
-      ...post,
-      ingredients: updateArr,
-    });
-  };
-
   const addIngredient = (e: React.FormEvent) => {
     e.preventDefault();
     const updateArr = [...post.ingredients];
@@ -77,6 +54,19 @@ const Form: FC<FormProps> = ({
     });
   };
 
+  const ingredientChangeInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const updateArr = [...post.ingredients];
+    updateArr[index] = e.target.value;
+
+    setPost({
+      ...post,
+      ingredients: updateArr,
+    });
+  };
+
   const stepRemove = (e: React.FormEvent, index: number) => {
     e.preventDefault();
     const updateArr = [...post.steps];
@@ -85,6 +75,17 @@ const Form: FC<FormProps> = ({
     setPost({
       ...post,
       steps: updateArr,
+    });
+  };
+
+  const ingredientRemove = (e: React.FormEvent, index: number) => {
+    e.preventDefault();
+    const updateArr = [...post.ingredients];
+    updateArr.splice(index, 1);
+
+    setPost({
+      ...post,
+      ingredients: updateArr,
     });
   };
 
@@ -206,19 +207,6 @@ const Form: FC<FormProps> = ({
             className="form_input"
           />
         </label>
-        <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className="text-gray-500 text-sm">
-            Cancel
-          </Link>
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
-          >
-            {submitting ? `${type}...` : type}
-          </button>
-        </div>
 
         <div className="flex">
           <label className="w-full">
@@ -238,7 +226,7 @@ const Form: FC<FormProps> = ({
               className="form_input"
             />
           </label>
-          <label>
+          <label className="w-full">
             <span className="font-satoshi font-semibold text-base text-gray-700">
               Yield
             </span>
@@ -255,6 +243,97 @@ const Form: FC<FormProps> = ({
               className="form_input"
             />
           </label>
+        </div>
+
+        <div className="flex">
+          <CustomInput
+            value={post.timeToDo.prep}
+            label="Time to prep (minutes)"
+            placeholder="120"
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPost({
+                ...post,
+                timeToDo: { ...post.timeToDo, prep: e.target.value },
+              })
+            }
+          />
+          <CustomInput
+            value={post.timeToDo.cook}
+            label="Time to cook (minutes)"
+            placeholder="60"
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPost({
+                ...post,
+                timeToDo: { ...post.timeToDo, cook: e.target.value },
+              })
+            }
+          />
+        </div>
+
+        <div className="flex">
+          <Input
+            value={post.nutrition.cal}
+            label="Calories"
+            placeholder="200"
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPost({
+                ...post,
+                nutrition: { ...post.nutrition, cal: e.target.value },
+              })
+            }
+          />
+          <Input
+            value={post.nutrition.carbs}
+            label="Carbs"
+            placeholder="30"
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPost({
+                ...post,
+                nutrition: { ...post.nutrition, carbs: e.target.value },
+              })
+            }
+          />
+          <Input
+            value={post.nutrition.protein}
+            label="Protein"
+            placeholder="30"
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPost({
+                ...post,
+                nutrition: { ...post.nutrition, protein: e.target.value },
+              })
+            }
+          />
+          <Input
+            value={post.nutrition.fats}
+            label="Fats"
+            placeholder="10"
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPost({
+                ...post,
+                nutrition: { ...post.nutrition, fats: e.target.value },
+              })
+            }
+          />
+        </div>
+        <div className="flex-end mx-3 mb-5 gap-4">
+          <Link href="/" className="text-gray-500 text-sm">
+            Cancel
+          </Link>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+          >
+            {submitting ? `${type}...` : type}
+          </button>
         </div>
       </form>
     </section>
