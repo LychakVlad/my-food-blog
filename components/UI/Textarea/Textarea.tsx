@@ -1,6 +1,18 @@
 import React from 'react';
 
-const Textarea = ({ value, onChange, label, placeholder }) => {
+interface CustomTextAreatProps {
+  value: string | number;
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  label?: string;
+  placeholder?: string;
+}
+
+const Textarea = ({
+  value,
+  onChange,
+  label,
+  placeholder,
+}: CustomTextAreatProps) => {
   return (
     <label>
       <span className="font-satoshi font-semibold text-base text-gray-700">

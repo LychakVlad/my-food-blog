@@ -139,7 +139,7 @@ const Form: FC<FormProps> = ({
         <Textarea
           value={post.text}
           placeholder="Description..."
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setPost({ ...post, text: e.target.value })
           }
           label="Description"
