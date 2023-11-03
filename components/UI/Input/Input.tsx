@@ -2,11 +2,14 @@ import React, { ChangeEventHandler, FC } from 'react';
 
 interface CustomInputProps {
   value: string | number;
-  label: string;
   type: string;
-  placeholder: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  label?: string;
+  placeholder?: string;
   desc?: string;
+  name?: string;
+  id?: string;
+  accept?: string;
 }
 
 const CustomInput = ({

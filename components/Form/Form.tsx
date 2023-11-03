@@ -44,7 +44,7 @@ const Form: FC<FormProps> = ({
   };
 
   const stepChangeInput = (
-    e: ChangeEvent<HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLTextAreaElement>,
     index: number
   ) => {
     const updateArr = [...post.steps];
@@ -57,7 +57,7 @@ const Form: FC<FormProps> = ({
   };
 
   const ingredientChangeInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLTextAreaElement>,
     index: number
   ) => {
     const updateArr = [...post.ingredients];
@@ -119,7 +119,7 @@ const Form: FC<FormProps> = ({
         onSubmit={handleSubmit}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
-        <input
+        <CustomInput
           value={post.photo}
           onChange={(e) => setPost({ ...post, photo: e.target.value })}
           type="file"

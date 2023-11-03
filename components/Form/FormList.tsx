@@ -1,6 +1,31 @@
 import React from 'react';
 
-const FormList = ({ data, post, changeInput, removeFromArray, addToArray }) => {
+interface FormListProps {
+  data: {
+    label: string;
+    description: string;
+    addButton: string;
+    subTitle?: string;
+  };
+  post: string[];
+  changeInput: (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    index: number
+  ) => void;
+  removeFromArray: (
+    event: React.MouseEvent<HTMLElement>,
+    index: number
+  ) => void;
+  addToArray: (event: React.MouseEvent<HTMLElement>) => void;
+}
+
+const FormList = ({
+  data,
+  post,
+  changeInput,
+  removeFromArray,
+  addToArray,
+}: FormListProps) => {
   return (
     <div>
       <h2 className="font-satoshi font-semibold text-base text-gray-700">
