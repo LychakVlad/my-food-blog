@@ -5,6 +5,8 @@ interface CustomTextAreatProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   label?: string;
   placeholder?: string;
+  className?: string;
+  required?: boolean;
 }
 
 const Textarea = ({
@@ -12,6 +14,8 @@ const Textarea = ({
   onChange,
   label,
   placeholder,
+  className,
+  required,
 }: CustomTextAreatProps) => {
   return (
     <label>
@@ -22,8 +26,8 @@ const Textarea = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        required
-        className="form_textarea"
+        required={required}
+        className={`form_textarea ${className}`}
       ></textarea>
     </label>
   );

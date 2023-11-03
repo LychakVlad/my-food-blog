@@ -1,4 +1,5 @@
 import React from 'react';
+import Textarea from '../UI/Textarea/Textarea';
 
 interface FormListProps {
   data: {
@@ -42,11 +43,11 @@ const FormList = ({
             ) : null}
 
             <div className="flex items-center">
-              <textarea
+              <Textarea
                 value={item}
                 onChange={(e) => changeInput(e, index)}
                 placeholder={data.addButton}
-                required
+                required={true}
                 className="form_input min-h-[50px]"
               />
               <button onClick={(e) => removeFromArray(e, index)}>Remove</button>
