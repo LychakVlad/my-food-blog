@@ -6,6 +6,7 @@ interface CustomInputProps {
   type: string;
   placeholder: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  desc?: string;
 }
 
 const CustomInput = ({
@@ -14,17 +15,19 @@ const CustomInput = ({
   placeholder,
   label,
   type,
+  desc,
 }: CustomInputProps) => {
   return (
     <label className="w-full">
       <span className="font-satoshi font-semibold text-base text-gray-700 ">
         {label}
       </span>
+      <span className="font-normal"> {desc}</span>
       <input
         value={value}
         onChange={onChange}
         type={type}
-        placeholder="Recipe title"
+        placeholder={placeholder}
         required
         className="form_input"
       />

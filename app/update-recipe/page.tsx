@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Form from '../../components/Form';
+import Form from '../../components/Form/Form';
 import { IPost } from '../../types/recipe.interface';
 
 const EditRecipe = () => {

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React, { ChangeEvent, FC, useState } from 'react';
-import { IPost } from '../types/recipe.interface';
-import withAuth from './Routes/withAuth';
-import Input from './UI/Input/Input';
-import CustomInput from './UI/Input/Input';
+import { IPost } from '../../types/recipe.interface';
+import withAuth from '../Routes/withAuth';
+import Input from '../UI/Input/Input';
+import CustomInput from '../UI/Input/Input';
 interface FormProps {
   type: string;
   post: IPost;
@@ -111,18 +111,14 @@ const Form: FC<FormProps> = ({
           accept="image/png, image/jpeg"
         />
 
-        <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
-            Title
-          </span>
-          <input
-            value={post.title}
-            onChange={(e) => setPost({ ...post, title: e.target.value })}
-            placeholder="Recipe title"
-            required
-            className="form_input"
-          />
-        </label>
+        <CustomInput
+          label="Title"
+          placeholder="Recipe title"
+          type="text"
+          value={post.title}
+          onChange={(e) => setPost({ ...post, title: e.target.value })}
+        />
+
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Description
@@ -194,55 +190,40 @@ const Form: FC<FormProps> = ({
           </div>
         </div>
 
-        <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
-            Tag
-            <span className="font-normal"> (#dinner, #lunch, #breakfast)</span>
-          </span>
-          <input
-            value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
-            placeholder="#tag"
-            required
-            className="form_input"
-          />
-        </label>
+        <CustomInput
+          label="Tag"
+          desc="(dinner, lunch, breakfast)"
+          placeholder="tag"
+          type="text"
+          value={post.tag}
+          onChange={(e) => setPost({ ...post, tag: e.target.value })}
+        />
 
         <div className="flex">
-          <label className="w-full">
-            <span className="font-satoshi font-semibold text-base text-gray-700 ">
-              Servings
-            </span>
-            <input
-              value={post.servings.amount}
-              onChange={(e) =>
-                setPost({
-                  ...post,
-                  servings: { ...post.servings, amount: e.target.value },
-                })
-              }
-              placeholder="Recipe title"
-              required
-              className="form_input"
-            />
-          </label>
-          <label className="w-full">
-            <span className="font-satoshi font-semibold text-base text-gray-700">
-              Yield
-            </span>
-            <input
-              value={post.servings.yield}
-              onChange={(e) =>
-                setPost({
-                  ...post,
-                  servings: { ...post.servings, yield: e.target.value },
-                })
-              }
-              placeholder="Recipe title"
-              required
-              className="form_input"
-            />
-          </label>
+          <CustomInput
+            label="Servings"
+            placeholder="10"
+            type="text"
+            value={post.servings.amount}
+            onChange={(e) =>
+              setPost({
+                ...post,
+                servings: { ...post.servings, amount: e.target.value },
+              })
+            }
+          />
+          <CustomInput
+            label="Yield"
+            placeholder="small bowls"
+            type="text"
+            value={post.servings.yield}
+            onChange={(e) =>
+              setPost({
+                ...post,
+                servings: { ...post.servings, yield: e.target.value },
+              })
+            }
+          />
         </div>
 
         <div className="flex">

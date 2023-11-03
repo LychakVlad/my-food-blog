@@ -2,7 +2,7 @@
 
 import React, { FC, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Form from '../../components/Form';
+import Form from '../../components/Form/Form';
 import { IPost } from '../../types/recipe.interface';
 import { useSession } from 'next-auth/react';
 
