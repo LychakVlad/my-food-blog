@@ -4,6 +4,7 @@ import { IPost } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
 import Input from '../UI/Input/Input';
 import CustomInput from '../UI/Input/Input';
+import FormList from './FormList';
 interface FormProps {
   type: string;
   post: IPost;
@@ -89,6 +90,21 @@ const Form: FC<FormProps> = ({
     });
   };
 
+  const stepData = {
+    label: 'Directions',
+    description:
+      'Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes, etc. Use optional headers to organize the different parts of the recipe (i.e. Prep, Bake, Decorate).',
+    addButton: 'Add step',
+    subTitle: 'Step',
+  };
+
+  const ingredientData = {
+    label: 'Ingredients',
+    description:
+      'Enter one ingredient per line. Include the quantity (i.e. cups, tablespoons) and any special preparation (i.e. sifted, softened, chopped). Use optional headers to organize the different parts of the recipe (i.e. Cake, Frosting, Dressing).',
+    addButton: 'Add ingredient',
+  };
+
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
@@ -131,64 +147,22 @@ const Form: FC<FormProps> = ({
             className="form_textarea"
           ></textarea>
         </label>
-        <div>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
-            Ingredients
-          </span>
-          <p className=" opacity-50">
-            Enter one ingredient per line. Include the quantity (i.e. cups,
-            tablespoons) and any special preparation (i.e. sifted, softened,
-            chopped). Use optional headers to organize the different parts of
-            the recipe (i.e. Cake, Frosting, Dressing).
-          </p>
-          <div className="flex  flex-col">
-            {post.ingredients.map((item: string, index: number) => (
-              <div className="flex items-center" key={index}>
-                <input
-                  value={item}
-                  onChange={(e) => ingredientChangeInput(e, index)}
-                  placeholder="Add ingredient"
-                  required
-                  className="form_input"
-                />
-                <button onClick={(e) => ingredientRemove(e, index)}>
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button onClick={(e) => addIngredient(e)}>Add ingredient</button>
-          </div>
-        </div>
 
-        <div>
-          <h2 className="font-satoshi font-semibold text-base text-gray-700">
-            Directions
-          </h2>
-          <p className=" opacity-50">
-            Explain how to make your recipe, including oven temperatures, baking
-            or cooking times, and pan sizes, etc. Use optional headers to
-            organize the different parts of the recipe (i.e. Prep, Bake,
-            Decorate).
-          </p>
-          <div className="flex  flex-col">
-            {post.steps.map((item: string, index: number) => (
-              <div className="py-3" key={index}>
-                <h3>Step {index + 1}</h3>
-                <div className="flex items-center">
-                  <textarea
-                    value={item}
-                    onChange={(e) => stepChangeInput(e, index)}
-                    placeholder="Add step"
-                    required
-                    className="form_input min-h-[50px]"
-                  />
-                  <button onClick={(e) => stepRemove(e, index)}>Remove</button>
-                </div>
-              </div>
-            ))}
-            <button onClick={(e) => addStep(e)}>Add step</button>
-          </div>
-        </div>
+        <FormList
+          data={ingredientData}
+          post={post.ingredients}
+          changeInput={ingredientChangeInput}
+          removeFromArray={ingredientRemove}
+          addToArray={addIngredient}
+        />
+
+        <FormList
+          data={stepData}
+          post={post.steps}
+          changeInput={stepChangeInput}
+          removeFromArray={stepRemove}
+          addToArray={addStep}
+        />
 
         <CustomInput
           label="Tag"
