@@ -50,8 +50,6 @@ const CreateRecipe: FC = () => {
     e.preventDefault();
     setSubmitting(true);
 
-    console.log(post);
-
     try {
       const response = await fetch('/api/recipe/new', {
         method: 'POST',

@@ -1,30 +1,9 @@
 'use client';
 
 import React, { FC, useEffect, useState } from 'react';
-import RecipeCard from './RecipeCard';
-import { IPost } from '../types/recipe.interface';
+import { IPost } from '../../types/recipe.interface';
 import { useSession } from 'next-auth/react';
-
-interface IDataItem {
-  data: IPost[];
-  handleTagClick: (event: React.MouseEvent<HTMLElement>) => void;
-}
-
-const RecipeCardList: FC<IDataItem> = ({ data, handleTagClick }) => {
-  return (
-    <div className="mt-16 prompt_layout">
-      {data.map((post) => (
-        <RecipeCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-          handleDelete={() => {}}
-          handleEdit={() => {}}
-        />
-      ))}
-    </div>
-  );
-};
+import FeedRecipeList from './FeedRecipeList';
 
 const Feed: FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -47,7 +26,7 @@ const Feed: FC = () => {
   return (
     <section className="feed">
       <p>You logged in as {session?.user.name}</p>
-      <RecipeCardList data={posts} handleTagClick={() => {}} />
+      <FeedRecipeList data={posts} handleTagClick={() => {}} />
     </section>
   );
 };

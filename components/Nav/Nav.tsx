@@ -36,7 +36,6 @@ const Nav = () => {
 
   const handleSignOutClick = async () => {
     try {
-      console.log('lol');
       const response = await signOut();
       return response;
     } catch (error) {

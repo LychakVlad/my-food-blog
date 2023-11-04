@@ -15,8 +15,6 @@ export const POST = async (req: Request, res: Response) => {
     nutrition,
   } = await req.json();
 
-  console.log(nutrition);
-
   try {
     await connectToDB();
 
@@ -32,8 +30,6 @@ export const POST = async (req: Request, res: Response) => {
       timeToDo,
       nutrition,
     });
-
-    console.log(newRecipe);
 
     await newRecipe.save();
 

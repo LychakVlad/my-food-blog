@@ -10,6 +10,9 @@ interface CustomInputProps {
   name?: string;
   id?: string;
   accept?: string;
+  required?: boolean;
+  className?: string;
+  error?: boolean;
 }
 
 const CustomInput = ({
@@ -19,6 +22,9 @@ const CustomInput = ({
   label,
   type,
   desc,
+  required,
+  className,
+  error,
 }: CustomInputProps) => {
   return (
     <label className="w-full">
@@ -31,9 +37,12 @@ const CustomInput = ({
         onChange={onChange}
         type={type}
         placeholder={placeholder}
-        required
-        className="form_input"
+        required={required}
+        className={`form_input  ${className} ${
+          error ? null : ' border-red-400'
+        }`}
       />
+      <p className="px-3 text-red-400">{error ? error : null}</p>
     </label>
   );
 };

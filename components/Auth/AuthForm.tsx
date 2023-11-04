@@ -13,7 +13,7 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
             alt="cooks compass"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create a new account
+            {type === 'signup' ? 'Create a new account' : 'Log in account'}
           </h2>
         </div>
 
@@ -89,7 +89,7 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
 
             <div>
               <button type="submit" className="black_btn w-full">
-                Sign in
+                {type === 'signup' ? 'Sign up' : 'Sign in'}
               </button>
             </div>
           </form>

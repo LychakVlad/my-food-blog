@@ -23,8 +23,6 @@ export async function POST(request: NextRequest) {
     return new NextResponse('User already exists', { status: 400 });
   }
 
-  console.log(hashedPassword);
-
   const user = await User.create({
     email: email,
     name: name,

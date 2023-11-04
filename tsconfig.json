@@ -25,7 +25,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/Profile.tsx",
+    "components/Profile/Profile.tsx",
     "app/api/auth/[...nextauth]"
   ],
   "exclude": ["node_modules"]

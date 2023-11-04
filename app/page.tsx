@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Feed from '../components/Feed';
+import Feed from '../components/Feed/Feed';
 import Image from 'next/image';
 import Link from 'next/link';
 

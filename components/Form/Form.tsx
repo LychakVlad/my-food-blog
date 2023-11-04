@@ -44,7 +44,7 @@ const Form: FC<FormProps> = ({
   };
 
   const stepChangeInput = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const updateArr = [...post.steps];
@@ -57,7 +57,7 @@ const Form: FC<FormProps> = ({
   };
 
   const ingredientChangeInput = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const updateArr = [...post.ingredients];

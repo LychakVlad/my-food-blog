@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import Profile from '../../components/Profile';
+import Profile from '../../components/Profile/Profile';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { IPost } from '../../types/recipe.interface';

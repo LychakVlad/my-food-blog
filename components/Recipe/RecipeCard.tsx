@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { FC } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { IPost } from '../types/recipe.interface';
-import dateConvert from '../utils/dateConvert';
+import { IPost } from '../../types/recipe.interface';
+import dateConvert from '../../utils/dateConvert';
 
 interface IRecipeCardData {
   post: IPost;
