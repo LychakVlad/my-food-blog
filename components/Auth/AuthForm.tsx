@@ -3,7 +3,7 @@ import whenLoggedIn from '../Routes/whenLoggedIn';
 import { AuthForm } from '../../types/next-auth';
 import { useForm } from 'react-hook-form';
 
-const AuthForm = ({ data, setData, handleSubmitFunction, type }: AuthForm) => {
+const AuthForm = ({ onSubmit, type }: AuthForm) => {
   const {
     register,
     handleSubmit,
@@ -28,10 +28,7 @@ const AuthForm = ({ data, setData, handleSubmitFunction, type }: AuthForm) => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form
-            className="space-y-6"
-            onSubmit={handleSubmit(handleSubmitFunction)}
-          >
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label
                 htmlFor="email"
@@ -47,9 +44,7 @@ const AuthForm = ({ data, setData, handleSubmitFunction, type }: AuthForm) => {
                   id="email"
                   name="email"
                   type="email"
-                  value={data.email}
                   autoComplete="email"
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.email && (
@@ -74,8 +69,6 @@ const AuthForm = ({ data, setData, handleSubmitFunction, type }: AuthForm) => {
                     id="name"
                     name="name"
                     type="text"
-                    value={data.name}
-                    onChange={(e) => setData({ ...data, name: e.target.value })}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   {errors.name && (
@@ -107,10 +100,6 @@ const AuthForm = ({ data, setData, handleSubmitFunction, type }: AuthForm) => {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  value={data.password}
-                  onChange={(e) =>
-                    setData({ ...data, password: e.target.value })
-                  }
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.password && (

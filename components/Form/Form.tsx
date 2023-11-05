@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { FC } from 'react';
 import { IPost } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
 import Input from '../UI/Input/Input';
@@ -107,8 +107,6 @@ const Form: FC<FormProps> = ({
       'Enter one ingredient per line. Include the quantity (i.e. cups, tablespoons) and any special preparation (i.e. sifted, softened, chopped). Use optional headers to organize the different parts of the recipe (i.e. Cake, Frosting, Dressing).',
     addButton: 'Add ingredient',
   };
-
-  console.log(errors);
 
   return (
     <section className="w-full max-w-fill flex-start flex-col">

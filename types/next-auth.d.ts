@@ -23,8 +23,6 @@ interface AuthData {
 }
 
 interface AuthForm {
-  data: AuthData;
-  setData: React.Dispatch<React.SetStateAction<AuthData>>;
-  handleSubmitFunction: SubmitHandler<FieldValues>;
+  onSubmit: SubmitHandler<FieldValues>;
   type: string;
 }

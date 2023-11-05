@@ -1,22 +1,16 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 import whenLoggedIn from '../../components/Routes/whenLoggedIn';
 import AuthForm from '../../components/Auth/AuthForm';
-import { AuthData } from '../../types/next-auth';
+import { FieldValues } from 'react-hook-form';
 
 const LogIn = () => {
   const router = useRouter();
-  const [data, setData] = useState<AuthData>({
-    email: '',
-    password: '',
-  });
 
-  const loginUser = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  const loginUser = async (data: FieldValues) => {
     signIn('credentials', {
       ...data,
       redirect: false,
@@ -24,14 +18,7 @@ const LogIn = () => {
     router.push('/');
   };
 
-  return (
-    <AuthForm
-      data={data}
-      setData={setData}
-      handleSubmitFunction={loginUser}
-      type={'signin'}
-    />
-  );
+  return <AuthForm onSubmit={loginUser} type={'signin'} />;
 };
 
 export default whenLoggedIn(LogIn);
