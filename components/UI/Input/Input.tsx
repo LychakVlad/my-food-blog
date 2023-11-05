@@ -12,7 +12,7 @@ interface CustomInputProps {
   accept?: string;
   required?: boolean;
   className?: string;
-  error?: boolean;
+  error?: string;
 }
 
 const CustomInput = ({
@@ -39,10 +39,10 @@ const CustomInput = ({
         placeholder={placeholder}
         required={required}
         className={`form_input  ${className} ${
-          error ? null : ' border-red-400'
+          error !== '' ? ' border-red-400' : null
         }`}
       />
-      <p className="px-3 text-red-400">{error ? error : null}</p>
+      <p className=" text-red-400">{error !== '' ? error : null}</p>
     </label>
   );
 };

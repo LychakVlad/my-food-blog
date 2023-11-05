@@ -1,8 +1,18 @@
 import Link from 'next/link';
 import whenLoggedIn from '../Routes/whenLoggedIn';
 import { AuthForm } from '../../types/next-auth';
+import { useForm } from 'react-hook-form';
 
-const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
+const AuthForm = ({ data, setData, handleSubmitFunction, type }: AuthForm) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+    reset,
+    getValues,
+  } = useForm();
+
   return (
     <>
       <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8 font-inter">
@@ -18,7 +28,10 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form
+            className="space-y-6"
+            onSubmit={handleSubmit(handleSubmitFunction)}
+          >
             <div>
               <label
                 htmlFor="email"
@@ -28,15 +41,20 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
               </label>
               <div className="mt-2">
                 <input
+                  {...register('email', {
+                    required: 'Email is required',
+                  })}
                   id="email"
                   name="email"
                   type="email"
                   value={data.email}
                   autoComplete="email"
                   onChange={(e) => setData({ ...data, email: e.target.value })}
-                  required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && (
+                  <p className="text-red-500">{`${errors.email.message}`}</p>
+                )}
               </div>
             </div>
 
@@ -50,14 +68,19 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
                 </label>
                 <div className="mt-2">
                   <input
+                    {...register('name', {
+                      required: 'Name is required',
+                    })}
                     id="name"
                     name="name"
                     type="text"
                     value={data.name}
                     onChange={(e) => setData({ ...data, name: e.target.value })}
-                    required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  {errors.name && (
+                    <p className="text-red-500">{`${errors.name.message}`}</p>
+                  )}
                 </div>
               </div>
             ) : null}
@@ -73,6 +96,13 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
               </div>
               <div className="mt-2">
                 <input
+                  {...register('password', {
+                    required: 'Password is required',
+                    minLength: {
+                      value: 8,
+                      message: 'Password must be at least 10 characters',
+                    },
+                  })}
                   id="password"
                   name="password"
                   type="password"
@@ -81,14 +111,20 @@ const AuthForm = ({ data, setData, handleSubmit, type }: AuthForm) => {
                   onChange={(e) =>
                     setData({ ...data, password: e.target.value })
                   }
-                  required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.password && (
+                  <p className="text-red-500">{`${errors.password.message}`}</p>
+                )}
               </div>
             </div>
 
             <div>
-              <button type="submit" className="black_btn w-full">
+              <button
+                type="submit"
+                className="black_btn w-full"
+                disabled={isSubmitting}
+              >
                 {type === 'signup' ? 'Sign up' : 'Sign in'}
               </button>
             </div>

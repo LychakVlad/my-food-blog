@@ -57,11 +57,11 @@
 
 /* Form Component */
 .form_textarea {
-  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0 border;
 }
 
 .form_input {
-  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0 border-gray-300  border;
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0 border;
 }
 
 /* Nav Component */

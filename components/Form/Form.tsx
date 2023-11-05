@@ -9,6 +9,7 @@ import Textarea from '../UI/Textarea/Textarea';
 interface FormProps {
   type: string;
   post: IPost;
+  errors: IPost;
   setPost: React.Dispatch<React.SetStateAction<IPost>>;
   submitting: boolean;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -20,6 +21,7 @@ const Form: FC<FormProps> = ({
   setPost,
   submitting,
   handleSubmit,
+  errors,
 }) => {
   const addIngredient = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,6 +108,8 @@ const Form: FC<FormProps> = ({
     addButton: 'Add ingredient',
   };
 
+  console.log(errors);
+
   return (
     <section className="w-full max-w-fill flex-start flex-col">
       <h1 className="head_text text-left">
@@ -134,6 +138,7 @@ const Form: FC<FormProps> = ({
           type="text"
           value={post.title}
           onChange={(e) => setPost({ ...post, title: e.target.value })}
+          error={errors.title}
         />
 
         <Textarea
@@ -143,6 +148,7 @@ const Form: FC<FormProps> = ({
             setPost({ ...post, text: e.target.value })
           }
           label="Description"
+          error={errors.text}
         />
 
         <FormList

@@ -25,6 +25,6 @@ interface AuthData {
 interface AuthForm {
   data: AuthData;
   setData: React.Dispatch<React.SetStateAction<AuthData>>;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  handleSubmitFunction: SubmitHandler<FieldValues>;
   type: string;
 }

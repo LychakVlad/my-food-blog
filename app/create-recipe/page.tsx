@@ -10,6 +10,7 @@ const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [post, setPost] = useState<IPost>({
     title: '',
@@ -81,6 +82,7 @@ const CreateRecipe: FC = () => {
     <Form
       type="Create"
       post={post}
+      errors={errors}
       setPost={setPost}
       submitting={submitting}
       handleSubmit={createRecipe}

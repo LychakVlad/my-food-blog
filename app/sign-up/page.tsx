@@ -31,7 +31,7 @@ const SignUp = () => {
     <AuthForm
       data={data}
       setData={setData}
-      handleSubmit={signUpNewUser}
+      handleSubmitFunction={signUpNewUser}
       type={'signup'}
     />
   );

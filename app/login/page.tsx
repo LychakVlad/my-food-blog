@@ -28,7 +28,7 @@ const LogIn = () => {
     <AuthForm
       data={data}
       setData={setData}
-      handleSubmit={loginUser}
+      handleSubmitFunction={loginUser}
       type={'signin'}
     />
   );
