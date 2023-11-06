@@ -5,12 +5,11 @@ import { useRouter } from 'next/navigation';
 import Form from '../../components/Form/Form';
 import { IPost } from '../../types/recipe.interface';
 import { useSession } from 'next-auth/react';
+import { FieldValues } from 'react-hook-form';
 
 const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  const [submitting, setSubmitting] = useState(false);
-  const [errors, setErrors] = useState({});
 
   const [post, setPost] = useState<IPost>({
     title: '',
@@ -45,26 +44,32 @@ const CreateRecipe: FC = () => {
     creator: null,
   });
 
-  const createRecipe = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    e.preventDefault();
-    setSubmitting(true);
-
+  const createRecipe = async (data: FieldValues) => {
     try {
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify({
-          text: post.text,
+          text: data.text,
           userId: session?.user?.id,
           ingredients: post.ingredients,
           steps: post.steps,
-          tag: post.tag,
-          title: post.title,
-          photo: post.photo,
-          servings: post.servings,
-          timeToDo: post.timeToDo,
-          nutrition: post.nutrition,
+          tag: data.tag,
+          title: data.title,
+          photo: data.photo,
+          servings: {
+            amount: data.servings,
+            yield: data.yield,
+          },
+          timeToDo: {
+            prepTime: data.prepTime,
+            cookTime: data.cookTime,
+          },
+          nutrition: {
+            cal: data.calories,
+            protein: data.protein,
+            carbs: data.carbs,
+            fats: data.fats,
+          },
         }),
       });
 
@@ -73,20 +78,11 @@ const CreateRecipe: FC = () => {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setSubmitting(false);
     }
   };
 
   return (
-    <Form
-      type="Create"
-      post={post}
-      errors={errors}
-      setPost={setPost}
-      submitting={submitting}
-      handleSubmit={createRecipe}
-    />
+    <Form type="Create" post={post} setPost={setPost} onSubmit={createRecipe} />
   );
 };
 

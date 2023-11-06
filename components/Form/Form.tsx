@@ -1,97 +1,35 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { IPost } from '../../types/recipe.interface';
+import { RecipeFormProps } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
 import Input from '../UI/Input/Input';
 import CustomInput from '../UI/Input/Input';
 import FormList from './FormList';
 import Textarea from '../UI/Textarea/Textarea';
-interface FormProps {
-  type: string;
-  post: IPost;
-  errors: IPost;
-  setPost: React.Dispatch<React.SetStateAction<IPost>>;
-  submitting: boolean;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-}
+import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 
-const Form: FC<FormProps> = ({
-  type,
-  post,
-  setPost,
-  submitting,
-  handleSubmit,
-  errors,
-}) => {
-  const addIngredient = (e: React.FormEvent) => {
-    e.preventDefault();
-    const updateArr = [...post.ingredients];
-    updateArr.push('');
+const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      steps: [
+        'e.g. Preheat oven to 350 degrees F…',
+        'e.g. Combine all dry ingredients in a large bowl…',
+        'e.g. Pour into greased trays and bake for 15-20 minutes…',
+      ],
+    },
+  });
 
-    setPost({
-      ...post,
-      ingredients: updateArr,
-    });
-  };
+  const { fields, append, remove } = useFieldArray({
+    name: 'steps',
+    control,
+  });
 
-  const addStep = (e: React.FormEvent) => {
-    e.preventDefault();
-    const updateArr = [...post.steps];
-    updateArr.push('');
-
-    setPost({
-      ...post,
-      steps: updateArr,
-    });
-  };
-
-  const stepChangeInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const updateArr = [...post.steps];
-    updateArr[index] = e.target.value;
-
-    setPost({
-      ...post,
-      steps: updateArr,
-    });
-  };
-
-  const ingredientChangeInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const updateArr = [...post.ingredients];
-    updateArr[index] = e.target.value;
-
-    setPost({
-      ...post,
-      ingredients: updateArr,
-    });
-  };
-
-  const stepRemove = (e: React.FormEvent, index: number) => {
-    e.preventDefault();
-    const updateArr = [...post.steps];
-    updateArr.splice(index, 1);
-
-    setPost({
-      ...post,
-      steps: updateArr,
-    });
-  };
-
-  const ingredientRemove = (e: React.FormEvent, index: number) => {
-    e.preventDefault();
-    const updateArr = [...post.ingredients];
-    updateArr.splice(index, 1);
-
-    setPost({
-      ...post,
-      ingredients: updateArr,
-    });
-  };
+  const sabmit = (data: FieldValues) => console.log(data);
 
   const stepData = {
     label: 'Directions',
@@ -118,35 +56,54 @@ const Form: FC<FormProps> = ({
       </p>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(sabmit)}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
+        {fields.map((field, index) => {
+          return (
+            <div key={field.id}>
+              <section className={'section'} key={field.id}>
+                <input
+                  placeholder="name"
+                  {...register(`steps.${index}` as const, {
+                    required: true,
+                  })}
+                  className={errors?.steps?.[index] ? 'error' : ''}
+                />
+                <button type="button" onClick={() => remove(index)}>
+                  DELETE
+                </button>
+              </section>
+            </div>
+          );
+        })}
+        <button type="button" onClick={() => append('Your step')}>
+          APPEND
+        </button>
         <CustomInput
-          value={post.photo}
-          onChange={(e) => setPost({ ...post, photo: e.target.value })}
+          register={register}
+          errors={errors.image}
           type="file"
-          id="avatar"
-          name="avatar"
+          name="image"
           accept="image/png, image/jpeg"
         />
 
         <CustomInput
           label="Title"
+          name="title"
           placeholder="Recipe title"
           type="text"
-          value={post.title}
-          onChange={(e) => setPost({ ...post, title: e.target.value })}
-          error={errors.title}
+          register={register}
+          errors={errors.title}
         />
 
-        <Textarea
+        {/* <Textarea
           value={post.text}
           placeholder="Description..."
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setPost({ ...post, text: e.target.value })
           }
           label="Description"
-          error={errors.text}
         />
 
         <FormList
@@ -163,15 +120,16 @@ const Form: FC<FormProps> = ({
           changeInput={stepChangeInput}
           removeFromArray={stepRemove}
           addToArray={addStep}
-        />
+        /> */}
 
         <CustomInput
           label="Tag"
           desc="(dinner, lunch, breakfast)"
           placeholder="tag"
+          name="tag"
           type="text"
-          value={post.tag}
-          onChange={(e) => setPost({ ...post, tag: e.target.value })}
+          register={register}
+          errors={errors.tag}
         />
 
         <div className="flex">
@@ -179,103 +137,71 @@ const Form: FC<FormProps> = ({
             label="Servings"
             placeholder="10"
             type="text"
-            value={post.servings.amount}
-            onChange={(e) =>
-              setPost({
-                ...post,
-                servings: { ...post.servings, amount: e.target.value },
-              })
-            }
+            name="servings"
+            register={register}
+            errors={errors.servings}
           />
           <CustomInput
             label="Yield"
-            placeholder="small bowls"
+            placeholder="Small bowls"
             type="text"
-            value={post.servings.yield}
-            onChange={(e) =>
-              setPost({
-                ...post,
-                servings: { ...post.servings, yield: e.target.value },
-              })
-            }
+            name="yield"
+            register={register}
+            errors={errors.yield}
           />
         </div>
 
         <div className="flex">
           <CustomInput
-            value={post.timeToDo.prep}
             label="Time to prep (minutes)"
             placeholder="120"
             type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPost({
-                ...post,
-                timeToDo: { ...post.timeToDo, prep: e.target.value },
-              })
-            }
+            name="prepTime"
+            register={register}
+            errors={errors.prepTime}
           />
           <CustomInput
-            value={post.timeToDo.cook}
             label="Time to cook (minutes)"
             placeholder="60"
             type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPost({
-                ...post,
-                timeToDo: { ...post.timeToDo, cook: e.target.value },
-              })
-            }
+            name="cookTime"
+            register={register}
+            errors={errors.cookTime}
           />
         </div>
 
         <div className="flex">
           <Input
-            value={post.nutrition.cal}
             label="Calories"
+            name="calories"
             placeholder="200"
             type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPost({
-                ...post,
-                nutrition: { ...post.nutrition, cal: e.target.value },
-              })
-            }
+            register={register}
+            errors={errors.calories}
           />
           <Input
-            value={post.nutrition.carbs}
             label="Carbs"
             placeholder="30"
             type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPost({
-                ...post,
-                nutrition: { ...post.nutrition, carbs: e.target.value },
-              })
-            }
+            name="carbs"
+            register={register}
+            errors={errors.carbs}
           />
           <Input
-            value={post.nutrition.protein}
             label="Protein"
+            name="protein"
             placeholder="30"
             type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPost({
-                ...post,
-                nutrition: { ...post.nutrition, protein: e.target.value },
-              })
-            }
+            register={register}
+            errors={errors.protein}
           />
           <Input
-            value={post.nutrition.fats}
+            name="fats"
+            register={register}
+            errors={errors.fats}
             label="Fats"
             placeholder="10"
             type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPost({
-                ...post,
-                nutrition: { ...post.nutrition, fats: e.target.value },
-              })
-            }
           />
         </div>
         <div className="flex-end mx-3 mb-5 gap-4">
@@ -285,10 +211,10 @@ const Form: FC<FormProps> = ({
 
           <button
             type="submit"
-            disabled={submitting}
+            disabled={isSubmitting}
             className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
           >
-            {submitting ? `${type}...` : type}
+            {isSubmitting ? `${type}...` : type}
           </button>
         </div>
       </form>

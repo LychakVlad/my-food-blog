@@ -7,7 +7,6 @@ interface CustomTextAreatProps {
   placeholder?: string;
   className?: string;
   required?: boolean;
-  error: string;
 }
 
 const Textarea = ({
@@ -17,7 +16,6 @@ const Textarea = ({
   placeholder,
   className,
   required,
-  error,
 }: CustomTextAreatProps) => {
   return (
     <label>
@@ -29,11 +27,8 @@ const Textarea = ({
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className={`form_textarea ${className} ${
-          error ? ' border-red-400' : null
-        }`}
+        className={`form_textarea ${className} `}
       ></textarea>
-      <p className=" text-red-400">{error !== '' ? error : null}</p>
     </label>
   );
 };

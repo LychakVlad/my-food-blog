@@ -1,49 +1,55 @@
 import React, { ChangeEventHandler, FC } from 'react';
 
 interface CustomInputProps {
-  value: string | number;
   type: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
   label?: string;
   placeholder?: string;
   desc?: string;
   name?: string;
   id?: string;
   accept?: string;
-  required?: boolean;
   className?: string;
-  error?: string;
+  errors?: any;
+  register: any;
+  autoComplete?: any;
 }
 
 const CustomInput = ({
-  value,
-  onChange,
   placeholder,
   label,
   type,
   desc,
-  required,
   className,
-  error,
+  errors,
+  name,
+  register,
+  autoComplete,
 }: CustomInputProps) => {
   return (
-    <label className="w-full">
-      <span className="font-satoshi font-semibold text-base text-gray-700 ">
+    <div>
+      <label
+        htmlFor={name}
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
         {label}
-      </span>
-      <span className="font-normal"> {desc}</span>
-      <input
-        value={value}
-        onChange={onChange}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        className={`form_input  ${className} ${
-          error !== '' ? ' border-red-400' : null
-        }`}
-      />
-      <p className=" text-red-400">{error !== '' ? error : null}</p>
-    </label>
+        <span className="font-normal"> {desc}</span>
+      </label>
+      <div className="mt-2">
+        <input
+          {...register(name, {
+            required: `${name} is required`,
+          })}
+          type={type}
+          name={name}
+          autoComplete={autoComplete}
+          placeholder={placeholder}
+          className={`form_input  ${className} ${errors && 'border-red-500'} `}
+        />
+        {errors && (
+          <p className="text-red-500 mt-2">{`${label} field is required`}</p>
+        )}
+      </div>
+    </div>
   );
 };
 
