@@ -6,27 +6,18 @@ interface CustomTextAreatProps {
   label?: string;
   placeholder?: string;
   className?: string;
-  required?: boolean;
 }
 
-const Textarea = ({
-  value,
-  onChange,
-  label,
-  placeholder,
-  className,
-  required,
-}: CustomTextAreatProps) => {
+const Textarea = ({ label, placeholder, className, register, name }) => {
   return (
     <label>
       <span className="font-satoshi font-semibold text-base text-gray-700">
         {label}
       </span>
       <textarea
-        value={value}
-        onChange={onChange}
+        name="name"
         placeholder={placeholder}
-        required={required}
+        {...register(name)}
         className={`form_textarea ${className} `}
       ></textarea>
     </label>

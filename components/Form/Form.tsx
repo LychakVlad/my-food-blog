@@ -21,12 +21,12 @@ const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
         'e.g. Combine all dry ingredients in a large bowl…',
         'e.g. Pour into greased trays and bake for 15-20 minutes…',
       ],
+      ingredients: [
+        'e.g. 2 cups flour, sifted',
+        'e.g. 1 cup sugar',
+        'e.g. 2 tablespoons butter, softened',
+      ],
     },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    name: 'steps',
-    control,
   });
 
   const sabmit = (data: FieldValues) => console.log(data);
@@ -59,27 +59,6 @@ const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
         onSubmit={handleSubmit(sabmit)}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
-        {fields.map((field, index) => {
-          return (
-            <div key={field.id}>
-              <section className={'section'} key={field.id}>
-                <input
-                  placeholder="name"
-                  {...register(`steps.${index}` as const, {
-                    required: true,
-                  })}
-                  className={errors?.steps?.[index] ? 'error' : ''}
-                />
-                <button type="button" onClick={() => remove(index)}>
-                  DELETE
-                </button>
-              </section>
-            </div>
-          );
-        })}
-        <button type="button" onClick={() => append('Your step')}>
-          APPEND
-        </button>
         <CustomInput
           register={register}
           errors={errors.image}
@@ -97,30 +76,25 @@ const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
           errors={errors.title}
         />
 
-        {/* <Textarea
-          value={post.text}
+        <Textarea
           placeholder="Description..."
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setPost({ ...post, text: e.target.value })
-          }
           label="Description"
+          register={register}
+          name="description"
         />
 
         <FormList
           data={ingredientData}
-          post={post.ingredients}
-          changeInput={ingredientChangeInput}
-          removeFromArray={ingredientRemove}
-          addToArray={addIngredient}
+          register={register}
+          control={control}
+          name={'ingredients'}
         />
-
         <FormList
           data={stepData}
-          post={post.steps}
-          changeInput={stepChangeInput}
-          removeFromArray={stepRemove}
-          addToArray={addStep}
-        /> */}
+          register={register}
+          control={control}
+          name={'steps'}
+        />
 
         <CustomInput
           label="Tag"
