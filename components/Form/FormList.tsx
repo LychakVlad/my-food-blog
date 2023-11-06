@@ -1,7 +1,7 @@
 import React from 'react';
-import Textarea from '../UI/Textarea/Textarea';
 import CustomInput from '../UI/Input/Input';
-import { useFieldArray } from 'react-hook-form';
+import { Control, useFieldArray } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface FormListProps {
   data: {
@@ -10,10 +10,12 @@ interface FormListProps {
     addButton: string;
     subTitle?: string;
   };
-  post: string[];
+  register: UseFormRegister<FieldValues>;
+  name: string;
+  control: Control;
 }
 
-const FormList = ({ data, register, name, control }) => {
+const FormList = ({ data, register, name, control }: FormListProps) => {
   const { fields, append, remove } = useFieldArray({
     name: name,
     control,
