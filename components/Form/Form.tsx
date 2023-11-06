@@ -6,7 +6,7 @@ import Input from '../UI/Input/Input';
 import CustomInput from '../UI/Input/Input';
 import FormList from './FormList';
 import Textarea from '../UI/Textarea/Textarea';
-import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 
 const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
   const {

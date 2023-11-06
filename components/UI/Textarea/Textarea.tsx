@@ -1,24 +1,28 @@
 import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface CustomTextAreatProps {
-  value: string | number;
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
-  label?: string;
-  placeholder?: string;
-  className?: string;
+  label: string;
+  placeholder: string;
+  name: string;
+  register: UseFormRegister<FieldValues>;
 }
 
-const Textarea = ({ label, placeholder, className, register, name }) => {
+const Textarea = ({
+  label,
+  placeholder,
+  register,
+  name,
+}: CustomTextAreatProps) => {
   return (
     <label>
       <span className="font-satoshi font-semibold text-base text-gray-700">
         {label}
       </span>
       <textarea
-        name="name"
         placeholder={placeholder}
         {...register(name)}
-        className={`form_textarea ${className} `}
+        className={`form_textarea `}
       ></textarea>
     </label>
   );
