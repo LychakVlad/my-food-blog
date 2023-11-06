@@ -30,9 +30,24 @@ export interface IPost {
     | null;
 }
 
+export interface RecipeData {
+  title: string;
+  text: string;
+  ingredients: string[];
+  steps: string[];
+  servings: string;
+  yield: string;
+  prepTime: string;
+  cookTime: string;
+  calories: string;
+  protein: string;
+  carbs: string;
+  fats: string;
+  photo: string;
+  tag: string;
+}
+
 export interface RecipeFormProps {
   type: string;
-  post: IPost;
-  setPost: React.Dispatch<React.SetStateAction<IPost>>;
   onSubmit: SubmitHandler<FieldValues>;
 }

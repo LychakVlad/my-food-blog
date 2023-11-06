@@ -1,19 +1,7 @@
 import React from 'react';
 import CustomInput from '../UI/Input/Input';
-import { Control, useFieldArray } from 'react-hook-form';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
-
-interface FormListProps {
-  data: {
-    label: string;
-    description: string;
-    addButton: string;
-    subTitle?: string;
-  };
-  register: UseFormRegister<FieldValues>;
-  name: string;
-  control: Control;
-}
+import { useFieldArray } from 'react-hook-form';
+import { FormListProps } from '../../types/form.interface';
 
 const FormList = ({ data, register, name, control }: FormListProps) => {
   const { fields, append, remove } = useFieldArray({

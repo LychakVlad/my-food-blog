@@ -1,12 +1,5 @@
 import React from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
-
-interface CustomTextAreatProps {
-  label: string;
-  placeholder: string;
-  name: string;
-  register: UseFormRegister<FieldValues>;
-}
+import { CustomTextAreatProps } from '../../../types/form.interface';
 
 const Textarea = ({
   label,

@@ -8,7 +8,7 @@ import FormList from './FormList';
 import Textarea from '../UI/Textarea/Textarea';
 import { FieldValues, useForm } from 'react-hook-form';
 
-const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
+const Form: FC<RecipeFormProps> = ({ type }) => {
   const {
     register,
     handleSubmit,
@@ -16,16 +16,28 @@ const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
-      steps: [
-        'e.g. Preheat oven to 350 degrees F…',
-        'e.g. Combine all dry ingredients in a large bowl…',
-        'e.g. Pour into greased trays and bake for 15-20 minutes…',
-      ],
+      title: '',
+      text: '',
       ingredients: [
         'e.g. 2 cups flour, sifted',
         'e.g. 1 cup sugar',
         'e.g. 2 tablespoons butter, softened',
       ],
+      steps: [
+        'e.g. Preheat oven to 350 degrees F…',
+        'e.g. Combine all dry ingredients in a large bowl…',
+        'e.g. Pour into greased trays and bake for 15-20 minutes…',
+      ],
+      servings: 'e.g. 8',
+      yield: 'e.g. 1 9-inch cake',
+      prepTime: '5',
+      cookTime: '5',
+      calories: '100',
+      protein: '5',
+      carbs: '20',
+      fats: '7',
+      photo: '',
+      tag: '',
     },
   });
 
@@ -61,9 +73,9 @@ const Form: FC<RecipeFormProps> = ({ type, post, setPost, onSubmit }) => {
       >
         <CustomInput
           register={register}
-          errors={errors.image}
+          errors={errors.photo}
           type="file"
-          name="image"
+          name="photo"
           accept="image/png, image/jpeg"
         />
 
