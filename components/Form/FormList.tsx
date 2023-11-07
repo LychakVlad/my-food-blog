@@ -26,6 +26,7 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
                   name={`${name}.${index}` as const}
                   className="form_input min-h-[50px] w-full"
                   type="text"
+                  required={true}
                 />
                 <button type="button" onClick={() => remove(index)}>
                   DELETE

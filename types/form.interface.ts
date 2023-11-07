@@ -1,5 +1,4 @@
-import { UseFormRegister } from 'react-hook-form';
-import { RecipeData } from './recipe.interface';
+import { Control, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export interface FormListProps {
   data: {
@@ -8,14 +7,31 @@ export interface FormListProps {
     addButton: string;
     subTitle?: string;
   };
-  register: UseFormRegister<RecipeData>;
+  register: UseFormRegister<FieldValues>;
   name: string;
-  control: Object;
+  control: Control<FieldValues>;
 }
 
 export interface CustomTextAreatProps {
   label: string;
   placeholder: string;
   name: string;
-  register: UseFormRegister<RecipeData>;
+  register: UseFormRegister<FieldValues>;
+  required: boolean;
+  errors?: any;
+}
+
+export interface CustomInputProps {
+  type: string;
+  label?: string;
+  placeholder?: string;
+  desc?: string;
+  name: string;
+  accept?: string;
+  className?: string;
+  errors?: any;
+  register: UseFormRegister<FieldValues>;
+  autoComplete?: any;
+  required: boolean;
+  id?: string;
 }

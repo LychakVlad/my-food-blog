@@ -36,6 +36,7 @@ const AuthForm = ({ onSubmit, type }: AuthForm) => {
               autoComplete="email"
               register={register}
               errors={errors.email}
+              required={true}
             />
 
             {type !== 'signin' && (
@@ -48,6 +49,7 @@ const AuthForm = ({ onSubmit, type }: AuthForm) => {
                 autoComplete="name"
                 register={register}
                 errors={errors.name}
+                required={true}
               />
             )}
 
@@ -60,6 +62,7 @@ const AuthForm = ({ onSubmit, type }: AuthForm) => {
               autoComplete="current-password"
               register={register}
               errors={errors.password}
+              required={true}
             />
 
             <div>

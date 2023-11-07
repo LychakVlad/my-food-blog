@@ -1,20 +1,7 @@
-import React, { ChangeEventHandler, FC } from 'react';
+import React from 'react';
+import { CustomInputProps } from '../../../types/form.interface';
 
-interface CustomInputProps {
-  type: string;
-  label?: string;
-  placeholder?: string;
-  desc?: string;
-  name?: string;
-  id?: string;
-  accept?: string;
-  className?: string;
-  errors?: any;
-  register: any;
-  autoComplete?: any;
-}
-
-const CustomInput = ({
+const CustomInput: React.FC<CustomInputProps> = ({
   placeholder,
   label,
   type,
@@ -24,9 +11,12 @@ const CustomInput = ({
   name,
   register,
   autoComplete,
-}: CustomInputProps) => {
+  required,
+  accept,
+  id,
+}) => {
   return (
-    <div>
+    <div className="w-full">
       <label
         htmlFor={name}
         className="block text-sm font-medium leading-6 text-gray-900"
@@ -34,16 +24,19 @@ const CustomInput = ({
         {label}
         <span className="font-normal"> {desc}</span>
       </label>
-      <div className="mt-2">
+      <div className="mt-2 w-full">
         <input
           {...register(name, {
-            required: `${name} is required`,
+            required: required ? `${name} is required` : false,
           })}
+          id={id}
           type={type}
-          name={name}
+          accept={accept}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          className={`form_input  ${className} ${errors && 'border-red-500'} `}
+          className={`form_input w-full  ${className} ${
+            errors && 'border-red-500'
+          } `}
         />
         {errors && (
           <p className="text-red-500 mt-2">{`${label} field is required`}</p>

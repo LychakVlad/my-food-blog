@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { RecipeFormProps } from '../../types/recipe.interface';
+import { RecipeData, RecipeFormProps } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
 import Input from '../UI/Input/Input';
 import CustomInput from '../UI/Input/Input';
@@ -14,10 +14,10 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<FieldValues>({
     defaultValues: {
       title: '',
-      text: '',
+      description: '',
       ingredients: [
         'e.g. 2 cups flour, sifted',
         'e.g. 1 cup sugar',
@@ -28,7 +28,7 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
         'e.g. Combine all dry ingredients in a large bowl…',
         'e.g. Pour into greased trays and bake for 15-20 minutes…',
       ],
-      servings: 'e.g. 8',
+      servings: '8',
       yield: 'e.g. 1 9-inch cake',
       prepTime: '5',
       cookTime: '5',
@@ -74,18 +74,21 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
         <CustomInput
           register={register}
           errors={errors.photo}
+          label="Photo"
           type="file"
           name="photo"
           accept="image/png, image/jpeg"
+          required={false}
         />
 
         <CustomInput
-          label="Title"
           name="title"
-          placeholder="Recipe title"
-          type="text"
           register={register}
           errors={errors.title}
+          label="Recipe Title"
+          placeholder="Enter the title"
+          type="text"
+          required={true}
         />
 
         <Textarea
@@ -93,6 +96,8 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
           label="Description"
           register={register}
           name="description"
+          required={true}
+          errors={errors.description}
         />
 
         <FormList
@@ -116,16 +121,18 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
           type="text"
           register={register}
           errors={errors.tag}
+          required={true}
         />
 
         <div className="flex">
           <CustomInput
             label="Servings"
             placeholder="10"
-            type="text"
+            type="number"
             name="servings"
             register={register}
             errors={errors.servings}
+            required={true}
           />
           <CustomInput
             label="Yield"
@@ -134,6 +141,7 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
             name="yield"
             register={register}
             errors={errors.yield}
+            required={true}
           />
         </div>
 
@@ -141,53 +149,59 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
           <CustomInput
             label="Time to prep (minutes)"
             placeholder="120"
-            type="text"
+            type="number"
             name="prepTime"
             register={register}
             errors={errors.prepTime}
+            required={true}
           />
           <CustomInput
             label="Time to cook (minutes)"
             placeholder="60"
-            type="text"
+            type="number"
             name="cookTime"
             register={register}
             errors={errors.cookTime}
+            required={true}
           />
         </div>
 
-        <div className="flex">
-          <Input
+        <div className="flex gap-10">
+          <CustomInput
             label="Calories"
             name="calories"
             placeholder="200"
-            type="text"
+            type="number"
             register={register}
             errors={errors.calories}
+            required={true}
           />
-          <Input
+          <CustomInput
             label="Carbs"
             placeholder="30"
-            type="text"
+            type="number"
             name="carbs"
             register={register}
             errors={errors.carbs}
+            required={true}
           />
-          <Input
+          <CustomInput
             label="Protein"
             name="protein"
             placeholder="30"
-            type="text"
+            type="number"
             register={register}
             errors={errors.protein}
+            required={true}
           />
-          <Input
+          <CustomInput
             name="fats"
             register={register}
             errors={errors.fats}
             label="Fats"
             placeholder="10"
-            type="text"
+            type="number"
+            required={true}
           />
         </div>
         <div className="flex-end mx-3 mb-5 gap-4">

@@ -31,8 +31,9 @@ export interface IPost {
 }
 
 export interface RecipeData {
+  name: string;
   title: string;
-  text: string;
+  description: string;
   ingredients: string[];
   steps: string[];
   servings: string;

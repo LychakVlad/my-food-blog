@@ -6,6 +6,8 @@ const Textarea = ({
   placeholder,
   register,
   name,
+  required,
+  errors,
 }: CustomTextAreatProps) => {
   return (
     <label>
@@ -14,9 +16,14 @@ const Textarea = ({
       </span>
       <textarea
         placeholder={placeholder}
-        {...register(name)}
-        className={`form_textarea `}
+        {...register(name, {
+          required: required ? `${name} is required` : false,
+        })}
+        className={`form_textarea ${errors && 'border-red-500'} `}
       ></textarea>
+      {errors && (
+        <p className="text-red-500 mt-2">{`${label} field is required`}</p>
+      )}
     </label>
   );
 };
