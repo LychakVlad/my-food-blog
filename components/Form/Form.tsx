@@ -1,47 +1,18 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { RecipeData, RecipeFormProps } from '../../types/recipe.interface';
+import { RecipeFormProps } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
-import Input from '../UI/Input/Input';
 import CustomInput from '../UI/Input/Input';
 import FormList from './FormList';
 import Textarea from '../UI/Textarea/Textarea';
-import { FieldValues, useForm } from 'react-hook-form';
 
-const Form: FC<RecipeFormProps> = ({ type }) => {
+const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
-  } = useForm<FieldValues>({
-    defaultValues: {
-      title: '',
-      description: '',
-      ingredients: [
-        'e.g. 2 cups flour, sifted',
-        'e.g. 1 cup sugar',
-        'e.g. 2 tablespoons butter, softened',
-      ],
-      steps: [
-        'e.g. Preheat oven to 350 degrees F…',
-        'e.g. Combine all dry ingredients in a large bowl…',
-        'e.g. Pour into greased trays and bake for 15-20 minutes…',
-      ],
-      servings: '8',
-      yield: 'e.g. 1 9-inch cake',
-      prepTime: '5',
-      cookTime: '5',
-      calories: '100',
-      protein: '5',
-      carbs: '20',
-      fats: '7',
-      photo: '',
-      tag: '',
-    },
-  });
-
-  const sabmit = (data: FieldValues) => console.log(data);
+  } = form;
 
   const stepData = {
     label: 'Directions',
@@ -68,7 +39,7 @@ const Form: FC<RecipeFormProps> = ({ type }) => {
       </p>
 
       <form
-        onSubmit={handleSubmit(sabmit)}
+        onSubmit={handleSubmit(onSubmit)}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <CustomInput

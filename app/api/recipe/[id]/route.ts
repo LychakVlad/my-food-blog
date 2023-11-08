@@ -15,8 +15,18 @@ export const GET = async (request: Request, { params }: any) => {
 };
 
 export const PATCH = async (request: Request, { params }: any) => {
-  const { text, tag, title, ingredients, creator, steps, photo } =
-    await request.json();
+  const {
+    description,
+    tag,
+    title,
+    ingredients,
+    creator,
+    steps,
+    photo,
+    nutrition,
+    servings,
+    timeToDo,
+  } = await request.json();
 
   try {
     await connectToDB();
@@ -29,6 +39,9 @@ export const PATCH = async (request: Request, { params }: any) => {
     existingRecipe.tag = tag;
     existingRecipe.title = title;
     existingRecipe.ingredients = ingredients;
+    existingRecipe.timeToDo = timeToDo;
+    existingRecipe.nutrition = nutrition;
+    existingRecipe.servings = servings;
     existingRecipe.creator = creator;
     existingRecipe.steps = steps;
     existingRecipe.photo = photo;

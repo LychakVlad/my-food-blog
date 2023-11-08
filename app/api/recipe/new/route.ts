@@ -4,7 +4,7 @@ import Recipe from '../../../../models/recipe';
 export const POST = async (req: Request, res: Response) => {
   const {
     userId,
-    text,
+    description,
     tag,
     title,
     ingredients,
@@ -21,7 +21,7 @@ export const POST = async (req: Request, res: Response) => {
     const newRecipe = new Recipe({
       creator: userId,
       title,
-      text,
+      description,
       tag,
       ingredients,
       steps,
@@ -30,6 +30,8 @@ export const POST = async (req: Request, res: Response) => {
       timeToDo,
       nutrition,
     });
+
+    console.log(newRecipe);
 
     await newRecipe.save();
 

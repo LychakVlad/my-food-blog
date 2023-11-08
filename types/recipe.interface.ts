@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 export interface IPost {
   title: string;
-  text: string;
+  description: string;
   tag: string;
   ingredients: string[];
   photo: string;
@@ -51,4 +51,5 @@ export interface RecipeData {
 export interface RecipeFormProps {
   type: string;
   onSubmit: SubmitHandler<FieldValues>;
+  form: any;
 }

@@ -9,9 +9,9 @@ const RecipeSchema = new Schema({
     type: String,
     required: [true, 'Title is required'],
   },
-  text: {
+  description: {
     type: String,
-    required: [true, 'Text is required'],
+    required: [true, 'Description is required'],
   },
   tag: {
     type: String,
@@ -31,11 +31,11 @@ const RecipeSchema = new Schema({
     },
   },
   timeToDo: {
-    prep: {
-      type: Number,
+    prepTime: {
+      type: String,
     },
-    cook: {
-      type: Number,
+    cookTime: {
+      type: String,
       required: [true, 'Cook time is required'],
     },
   },
