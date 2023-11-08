@@ -6,7 +6,7 @@ export const GET = async (request: Request, { params }: any) => {
     await connectToDB();
 
     const recipes = await Recipe.find({
-      'creator.id': params.creatorId,
+      creator: params.id,
     }).populate('creator');
 
     return new Response(JSON.stringify(recipes), { status: 200 });
