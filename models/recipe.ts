@@ -22,7 +22,7 @@ const RecipeSchema = new Schema({
     required: [true, 'Steps are required'],
   },
   servings: {
-    amount: {
+    servings: {
       type: String,
       required: [true, 'Servings amount is required'],
     },

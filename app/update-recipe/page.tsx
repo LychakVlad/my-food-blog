@@ -17,8 +17,6 @@ const EditRecipe = () => {
       const response = await fetch(`/api/recipe/${recipeId}`);
       const data = await response.json();
 
-      console.log(data);
-
       form.reset({
         title: data.title,
         description: data.description,
@@ -28,7 +26,7 @@ const EditRecipe = () => {
         photo: data.photo,
         _id: data._id,
         creator: data.creator,
-        servings: data.servings.amount,
+        servings: data.servings.servings,
         yield: data.servings.yield,
         prepTime: data.timeToDo.prepTime,
         cookTime: data.timeToDo.cookTime,
@@ -44,6 +42,7 @@ const EditRecipe = () => {
 
   const updateRecipe = async (data: FieldValues) => {
     if (!recipeId) return alert('Recipe ID not found');
+    console.log(data);
 
     try {
       const response = await fetch(`/api/recipe/${recipeId}`, {
@@ -58,7 +57,7 @@ const EditRecipe = () => {
           _id: data._id,
           creator: data.creator,
           servings: {
-            amount: data.amount,
+            servings: data.servings,
             yield: data.yield,
           },
           timeToDo: {

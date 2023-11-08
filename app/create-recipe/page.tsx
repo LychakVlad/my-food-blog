@@ -50,7 +50,7 @@ const CreateRecipe: FC = () => {
           title: data.title,
           photo: data.photo,
           servings: {
-            amount: data.servings,
+            servings: data.servings,
             yield: data.yield,
           },
           timeToDo: {
