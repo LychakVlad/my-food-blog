@@ -12,7 +12,7 @@ export interface IPost {
   _id: string | undefined | null;
   time?: ReactNode;
   servings: { amount: string; yield: string };
-  timeToDo: { prep: string; cook: string };
+  timeToDo: { prepTime: string; cookTime: string };
   nutrition: {
     cal: string;
     protein: string;

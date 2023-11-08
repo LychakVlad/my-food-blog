@@ -6,9 +6,12 @@ import Link from 'next/link';
 
 const Recipe = ({ post }: { post: IPost }) => {
   const data = [
-    { label: 'Cook time:', value: post.timeToDo.cook },
-    { label: 'Prep time:', value: post.timeToDo.prep },
-    { label: 'Total time:', value: post.timeToDo.cook + post.timeToDo.prep },
+    { label: 'Cook time:', value: post.timeToDo.cookTime },
+    { label: 'Prep time:', value: post.timeToDo.prepTime },
+    {
+      label: 'Total time:',
+      value: Number(post.timeToDo.cookTime) + Number(post.timeToDo.prepTime),
+    },
     { label: 'Servings:', value: post.servings.amount },
     { label: 'Yield:', value: post.servings.yield },
   ];
@@ -26,7 +29,7 @@ const Recipe = ({ post }: { post: IPost }) => {
       <h3 className="mt-2 text-lg">Recipe by {post?.creator?.name}</h3>
       <p className="mt-2">Created {dateConvert(post.time)}</p>
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
-      <p className="desc my-10">{post.text}</p>
+      <p className="desc my-10">{post.description}</p>
 
       <div className="relative  max-w-[672px] overflow-hidden h-[500px] flex items-center ">
         {' '}
