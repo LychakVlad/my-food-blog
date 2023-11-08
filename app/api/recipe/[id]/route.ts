@@ -35,7 +35,7 @@ export const PATCH = async (request: Request, { params }: any) => {
     if (!existingRecipe)
       return new Response('Recipe not found', { status: 404 });
 
-    existingRecipe.text = text;
+    existingRecipe.description = description;
     existingRecipe.tag = tag;
     existingRecipe.title = title;
     existingRecipe.ingredients = ingredients;
@@ -50,6 +50,7 @@ export const PATCH = async (request: Request, { params }: any) => {
 
     return new Response(JSON.stringify(existingRecipe), { status: 200 });
   } catch (error) {
+    console.log(error);
     return new Response('Failed to update recipe', { status: 500 });
   }
 };

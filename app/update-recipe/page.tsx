@@ -10,32 +10,7 @@ const EditRecipe = () => {
   const searchParams = useSearchParams();
   const recipeId = searchParams.get('id');
 
-  const form = useForm<FieldValues>({
-    defaultValues: {
-      title: '',
-      description: '',
-      ingredients: [
-        'e.g. 2 cups flour, sifted',
-        'e.g. 1 cup sugar',
-        'e.g. 2 tablespoons butter, softened',
-      ],
-      steps: [
-        'e.g. Preheat oven to 350 degrees F…',
-        'e.g. Combine all dry ingredients in a large bowl…',
-        'e.g. Pour into greased trays and bake for 15-20 minutes…',
-      ],
-      servings: '8',
-      yield: 'e.g. 1 9-inch cake',
-      prepTime: '5',
-      cookTime: '5',
-      calories: '100',
-      protein: '5',
-      carbs: '20',
-      fats: '7',
-      photo: '',
-      tag: '',
-    },
-  });
+  const form = useForm<FieldValues>();
 
   useEffect(() => {
     const getRecipeDetails = async () => {
@@ -53,20 +28,14 @@ const EditRecipe = () => {
         photo: data.photo,
         _id: data._id,
         creator: data.creator,
-        servings: {
-          amount: data.servings.amount,
-          yield: data.servings.yield,
-        },
-        timeToDo: {
-          prep: data.timeToDo.prep,
-          cook: data.timeToDo.cook,
-        },
-        nutrition: {
-          cal: data.nutrition.cal,
-          protein: data.nutrition.protein,
-          carbs: data.nutrition.carbs,
-          fats: data.nutrition.fats,
-        },
+        servings: data.servings.amount,
+        yield: data.servings.yield,
+        prepTime: data.timeToDo.prepTime,
+        cookTime: data.timeToDo.cookTime,
+        calories: data.nutrition.cal,
+        protein: data.nutrition.protein,
+        carbs: data.nutrition.carbs,
+        fats: data.nutrition.fats,
       });
     };
 
@@ -89,18 +58,18 @@ const EditRecipe = () => {
           _id: data._id,
           creator: data.creator,
           servings: {
-            amount: data.servings.amount,
-            yield: data.servings.yield,
+            amount: data.amount,
+            yield: data.yield,
           },
           timeToDo: {
-            prep: data.timeToDo.prep,
-            cook: data.timeToDo.cook,
+            prepTime: data.prepTime,
+            cookTime: data.cookTime,
           },
           nutrition: {
-            cal: data.nutrition.cal,
-            protein: data.nutrition.protein,
-            carbs: data.nutrition.carbs,
-            fats: data.nutrition.fats,
+            cal: data.calories,
+            protein: data.protein,
+            carbs: data.carbs,
+            fats: data.fats,
           },
         }),
       });
