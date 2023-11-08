@@ -45,7 +45,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
         <CustomInput
           register={register}
           errors={errors.photo}
-          label="Photo"
+          label="Photo (optional)"
           type="file"
           name="photo"
           accept="image/png, image/jpeg"
@@ -95,7 +95,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           required={true}
         />
 
-        <div className="flex">
+        <div className="flex gap-10">
           <CustomInput
             label="Servings"
             placeholder="10"
@@ -116,7 +116,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           />
         </div>
 
-        <div className="flex">
+        <div className="flex gap-10">
           <CustomInput
             label="Time to prep (minutes)"
             placeholder="120"

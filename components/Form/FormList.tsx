@@ -2,6 +2,7 @@ import React from 'react';
 import CustomInput from '../UI/Input/Input';
 import { useFieldArray } from 'react-hook-form';
 import { FormListProps } from '../../types/form.interface';
+import Image from 'next/image';
 
 const FormList = ({ data, register, name, control }: FormListProps) => {
   const { fields, append, remove } = useFieldArray({
@@ -19,17 +20,27 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
         {fields.map((field, index) => {
           return (
             <div key={field.id}>
-              <section className={'section flex'} key={field.id}>
+              <section className={'flex items-center mt-5'} key={field.id}>
                 <CustomInput
                   register={register}
                   placeholder={'placeholder'}
                   name={`${name}.${index}` as const}
-                  className="form_input min-h-[50px] w-full"
+                  className="form_input w-full"
                   type="text"
                   required={true}
                 />
-                <button type="button" onClick={() => remove(index)}>
-                  DELETE
+                <button
+                  type="button"
+                  onClick={() => remove(index)}
+                  className="h-full px-4"
+                >
+                  <Image
+                    src={'/assets/icons/close.svg'}
+                    width={36}
+                    height={36}
+                    className="rounded-full"
+                    alt="logo"
+                  />
                 </button>
               </section>
             </div>
@@ -37,6 +48,7 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
         })}
         <button
           type="button"
+          className="outline_btn mt-8"
           onClick={() => append(`Add ${name.slice(0, -1)}`)}
         >
           Add {name.slice(0, -1)}

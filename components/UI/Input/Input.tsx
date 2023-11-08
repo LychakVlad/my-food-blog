@@ -17,14 +17,17 @@ const CustomInput: React.FC<CustomInputProps> = ({
 }) => {
   return (
     <div className="w-full">
-      <label
-        htmlFor={name}
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        {label}
-        <span className="font-normal"> {desc}</span>
-      </label>
-      <div className="mt-2 w-full">
+      {label && (
+        <label
+          htmlFor={name}
+          className="block text-sm font-medium leading-6 text-gray-900 mb-2"
+        >
+          {label}
+          <span className="font-normal"> {desc}</span>
+        </label>
+      )}
+
+      <div className="w-full">
         <input
           {...register(name, {
             required: required ? `${name} is required` : false,
