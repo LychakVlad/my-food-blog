@@ -31,7 +31,6 @@ const Profile: FC<IProfileProps> = ({
             post={post}
             handleEdit={() => handleEdit && handleEdit(post)}
             handleDelete={() => handleDelete && handleDelete(post)}
-            handleTagClick={() => {}}
           />
         ))}
       </div>

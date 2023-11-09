@@ -4,17 +4,15 @@ import RecipeCard from '../Recipe/RecipeCard';
 
 interface IDataItem {
   data: IPost[];
-  handleTagClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const FeedRecipeList: FC<IDataItem> = ({ data, handleTagClick }) => {
+const FeedRecipeList: FC<IDataItem> = ({ data }) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
         <RecipeCard
           key={post._id}
           post={post}
-          handleTagClick={handleTagClick}
           handleDelete={() => {}}
           handleEdit={() => {}}
         />

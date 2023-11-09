@@ -9,14 +9,12 @@ import dateConvert from '../../utils/dateConvert';
 
 interface IRecipeCardData {
   post: IPost;
-  handleTagClick: (event: React.MouseEvent<HTMLElement>) => void;
   handleEdit: (event: React.MouseEvent<HTMLElement>) => void;
   handleDelete: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const RecipeCard: FC<IRecipeCardData> = ({
   post,
-  handleTagClick,
   handleEdit,
   handleDelete,
 }) => {

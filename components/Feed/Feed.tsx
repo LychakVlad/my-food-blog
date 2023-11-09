@@ -9,24 +9,24 @@ const Feed: FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const { data: session } = useSession();
 
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch('/api/recipe', { method: 'GET' });
-      const data = await response.json();
-      setPosts(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
   useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/recipe', { method: 'GET' });
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
     fetchPosts();
   }, []);
 
   return (
     <section className="feed">
       <p>You logged in as {session?.user.name}</p>
-      <FeedRecipeList data={posts} handleTagClick={() => {}} />
+      <FeedRecipeList data={posts} />
     </section>
   );
 };
