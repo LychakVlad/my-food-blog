@@ -26,7 +26,7 @@ const Home: FC = () => {
             delectable dishes shared by fellow food enthusiasts. Explore,
             create, and celebrate the joy of cooking together!
           </p>
-          <Link href={'/#'} className="nav_btn">
+          <Link href={'#recipe-list'} className="nav_btn">
             Let's explore
           </Link>
         </div>

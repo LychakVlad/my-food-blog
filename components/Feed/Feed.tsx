@@ -14,6 +14,7 @@ const Feed: FC = () => {
       try {
         const response = await fetch('/api/recipe', { method: 'GET' });
         const data = await response.json();
+        console.log(data);
         setPosts(data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,11 +22,10 @@ const Feed: FC = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [session]);
 
   return (
     <section className="feed">
-      <p>You logged in as {session?.user.name}</p>
       <FeedRecipeList data={posts} />
     </section>
   );

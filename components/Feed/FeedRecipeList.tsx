@@ -8,7 +8,7 @@ interface IDataItem {
 
 const FeedRecipeList: FC<IDataItem> = ({ data }) => {
   return (
-    <div className="mt-16 prompt_layout">
+    <div className="mt-16 prompt_layout" id="recipe-list">
       {data.map((post) => (
         <RecipeCard
           key={post._id}
