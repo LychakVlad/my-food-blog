@@ -24,5 +24,6 @@ interface AuthData {
 
 interface AuthForm {
   onSubmit: SubmitHandler<FieldValues>;
+  error: string;
   type: string;
 }

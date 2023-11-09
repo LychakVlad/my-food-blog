@@ -4,7 +4,7 @@ import { AuthForm } from '../../types/next-auth';
 import { useForm } from 'react-hook-form';
 import CustomInput from '../UI/Input/Input';
 
-const AuthForm = ({ onSubmit, type }: AuthForm) => {
+const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
   const {
     register,
     handleSubmit,
@@ -26,6 +26,7 @@ const AuthForm = ({ onSubmit, type }: AuthForm) => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          {error && <p className="text-red-500 mb-2">{error}</p>}
           <form className="space-y-4 " onSubmit={handleSubmit(onSubmit)}>
             <CustomInput
               label="Email address"
