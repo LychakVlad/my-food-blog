@@ -1,4 +1,3 @@
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { ReactNode } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
@@ -23,7 +22,7 @@ export interface IPost {
     | {
         name: string;
         email: string;
-        image: string | StaticImport;
+        image: string;
         _id: string;
       }
     | undefined
