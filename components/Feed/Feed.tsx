@@ -12,7 +12,10 @@ const Feed: FC = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('/api/recipe', { method: 'GET' });
+        const response = await fetch(
+          `https://${process.env.VERCEL_URL}/api/recipe`,
+          { method: 'GET' }
+        );
         const data = await response.json();
         console.log(data);
         setPosts(data);
