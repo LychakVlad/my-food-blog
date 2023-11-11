@@ -16,10 +16,11 @@ export async function generateStaticParams() {
 async function getRecipe(id: string) {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe/${id}`);
   const data = await res.json();
+  console.log(data.comments);
   return data;
 }
 
 export default async function RecipePage({ params }: { params: Params }) {
   const recipe = await getRecipe(params.id);
-  return <Recipe post={recipe} />;
+  return <Recipe post={recipe.recipe} />;
 }

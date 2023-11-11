@@ -9,17 +9,19 @@ export const POST = async (req: Request, res: Response) => {
   try {
     await connectToDB();
 
-    const newComment = new Comment({ text, creatorName });
+    const newComment = new Comment({ text, creatorName, postId });
 
-    newComment.save();
+    await newComment.save();
 
     const existingPost = await Recipe.findById(postId);
 
-    existingPost.comments.push(newComment);
+    existingPost.comments.push(newComment._id);
 
-    mongoose.set('debug', true);
+    await existingPost.save();
 
-    existingPost.save();
+    console.log('postId:', postId);
+    console.log('newComment._id:', newComment._id);
+    console.log('existingPost:', existingPost);
 
     return new Response(JSON.stringify(newComment), { status: 201 });
   } catch (error) {

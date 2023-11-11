@@ -29,8 +29,6 @@ const Recipe = ({ post }: { post: IPost }) => {
   const [text, setText] = useState('');
   const { data: session } = useSession();
 
-  console.log(post);
-
   async function submitFunc(e: any) {
     e.preventDefault();
     try {
