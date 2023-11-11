@@ -1,8 +1,11 @@
-import React from 'react';
+'use client';
+
+import React, { use, useState } from 'react';
 import Image from 'next/image';
 import { IPost } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 const Recipe = ({ post }: { post: IPost }) => {
   const data = [
@@ -22,6 +25,27 @@ const Recipe = ({ post }: { post: IPost }) => {
     { label: 'Protein', value: post.nutrition.protein },
     { label: 'Fats', value: post.nutrition.fats },
   ];
+
+  const [text, setText] = useState('');
+  const { data: session } = useSession();
+
+  console.log(post);
+
+  async function submitFunc(e: any) {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/add-comment', {
+        method: 'POST',
+        body: JSON.stringify({
+          creatorName: session?.user.name,
+          postId: post._id,
+          text: text,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="max-w-2xl">
@@ -89,6 +113,17 @@ const Recipe = ({ post }: { post: IPost }) => {
           </div>
         ))}
       </div>
+      <form onSubmit={submitFunc}>
+        {' '}
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          type="text"
+          placeholder="TYPE HERE"
+          className="mb-10"
+        ></input>
+        <button type="submit">Send</button>
+      </form>
     </div>
   );
 };

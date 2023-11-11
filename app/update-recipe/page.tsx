@@ -42,7 +42,6 @@ const EditRecipe = () => {
 
   const updateRecipe = async (data: FieldValues) => {
     if (!recipeId) return alert('Recipe ID not found');
-    console.log(data);
 
     try {
       const response = await fetch(`/api/recipe/${recipeId}`, {

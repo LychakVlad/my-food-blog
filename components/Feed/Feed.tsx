@@ -36,7 +36,6 @@ const Feed: FC = () => {
     setSearchText(e.target.value);
     const searchResult = filterRecipes(e.target.value);
     setSearchedResults(searchResult);
-    console.log(searchResult);
   };
 
   return (

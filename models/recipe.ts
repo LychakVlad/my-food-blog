@@ -54,6 +54,12 @@ const RecipeSchema = new Schema({
     type: [String],
     required: [true, 'Ingredients are required'],
   },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
 });
 
 const Recipe = models.Recipe || model('Recipe', RecipeSchema);
