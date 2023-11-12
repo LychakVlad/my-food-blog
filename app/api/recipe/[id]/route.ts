@@ -1,19 +1,20 @@
 import { connectToDB } from '../../../../utils/database';
 import Recipe from '../../../../models/recipe';
-import Comment from '../../../../models/recipe';
 
 export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipe = await Recipe.findById(params.id).populate('comments');
-    if (!recipe) return new Response('Recipe not found', { status: 404 });
+    const recipeWithComments = await Recipe.findById(params.id).populate(
+      'creator'
+    );
 
-    const comments = await Comment.find({ id: { $in: recipe.comments } });
+    console.log('lllol');
 
-    const responseData = { recipe, comments: recipe.comments };
+    if (!recipeWithComments)
+      return new Response('Recipe not found', { status: 404 });
 
-    return new Response(JSON.stringify(responseData), { status: 200 });
+    return new Response(JSON.stringify(recipeWithComments), { status: 200 });
   } catch (error) {
     return new Response('Failed to fetch recipe', { status: 500 });
   }

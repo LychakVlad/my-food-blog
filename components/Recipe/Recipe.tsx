@@ -2,7 +2,7 @@
 
 import React, { use, useState } from 'react';
 import Image from 'next/image';
-import { IPost } from '../../types/recipe.interface';
+import { IPost, IPostComment } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
@@ -111,6 +111,12 @@ const Recipe = ({ post }: { post: IPost }) => {
           </div>
         ))}
       </div>
+      {post.comments.map((item: IPostComment) => {
+        <div>
+          {item.creatorName}
+          {item.text}
+        </div>;
+      })}
       <form onSubmit={submitFunc}>
         {' '}
         <input

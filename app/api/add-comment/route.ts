@@ -19,10 +19,6 @@ export const POST = async (req: Request, res: Response) => {
 
     await existingPost.save();
 
-    console.log('postId:', postId);
-    console.log('newComment._id:', newComment._id);
-    console.log('existingPost:', existingPost);
-
     return new Response(JSON.stringify(newComment), { status: 201 });
   } catch (error) {
     console.log('internal error');

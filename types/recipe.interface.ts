@@ -1,6 +1,14 @@
 import { ReactNode } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
+export interface IPostComment {
+  map(arg0: (item: IPostComment) => void): ReactNode;
+  text: string;
+  creatorName: string;
+  date: string;
+  postId: string;
+}
+
 export interface IPost {
   title: string;
   description: string;
@@ -10,6 +18,7 @@ export interface IPost {
   steps: string[];
   _id: string | undefined | null;
   time?: ReactNode;
+  comments: IPostComment;
   servings: { amount: string; yield: string };
   timeToDo: { prepTime: string; cookTime: string };
   nutrition: {
