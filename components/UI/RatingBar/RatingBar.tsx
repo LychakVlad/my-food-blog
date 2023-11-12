@@ -2,7 +2,7 @@ import React from 'react';
 
 interface RatingBarProps {
   rating: number;
-  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+  handleClick: (selectedRating: number) => void;
 }
 
 const RatingBar = ({ rating, handleClick }: RatingBarProps) => {
