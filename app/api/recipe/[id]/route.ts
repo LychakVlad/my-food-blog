@@ -5,11 +5,9 @@ export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipeWithComments = await Recipe.findById(params.id).populate(
-      'creator'
-    );
-
-    console.log('lllol');
+    const recipeWithComments = await Recipe.findById(params.id)
+      .populate('creator')
+      .populate('comments');
 
     if (!recipeWithComments)
       return new Response('Recipe not found', { status: 404 });

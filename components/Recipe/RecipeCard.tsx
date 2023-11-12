@@ -34,7 +34,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
           {' '}
           <Image
             src={'/assets/images/recipe-photo.jpeg'}
-            alt="user_image"
+            alt="recipe-photo"
             width={400}
             height={40}
             className="object-cover object-center  absolute"

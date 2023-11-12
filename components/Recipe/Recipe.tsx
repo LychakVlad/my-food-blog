@@ -6,6 +6,7 @@ import { IPost, IPostComment } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import RatingBar from '../UI/RatingBar/RatingBar';
 
 const Recipe = ({ post }: { post: IPost }) => {
   const data = [
@@ -15,7 +16,7 @@ const Recipe = ({ post }: { post: IPost }) => {
       label: 'Total time:',
       value: Number(post.timeToDo.cookTime) + Number(post.timeToDo.prepTime),
     },
-    { label: 'Servings:', value: post.servings.amount },
+    { label: 'Servings:', value: post.servings.servings },
     { label: 'Yield:', value: post.servings.yield },
   ];
 
@@ -28,6 +29,13 @@ const Recipe = ({ post }: { post: IPost }) => {
 
   const [text, setText] = useState('');
   const { data: session } = useSession();
+  const [rating, setRating] = useState(0);
+
+  const handleRatingClick = (selectedRating: number) => {
+    setRating(selectedRating);
+  };
+
+  console.log(rating);
 
   async function submitFunc(e: any) {
     e.preventDefault();
@@ -111,13 +119,8 @@ const Recipe = ({ post }: { post: IPost }) => {
           </div>
         ))}
       </div>
-      {post.comments.map((item: IPostComment) => {
-        <div>
-          {item.creatorName}
-          {item.text}
-        </div>;
-      })}
-      <form onSubmit={submitFunc}>
+
+      <form onSubmit={submitFunc} className="flex items-center">
         {' '}
         <input
           value={text}
@@ -126,8 +129,25 @@ const Recipe = ({ post }: { post: IPost }) => {
           placeholder="TYPE HERE"
           className="mb-10"
         ></input>
+        <RatingBar rating={rating} handleClick={handleRatingClick} />
         <button type="submit">Send</button>
       </form>
+      {post.comments.map((item: IPostComment, index: number) => (
+        <div key={index} className=" border-gray-400 border mb-8 p-4">
+          <div className="flex items-center mb-2">
+            <Image
+              src={'/assets/icons/profile-undefined.svg'}
+              alt="user_image"
+              width={40}
+              height={40}
+              className="mr-4"
+            />
+            {item.creatorName}
+          </div>
+          <p className="mb-2"> {dateConvert(item.date)}</p>
+          <p className="">{item.text}</p>
+        </div>
+      ))}
     </div>
   );
 };
