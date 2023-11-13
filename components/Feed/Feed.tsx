@@ -39,7 +39,7 @@ const Feed: FC = () => {
   };
 
   return (
-    <section className="feed">
+    <section className="feed mt-16">
       <form className="relative w-full  flex-col">
         <h3 className="recipe_semi-title mb-6 ">Find your favorite recipe</h3>
         <input

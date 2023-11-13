@@ -23,15 +23,19 @@ html {
 }
 
 .black_btn {
-  @apply rounded-xl border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-lg font-inter flex items-center justify-center;
+  @apply rounded-xl border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-lg font-inter flex items-center justify-center disabled:bg-gray-500;
+}
+
+.submit_btn {
+  @apply px-5 py-1.5 text-sm bg-green-600 rounded-xl text-white hover:bg-green-400 disabled:bg-gray-500 transition-all;
 }
 
 .outline_btn {
-  @apply rounded-xl border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-lg font-inter flex items-center justify-center;
+  @apply rounded-xl border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-lg font-inter flex items-center justify-center disabled:bg-gray-500;
 }
 
 .nav_btn {
-  @apply rounded-xl  font-semibold text-2xl mt-4 bg-white text-black  p-4 w-fit transition-all hover:bg-black hover:text-white font-inter;
+  @apply rounded-xl  font-semibold text-2xl mt-4 bg-white text-black  p-4 w-fit transition-all hover:bg-black hover:text-white font-inter disabled:bg-gray-500;
 }
 
 .head_text {
@@ -48,7 +52,7 @@ html {
 
 /* Feed Component */
 .feed {
-  @apply mt-16 mx-auto w-full flex justify-center items-center flex-col gap-2 max-w-7xl;
+  @apply mx-auto w-full flex justify-center items-center flex-col gap-2 max-w-7xl;
 }
 
 .search_input {
@@ -76,7 +80,7 @@ html {
 
 /* RecipeCard Component */
 .recipe_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter h-fit;
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter h-fit max-w-[370px];
 }
 
 .flex-center {

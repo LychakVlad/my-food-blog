@@ -81,7 +81,7 @@ const Recipe = ({ post }: { post: IPost }) => {
         />
       </div>
       <div className="bg-gray-200 mt-16 p-8 ">
-        <div className="grid-cols-3 grid-rows-2 grid gap-8 mb-6">
+        <div className="sm:grid-cols-3 sm:grid-rows-2 grid gap-8 mb-6 ">
           {data.map((item, index) => (
             <div key={index}>
               <h3 className="text-lg font-semibold">{item.label}</h3>
@@ -142,13 +142,13 @@ const Recipe = ({ post }: { post: IPost }) => {
               required={true}
               errors={errors.review}
             />
-            <div className="flex">
+            <div className="sm:flex sm:flex-row flex-col items-center gap-8">
               <RatingBar
                 rating={rating}
                 handleClick={handleRatingClick}
                 clickable={true}
               />
-              <div className="ml-10 text-xl">
+              <div className=" text-xl mt-6 ml-2 sm:mt-0 sm:ml-0">
                 {<RatingDescription rating={rating} />}
               </div>
             </div>

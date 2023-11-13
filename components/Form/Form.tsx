@@ -137,7 +137,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           />
         </div>
 
-        <div className="flex gap-10">
+        <div className="sm:flex sm:gap-10">
           <CustomInput
             label="Calories"
             name="calories"
@@ -180,11 +180,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             Cancel
           </Link>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
-          >
+          <button type="submit" disabled={isSubmitting} className="submit_btn">
             {isSubmitting ? `${type}...` : type}
           </button>
         </div>
