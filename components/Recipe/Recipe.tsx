@@ -129,37 +129,51 @@ const Recipe = ({ post }: { post: IPost }) => {
         ))}
       </div>
       <div className="bg-gray-200 mb-16 p-8 ">
-        <form
-          onSubmit={handleSubmit(submitFunc)}
-          className="flex gap-10 flex-col"
-        >
-          <Textarea
-            placeholder="Your review..."
-            register={register}
-            label="Review"
-            name="review"
-            required={true}
-            errors={errors.review}
-          />
-          <div className="flex">
-            <RatingBar
-              rating={rating}
-              handleClick={handleRatingClick}
-              clickable={true}
-            />
-            <div className="ml-10 text-xl">
-              {<RatingDescription rating={rating} />}
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="outline_btn ml-2 max-w-[100px]"
-            disabled={isSubmitting}
+        {session?.user ? (
+          <form
+            onSubmit={handleSubmit(submitFunc)}
+            className="flex gap-10 flex-col"
           >
-            Send
-          </button>
-        </form>
+            <Textarea
+              placeholder="Your review..."
+              register={register}
+              label="Review"
+              name="review"
+              required={true}
+              errors={errors.review}
+            />
+            <div className="flex">
+              <RatingBar
+                rating={rating}
+                handleClick={handleRatingClick}
+                clickable={true}
+              />
+              <div className="ml-10 text-xl">
+                {<RatingDescription rating={rating} />}
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="outline_btn ml-2 max-w-[100px]"
+              disabled={isSubmitting}
+            >
+              Send
+            </button>
+          </form>
+        ) : (
+          <p>
+            Please{' '}
+            <Link href={'/login'} className="underline">
+              log in
+            </Link>{' '}
+            or{' '}
+            <Link href={'/sign-up'} className="underline">
+              sign up
+            </Link>{' '}
+            to leave a comments!
+          </p>
+        )}
       </div>
 
       {post.comments.map((item: IPostComment, index: number) => (

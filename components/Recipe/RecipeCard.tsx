@@ -26,6 +26,8 @@ const RecipeCard: FC<IRecipeCardData> = ({
     router.push(`/recipes/${post._id}`);
   }
 
+  console.log(post.comments);
+
   return (
     <>
       {' '}
