@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 export interface IPostComment {
+  rating: number;
   text: string;
   creatorName: string;
   date: string;

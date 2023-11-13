@@ -1,4 +1,4 @@
-import { Schema, model, models } from 'mongoose';
+const { Schema, default: mongoose, models, model } = require('mongoose');
 
 const UserSchema = new Schema({
   email: {

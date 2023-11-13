@@ -1,12 +1,13 @@
 'use client';
 
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { IPost, IPostComment } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import RatingBar from '../UI/RatingBar/RatingBar';
+import RecipeComment from './RecipeComment';
 
 const Recipe = ({ post }: { post: IPost }) => {
   const data = [
@@ -29,13 +30,11 @@ const Recipe = ({ post }: { post: IPost }) => {
 
   const [text, setText] = useState('');
   const { data: session } = useSession();
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(3);
 
   const handleRatingClick = (selectedRating: number) => {
     setRating(selectedRating);
   };
-
-  console.log(rating);
 
   async function submitFunc(e: any) {
     e.preventDefault();
@@ -46,6 +45,7 @@ const Recipe = ({ post }: { post: IPost }) => {
           creatorName: session?.user.name,
           postId: post._id,
           text: text,
+          rating: rating,
         }),
       });
     } catch (error) {
@@ -119,34 +119,33 @@ const Recipe = ({ post }: { post: IPost }) => {
           </div>
         ))}
       </div>
+      <div className="bg-gray-200 mb-16 p-8 ">
+        <h3 className="recipe_semi-title mb-6">What do you think?</h3>
+        <form
+          onSubmit={submitFunc}
+          className="flex items-center justify-between "
+        >
+          {' '}
+          <input
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            type="text"
+            placeholder="TYPE HERE"
+            className=""
+          ></input>
+          <RatingBar
+            rating={rating}
+            handleClick={handleRatingClick}
+            clickable={true}
+          />
+          <button type="submit" className="outline_btn ml-5">
+            Send
+          </button>
+        </form>
+      </div>
 
-      <form onSubmit={submitFunc} className="flex items-center">
-        {' '}
-        <input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          type="text"
-          placeholder="TYPE HERE"
-          className="mb-10"
-        ></input>
-        <RatingBar rating={rating} handleClick={handleRatingClick} />
-        <button type="submit">Send</button>
-      </form>
       {post.comments.map((item: IPostComment, index: number) => (
-        <div key={index} className=" border-gray-400 border mb-8 p-4">
-          <div className="flex items-center mb-2">
-            <Image
-              src={'/assets/icons/profile-undefined.svg'}
-              alt="user_image"
-              width={40}
-              height={40}
-              className="mr-4"
-            />
-            {item.creatorName}
-          </div>
-          <p className="mb-2"> {dateConvert(item.date)}</p>
-          <p className="">{item.text}</p>
-        </div>
+        <RecipeComment item={item} index={index} />
       ))}
     </div>
   );

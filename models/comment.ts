@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from 'mongoose';
+const { Schema, default: mongoose, models, model } = require('mongoose');
 
 const CommentSchema = new Schema({
   text: {
@@ -12,6 +12,10 @@ const CommentSchema = new Schema({
   date: {
     type: Date,
     default: Date.now,
+  },
+  rating: {
+    type: Number,
+    required: true,
   },
   postId: {
     type: mongoose.Schema.Types.ObjectId,
