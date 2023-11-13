@@ -7,9 +7,19 @@ import dateConvert from '../../utils/dateConvert';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import RatingBar from '../UI/RatingBar/RatingBar';
+import RatingDescription from '../UI/RatingBar/RatingDescription';
 import RecipeComment from './RecipeComment';
+import Textarea from '../UI/Textarea/Textarea';
+import { FieldValues, useForm } from 'react-hook-form';
 
 const Recipe = ({ post }: { post: IPost }) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
   const data = [
     { label: 'Cook time:', value: post.timeToDo.cookTime },
     { label: 'Prep time:', value: post.timeToDo.prepTime },
@@ -28,7 +38,6 @@ const Recipe = ({ post }: { post: IPost }) => {
     { label: 'Fats', value: post.nutrition.fats },
   ];
 
-  const [text, setText] = useState('');
   const { data: session } = useSession();
   const [rating, setRating] = useState(3);
 
@@ -36,18 +45,18 @@ const Recipe = ({ post }: { post: IPost }) => {
     setRating(selectedRating);
   };
 
-  async function submitFunc(e: any) {
-    e.preventDefault();
+  async function submitFunc(data: FieldValues) {
     try {
       const response = await fetch('/api/add-comment', {
         method: 'POST',
         body: JSON.stringify({
           creatorName: session?.user.name,
           postId: post._id,
-          text: text,
+          text: data.review,
           rating: rating,
         }),
       });
+      reset();
     } catch (error) {
       console.log(error);
     }
@@ -120,25 +129,34 @@ const Recipe = ({ post }: { post: IPost }) => {
         ))}
       </div>
       <div className="bg-gray-200 mb-16 p-8 ">
-        <h3 className="recipe_semi-title mb-6">What do you think?</h3>
         <form
-          onSubmit={submitFunc}
-          className="flex items-center justify-between "
+          onSubmit={handleSubmit(submitFunc)}
+          className="flex gap-10 flex-col"
         >
-          {' '}
-          <input
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            type="text"
-            placeholder="TYPE HERE"
-            className=""
-          ></input>
-          <RatingBar
-            rating={rating}
-            handleClick={handleRatingClick}
-            clickable={true}
+          <Textarea
+            placeholder="Your review..."
+            register={register}
+            label="Review"
+            name="review"
+            required={true}
+            errors={errors.review}
           />
-          <button type="submit" className="outline_btn ml-5">
+          <div className="flex">
+            <RatingBar
+              rating={rating}
+              handleClick={handleRatingClick}
+              clickable={true}
+            />
+            <div className="ml-10 text-xl">
+              {<RatingDescription rating={rating} />}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="outline_btn ml-2 max-w-[100px]"
+            disabled={isSubmitting}
+          >
             Send
           </button>
         </form>

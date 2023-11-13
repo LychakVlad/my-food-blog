@@ -12,7 +12,7 @@ const RatingBar = ({ rating, handleClick, clickable }: RatingBarProps) => {
       {[1, 2, 3, 4, 5].map((index) => (
         <svg
           key={index}
-          className={`w-4 h-4 ${
+          className={`w-6 h-6 ${
             index <= rating
               ? 'text-yellow-300'
               : 'text-gray-300 dark:text-gray-500'

@@ -12,7 +12,7 @@ const Textarea = ({
   return (
     <label>
       <span className="font-satoshi font-semibold text-base text-gray-700">
-        {label}
+        {label && label}
       </span>
       <textarea
         placeholder={placeholder}
