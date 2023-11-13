@@ -25,14 +25,18 @@ const Profile: FC<IProfileProps> = ({
       </h1>
       <p className="desc text-left">{desc}</p>
       <div className="mt-10 recipe_layout">
-        {data.map((post: IPost) => (
-          <RecipeCard
-            key={post._id}
-            post={post}
-            handleEdit={() => handleEdit && handleEdit(post)}
-            handleDelete={() => handleDelete && handleDelete(post)}
-          />
-        ))}
+        {data.length !== 0 ? (
+          data.map((post: IPost) => (
+            <RecipeCard
+              key={post._id}
+              post={post}
+              handleEdit={() => handleEdit && handleEdit(post)}
+              handleDelete={() => handleDelete && handleDelete(post)}
+            />
+          ))
+        ) : (
+          <p>You have no posts yet...</p>
+        )}
       </div>
     </section>
   );
