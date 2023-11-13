@@ -40,7 +40,8 @@ const Feed: FC = () => {
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
+      <form className="relative w-full  flex-col">
+        <h3 className="recipe_semi-title mb-6 ">Find your favorite recipe</h3>
         <input
           type="text"
           value={searchText}

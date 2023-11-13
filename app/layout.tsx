@@ -22,9 +22,6 @@ export default async function RootLayout({
     <html lang="en" className="h-full">
       <body suppressHydrationWarning={true} className="h-full scroll-smooth">
         <Provider session={session}>
-          <div className="main">
-            <div className="gradient" />
-          </div>
           <main className="app h-full">
             <Nav />
             {children}

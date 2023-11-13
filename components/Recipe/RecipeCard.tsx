@@ -26,18 +26,16 @@ const RecipeCard: FC<IRecipeCardData> = ({
     router.push(`/recipes/${post._id}`);
   }
 
-  console.log(post.comments);
-
   return (
     <>
       {' '}
       <div className="recipe_card">
-        <div className="relative  max-w-[300px] overflow-hidden h-[300px] flex items-center ">
+        <div className="relative  max-w-[500px] overflow-hidden h-[300px] flex items-center ">
           {' '}
           <Image
             src={'/assets/images/recipe-photo.jpeg'}
             alt="recipe-photo"
-            width={400}
+            width={500}
             height={40}
             className="object-cover object-center  absolute"
           />

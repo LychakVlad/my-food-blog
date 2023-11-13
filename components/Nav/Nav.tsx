@@ -53,7 +53,7 @@ const Nav = () => {
           className="rounded-full"
           alt="logo"
         ></Image>
-        <p className="logo_text"> Cook's Compass</p>
+        <p className="logo_text sm:block hidden"> Cook's Compass</p>
       </Link>
       <div className="sm:flex hidden">
         {session?.user ? (
