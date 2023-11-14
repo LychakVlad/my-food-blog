@@ -18,7 +18,7 @@ const Feed: FC = () => {
           method: 'GET',
         });
         const data = await response.json();
-        setRecipes(data);
+        setRecipes(data.reverse());
       } catch (error) {
         console.error('Error fetching data:', error);
       }

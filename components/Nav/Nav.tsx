@@ -20,19 +20,7 @@ type ProviderResponse = Record<
 
 const Nav = () => {
   const { data: session } = useSession();
-
-  const [providers, setProviders] = useState<ProviderResponse>(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-
-  useEffect(() => {
-    const setUpProviders = async () => {
-      const response: ProviderResponse = await getProviders();
-
-      setProviders(response);
-    };
-
-    setUpProviders();
-  }, []);
 
   const handleToggle = () => {
     setToggleDropdown(!toggleDropdown);
@@ -122,11 +110,11 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            {providers && (
+            {
               <Link href="/login" className="black_btn">
                 Log in
               </Link>
-            )}
+            }
           </>
         )}
       </div>
