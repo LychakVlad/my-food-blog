@@ -22,7 +22,7 @@ const Nav = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState<ProviderResponse>(null);
-  const [toggleDropdown, settoggleDropdown] = useState(false);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -33,6 +33,10 @@ const Nav = () => {
 
     setUpProviders();
   }, []);
+
+  const handleToggle = () => {
+    setToggleDropdown(!toggleDropdown);
+  };
 
   const handleSignOutClick = async () => {
     try {
@@ -83,32 +87,33 @@ const Nav = () => {
           </>
         )}
       </div>
-      <div className="sm:hidden flex relative">
+      <div className="sm:hidden flex relative ">
         {session?.user ? (
           <div className="flex">
+            <div onClick={handleToggle}>Menu</div>
             {toggleDropdown && (
               <div className="dropdown">
                 <Link
                   href="/profile"
                   className="dropdown_link"
-                  onClick={() => settoggleDropdown(false)}
+                  onClick={() => setToggleDropdown(false)}
                 >
                   My profile
                 </Link>
                 <Link
                   href="/create-recipe"
                   className="dropdown_link"
-                  onClick={() => settoggleDropdown(false)}
+                  onClick={() => setToggleDropdown(false)}
                 >
                   Create recipe
                 </Link>
                 <button
                   type="button"
                   onClick={() => {
-                    settoggleDropdown(false);
+                    setToggleDropdown(false);
                     signOut();
                   }}
-                  className="mt-5 w-full black_btn"
+                  className="mt-4 w-full black_btn"
                 >
                   Sign out
                 </button>
@@ -117,17 +122,11 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                  className="black_btn"
-                >
-                  Sign in
-                </button>
-              ))}
+            {providers && (
+              <Link href="/login" className="black_btn">
+                Log in
+              </Link>
+            )}
           </>
         )}
       </div>

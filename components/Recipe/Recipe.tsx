@@ -70,14 +70,14 @@ const Recipe = ({ post }: { post: IPost }) => {
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
       <p className="desc my-10">{post.description}</p>
 
-      <div className="relative  max-w-[672px] overflow-hidden h-[500px] flex items-center ">
+      <div className="relative  max-w-[672px]  overflow-hidden h-[500px] flex items-center ">
         {' '}
         <Image
           src={'/assets/images/recipe-photo.jpeg'}
           alt="food_image"
           width={672}
           height={500}
-          className="object-cover object-center  absolute"
+          className="object-cover object-center  absolute "
         />
       </div>
       <div className="bg-gray-200 mt-16 p-8 ">
