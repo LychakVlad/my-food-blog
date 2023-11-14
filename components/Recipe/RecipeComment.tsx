@@ -6,12 +6,11 @@ import { IPostComment } from '../../types/recipe.interface';
 
 interface RecipeCommentProps {
   item: IPostComment;
-  index: number;
 }
 
-const RecipeComment = ({ item, index }: RecipeCommentProps) => {
+const RecipeComment = ({ item }: RecipeCommentProps) => {
   return (
-    <div key={index} className=" border-gray-400 border mb-8 p-4">
+    <div className=" border-gray-400 border mb-8 p-4">
       <div className="flex items-center mb-2">
         <div className=" overflow-hidden rounded-full w-[50px] h-[50px] relative mr-6">
           <Image

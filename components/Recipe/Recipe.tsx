@@ -20,8 +20,6 @@ const Recipe = ({ post }: { post: IPost }) => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  console.log(post);
-
   const data = [
     { label: 'Cook time:', value: post.timeToDo.cookTime },
     { label: 'Prep time:', value: post.timeToDo.prepTime },
@@ -179,7 +177,7 @@ const Recipe = ({ post }: { post: IPost }) => {
       </div>
 
       {post.comments.map((item: IPostComment, index: number) => (
-        <RecipeComment item={item} index={index} />
+        <RecipeComment item={item} key={index} />
       ))}
     </div>
   );
