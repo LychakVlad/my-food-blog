@@ -7,7 +7,9 @@ export const GET = async (request: NextRequest, { params }: any) => {
   try {
     await connectToDB();
 
-    const recipes = await Recipe.find({}).populate('creator');
+    const recipes = await Recipe.find({})
+      .populate('creator')
+      .select('-hashedPassword');
 
     return new NextResponse(JSON.stringify(recipes), { status: 200 });
   } catch (error) {

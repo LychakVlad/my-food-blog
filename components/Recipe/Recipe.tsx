@@ -20,6 +20,8 @@ const Recipe = ({ post }: { post: IPost }) => {
     formState: { errors, isSubmitting },
   } = useForm();
 
+  console.log(post);
+
   const data = [
     { label: 'Cook time:', value: post.timeToDo.cookTime },
     { label: 'Prep time:', value: post.timeToDo.prepTime },

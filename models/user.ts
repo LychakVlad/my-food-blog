@@ -13,6 +13,7 @@ const UserSchema = new Schema({
   hashedPassword: {
     type: String,
     required: [true, 'Password is required!'],
+    select: false,
   },
 });
 

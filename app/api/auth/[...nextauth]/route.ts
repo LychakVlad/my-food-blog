@@ -23,7 +23,9 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const user = await User.findOne({ email: credentials.email });
+        const user = await User.findOne({ email: credentials.email }).select(
+          '+hashedPassword'
+        );
 
         if (!user) {
           return null;
