@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-require('../models/Comment');
+require('../models/comment');
 
 let isConnected = false;
 

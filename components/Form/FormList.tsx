@@ -8,6 +8,7 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
   const { fields, append, remove } = useFieldArray({
     name: name,
     control,
+    rules: { minLength: 1 },
   });
 
   return (
@@ -29,19 +30,21 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
                   type="text"
                   required={true}
                 />
-                <button
-                  type="button"
-                  onClick={() => remove(index)}
-                  className="h-full px-4"
-                >
-                  <Image
-                    src={'/assets/icons/close.svg'}
-                    width={36}
-                    height={36}
-                    className="rounded-full"
-                    alt="logo"
-                  />
-                </button>
+                {fields.length !== 1 && (
+                  <button
+                    type="button"
+                    onClick={() => remove(index)}
+                    className="h-full px-4"
+                  >
+                    <Image
+                      src={'/assets/icons/close.svg'}
+                      width={36}
+                      height={36}
+                      className="rounded-full"
+                      alt="logo"
+                    />
+                  </button>
+                )}
               </section>
             </div>
           );
