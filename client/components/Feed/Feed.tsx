@@ -12,11 +12,6 @@ const Feed: FC = () => {
   const [searchedResults, setSearchedResults] = useState<IPost[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/home').then((response) =>
-      response.json().then((data) => {
-        console.log(data);
-      })
-    );
     const fetchRecipes = async () => {
       try {
         const response = await fetch(`/api/recipe`, {
