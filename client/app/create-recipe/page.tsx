@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Form from '../../components/Form/Form';
 import { useSession } from 'next-auth/react';
 import { FieldValues, useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const CreateRecipe: FC = () => {
   const router = useRouter();
@@ -37,8 +38,28 @@ const CreateRecipe: FC = () => {
     },
   });
 
+  async function postImage(image: any) {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    try {
+      const result = await axios.post(
+        'http://localhost:3001/api/images',
+        formData,
+        {
+          headers: { 'content-type': 'multipart/form-data' },
+        }
+      );
+      return result.data;
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  }
+
   const createRecipe = async (data: FieldValues) => {
     try {
+      const imageLink = await postImage(data.photo[0]);
+
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify({
@@ -48,7 +69,7 @@ const CreateRecipe: FC = () => {
           steps: data.steps,
           tag: data.tag,
           title: data.title,
-          photo: data.photo,
+          photo: imageLink.imagePath,
           servings: {
             servings: data.servings,
             yield: data.yield,

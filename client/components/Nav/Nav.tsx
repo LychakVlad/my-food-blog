@@ -2,21 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import {
-  signIn,
-  signOut,
-  useSession,
-  getProviders,
-  LiteralUnion,
-  ClientSafeProvider,
-} from 'next-auth/react';
-import { BuiltInProviderType } from 'next-auth/providers';
-
-type ProviderResponse = Record<
-  LiteralUnion<BuiltInProviderType, string>,
-  ClientSafeProvider
-> | null;
+import { useState } from 'react';
+import { signOut, useSession } from 'next-auth/react';
+import logoPic from '/assets/icons/logo.svg';
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -39,7 +27,7 @@ const Nav = () => {
     <nav className="flex-between w-full mb-5 mt-5 ">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src={'/assets/icons/logo.svg'}
+          src={logoPic}
           width={36}
           height={36}
           className="rounded-full"

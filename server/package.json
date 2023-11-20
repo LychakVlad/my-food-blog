@@ -11,12 +11,13 @@
   "author": "Lychak Vlad",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.454.0",
+    "aws-sdk": "^2.1499.0",
     "axios": "^1.6.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.18.2",
-    "express-fileupload": "^1.4.2",
     "mongoose": "^8.0.1",
     "multer": "^1.4.5-lts.1",
     "uuid": "^9.0.1"

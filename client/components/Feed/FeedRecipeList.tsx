@@ -4,19 +4,26 @@ import RecipeCard from '../Recipe/RecipeCard';
 
 interface IDataItem {
   data: IPost[];
+  loading: boolean;
 }
 
-const FeedRecipeList: FC<IDataItem> = ({ data }) => {
+const FeedRecipeList: FC<IDataItem> = ({ data, loading }) => {
   return (
     <div className="mt-6 recipe_layout w-full ">
-      {data.map((post) => (
-        <RecipeCard
-          key={post._id}
-          post={post}
-          handleDelete={() => {}}
-          handleEdit={() => {}}
-        />
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : data.length !== 0 ? (
+        data.map((post: IPost) => (
+          <RecipeCard
+            key={post._id}
+            post={post}
+            handleDelete={() => {}}
+            handleEdit={() => {}}
+          />
+        ))
+      ) : (
+        <p>There is no posts yet...</p>
+      )}
     </div>
   );
 };

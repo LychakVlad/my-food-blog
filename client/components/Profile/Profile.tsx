@@ -7,6 +7,7 @@ interface IProfileProps {
   name: string;
   desc: string;
   data: IPost[];
+  loading: boolean;
   handleEdit: (post: IPost) => void;
   handleDelete: (post: IPost) => void;
 }
@@ -15,6 +16,7 @@ const Profile: FC<IProfileProps> = ({
   name,
   desc,
   data,
+  loading,
   handleEdit,
   handleDelete,
 }) => {
@@ -25,7 +27,9 @@ const Profile: FC<IProfileProps> = ({
       </h1>
       <p className="desc text-left">{desc}</p>
       <div className="mt-10 recipe_layout">
-        {data.length !== 0 ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : data.length !== 0 ? (
           data.map((post: IPost) => (
             <RecipeCard
               key={post._id}

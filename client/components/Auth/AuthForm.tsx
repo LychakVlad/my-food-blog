@@ -3,6 +3,8 @@ import whenLoggedIn from '../Routes/whenLoggedIn';
 import { AuthForm } from '../../types/next-auth';
 import { useForm } from 'react-hook-form';
 import CustomInput from '../UI/Input/Input';
+import logoImage from '/assets/icons/logo.svg';
+import Image from 'next/image';
 
 const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
   const {
@@ -15,9 +17,9 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
     <>
       <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8 font-inter">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
+          <Image
             className="mx-auto h-10 w-auto"
-            src={'/assets/icons/logo.svg'}
+            src={logoImage}
             alt="cooks compass"
           />
           <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

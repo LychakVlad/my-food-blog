@@ -68,18 +68,14 @@ const Recipe = ({ post }: { post: IPost }) => {
       <h3 className="mt-2 text-lg">Recipe by {post?.creator?.name}</h3>
       <p className="mt-2">Created {dateConvert(post.time)}</p>
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
-      <p className="desc my-10">{post.description}</p>
-
-      <div className="relative  max-w-[672px]  overflow-hidden h-[500px] flex items-center ">
-        {' '}
-        <Image
-          src={'/assets/images/recipe-photo.jpeg'}
-          alt="food_image"
-          width={672}
-          height={500}
-          className="object-cover object-center  absolute "
-        />
-      </div>
+      <p className="desc my-10">{post.description}</p>{' '}
+      <Image
+        src={`http://localhost:3001/api${post.photo}`}
+        alt="food_image"
+        width={772}
+        height={500}
+        className="h-auto"
+      />
       <div className="bg-gray-200 mt-16 p-8 ">
         <div className="sm:grid-cols-3 sm:grid-rows-2 grid gap-8 mb-6 ">
           {data.map((item, index) => (
@@ -175,7 +171,6 @@ const Recipe = ({ post }: { post: IPost }) => {
           </p>
         )}
       </div>
-
       {post.comments.map((item: IPostComment, index: number) => (
         <RecipeComment item={item} key={index} />
       ))}

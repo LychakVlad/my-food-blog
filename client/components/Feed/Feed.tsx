@@ -9,9 +9,11 @@ const Feed: FC = () => {
   const [recipes, setRecipes] = useState<IPost[]>([]);
   const { data: session } = useSession();
   const [searchText, setSearchText] = useState('');
+  const [loading, setLoading] = useState(false);
   const [searchedResults, setSearchedResults] = useState<IPost[]>([]);
 
   useEffect(() => {
+    setLoading(true);
     const fetchRecipes = async () => {
       try {
         const response = await fetch(`/api/recipe`, {
@@ -22,6 +24,7 @@ const Feed: FC = () => {
       } catch (error) {
         console.error('Error fetching data:', error);
       }
+      setLoading(false);
     };
 
     fetchRecipes();
@@ -53,9 +56,9 @@ const Feed: FC = () => {
       </form>
 
       {searchText ? (
-        <FeedRecipeList data={searchedResults} />
+        <FeedRecipeList data={searchedResults} loading={loading} />
       ) : (
-        <FeedRecipeList data={recipes} />
+        <FeedRecipeList data={recipes} loading={loading} />
       )}
     </section>
   );

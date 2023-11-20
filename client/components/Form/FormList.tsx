@@ -3,6 +3,7 @@ import CustomInput from '../UI/Input/Input';
 import { useFieldArray } from 'react-hook-form';
 import { FormListProps } from '../../types/form.interface';
 import Image from 'next/image';
+import closeIcon from '/assets/icons/close.svg';
 
 const FormList = ({ data, register, name, control }: FormListProps) => {
   const { fields, append, remove } = useFieldArray({
@@ -37,7 +38,7 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
                     className="h-full px-4"
                   >
                     <Image
-                      src={'/assets/icons/close.svg'}
+                      src={closeIcon}
                       width={36}
                       height={36}
                       className="rounded-full"

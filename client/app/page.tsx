@@ -2,13 +2,14 @@ import { FC } from 'react';
 import Feed from '../components/Feed/Feed';
 import Image from 'next/image';
 import Link from 'next/link';
+import mainPicture from '/assets/images/main.jpeg';
 
 const Home: FC = () => {
   return (
     <section className="w-full flex-col">
       <div className="relative  max-w-[1300px] min-w-[200px] overflow-hidden h-[650px] flex items-center rounded-xl">
         <Image
-          src={'/assets/images/main.jpeg'}
+          src={mainPicture}
           width={1200}
           height={1200}
           alt="Photo of food"

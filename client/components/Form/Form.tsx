@@ -42,15 +42,17 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
-        <CustomInput
-          register={register}
-          errors={errors.photo}
-          label="Photo (optional)"
-          type="file"
-          name="photo"
-          accept="image/png, image/jpeg"
-          required={false}
-        />
+        {type === 'Create' && (
+          <CustomInput
+            register={register}
+            errors={errors.photo}
+            label="Photo (optional)"
+            type="file"
+            name="photo"
+            accept="image/*"
+            required={false}
+          />
+        )}
 
         <CustomInput
           name="title"

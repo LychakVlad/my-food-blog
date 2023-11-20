@@ -11,13 +11,16 @@ const MyProfile = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${session?.user?.id}/posts`);
       const data = await response.json();
 
       setPosts(data);
+      setLoading(false);
     };
 
     fetchPosts();
@@ -51,6 +54,7 @@ const MyProfile = () => {
     <Profile
       name="My"
       desc="Welcome to your profile page"
+      loading={loading}
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

@@ -46,8 +46,7 @@ const RecipeSchema = new Schema({
     fats: { type: String, required: [true, 'Fats amount is required'] },
   },
   photo: {
-    data: Buffer,
-    contentType: String,
+    type: String,
   },
   time: { type: Date, default: Date.now },
   ingredients: {

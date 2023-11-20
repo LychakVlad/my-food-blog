@@ -33,7 +33,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
         <div className="relative  max-w-[500px] overflow-hidden h-[300px] flex items-center ">
           {' '}
           <Image
-            src={'/assets/images/recipe-photo.jpeg'}
+            src={`http://localhost:3001/api${post.photo}`}
             alt="recipe-photo"
             width={500}
             height={40}
