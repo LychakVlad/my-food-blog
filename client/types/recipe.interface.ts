@@ -7,6 +7,7 @@ export interface IPostComment {
   creatorName: string;
   date: string;
   postId: string;
+  _id: string;
 }
 
 export interface IPost {

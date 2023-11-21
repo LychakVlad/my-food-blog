@@ -42,7 +42,7 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
                       width={36}
                       height={36}
                       className="rounded-full"
-                      alt="logo"
+                      alt="close-icon"
                     />
                   </button>
                 )}

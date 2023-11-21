@@ -69,6 +69,8 @@ export const DELETE = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
+    await Comment.deleteMany({ postId: params.id });
+
     await Recipe.findByIdAndRemove(params.id);
 
     return new Response('Recipe deleted successfully', { status: 200 });

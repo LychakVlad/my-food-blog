@@ -18,7 +18,7 @@ const CommentSchema = new Schema({
     required: true,
   },
   postId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Recipe',
   },
 });

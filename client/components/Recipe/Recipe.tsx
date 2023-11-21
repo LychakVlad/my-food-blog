@@ -47,7 +47,7 @@ const Recipe = ({ post }: { post: IPost }) => {
 
   async function submitFunc(data: FieldValues) {
     try {
-      const response = await fetch('/api/add-comment', {
+      const response = await fetch('/api/comment', {
         method: 'POST',
         body: JSON.stringify({
           creatorName: session?.user.name,
@@ -59,6 +59,25 @@ const Recipe = ({ post }: { post: IPost }) => {
       reset();
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function deleteComment(id: string) {
+    const hasConfirmed = confirm(
+      'Are you sure you want to delete this comment?'
+    );
+
+    if (hasConfirmed) {
+      try {
+        await fetch(`/api/comment`, {
+          method: 'DELETE',
+          body: JSON.stringify({
+            id: id,
+          }),
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -172,10 +191,17 @@ const Recipe = ({ post }: { post: IPost }) => {
         )}
       </div>
       {post.comments.map((item: IPostComment, index: number) => (
-        <RecipeComment item={item} key={index} />
+        <RecipeComment
+          item={item}
+          key={index}
+          name={session?.user.name}
+          deleteComment={deleteComment}
+        />
       ))}
     </div>
   );
 };
+
+//TODO fix type name above
 
 export default Recipe;

@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import Comment from '../../../models/comment';
 import { connectToDB } from '../../../utils/database';
 import Recipe from '../../../models/recipe';
-import { NextResponse } from 'next/server';
 
 export const POST = async (req: Request, res: Response) => {
   const { text, postId, creatorName, rating } = await req.json();
@@ -24,5 +23,19 @@ export const POST = async (req: Request, res: Response) => {
   } catch (error) {
     console.log('internal error');
     console.dir(error);
+  }
+};
+
+export const DELETE = async (req: Request, res: Response) => {
+  const { id } = await req.json();
+
+  try {
+    await connectToDB();
+
+    await Comment.findByIdAndRemove(id);
+
+    return new Response('Comment deleted successfully', { status: 200 });
+  } catch (error) {
+    return new Response('Failed to delete comment', { status: 500 });
   }
 };
