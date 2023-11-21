@@ -27,10 +27,19 @@ export const POST = async (req: Request, res: Response) => {
 };
 
 export const DELETE = async (req: Request, res: Response) => {
-  const { id } = await req.json();
+  const { id, postId } = await req.json();
 
   try {
     await connectToDB();
+
+    const existingPost = await Recipe.findById(postId);
+
+    const findComment = existingPost.comments.indexOf(id);
+    if (findComment > -1) {
+      existingPost.comments.splice(findComment, 1);
+    }
+
+    await existingPost.save();
 
     await Comment.findByIdAndRemove(id);
 

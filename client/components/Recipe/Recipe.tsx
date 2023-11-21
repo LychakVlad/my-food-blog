@@ -73,6 +73,7 @@ const Recipe = ({ post }: { post: IPost }) => {
           method: 'DELETE',
           body: JSON.stringify({
             id: id,
+            postId: post._id,
           }),
         });
       } catch (error) {
@@ -201,7 +202,5 @@ const Recipe = ({ post }: { post: IPost }) => {
     </div>
   );
 };
-
-//TODO fix type name above
 
 export default Recipe;

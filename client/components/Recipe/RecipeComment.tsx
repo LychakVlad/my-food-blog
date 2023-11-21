@@ -8,7 +8,7 @@ import deleteIcon from '/assets/icons/delete.svg';
 
 interface RecipeCommentProps {
   item: IPostComment;
-  name?: string;
+  name?: string | null | undefined;
   deleteComment: (id: string) => void;
 }
 
