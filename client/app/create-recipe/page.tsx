@@ -44,7 +44,7 @@ const CreateRecipe: FC = () => {
 
     try {
       const result = await axios.post(
-        'http://localhost:3001/api/images',
+        'https://api.render.com/deploy/srv-cleubdc15k1s73f6d9c0?key=1oq0XO7GiWw/api/images',
         formData,
         {
           headers: { 'content-type': 'multipart/form-data' },

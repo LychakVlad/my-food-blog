@@ -1,7 +1,7 @@
 process.env.AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE = '1';
 
 import express from 'express';
-import router from './routes/router.js';
+import router from './src/routes/router.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
