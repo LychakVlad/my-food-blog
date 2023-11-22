@@ -1,6 +1,6 @@
 import fs from 'fs';
 import util from 'util';
-import { uploadFile, getFileStream } from '../s3.js';
+import { uploadFile, getFileStream, deleteFile } from '../s3.js';
 
 const unlinkFile = util.promisify(fs.unlink);
 
@@ -16,6 +16,14 @@ class ImageService {
       throw Error('Key not found');
     }
     return getFileStream(key);
+  }
+
+  async deleteOne(key) {
+    if (!key) {
+      throw Error('Key not found');
+    }
+
+    return deleteFile(key);
   }
 }
 

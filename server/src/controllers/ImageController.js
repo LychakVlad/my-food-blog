@@ -20,6 +20,16 @@ class ImageController {
       res.status(500).json(error);
     }
   }
+
+  async deleteOne(req, res) {
+    try {
+      const key = req.params.key;
+      const result = await ImageService.deleteOne(key);
+      return result;
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
 }
 
 export default new ImageController();

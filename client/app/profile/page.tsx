@@ -6,6 +6,7 @@ import Profile from '../../components/Profile/Profile';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { IPost } from '../../types/recipe.interface';
+import axios from 'axios';
 
 const MyProfile = () => {
   const router = useRouter();
@@ -30,6 +31,15 @@ const MyProfile = () => {
     router.push(`/update-recipe?id=${post._id}`);
   };
 
+  async function deleteImage(id: string) {
+    try {
+      const result = await axios.delete(`http://localhost:3001/api${id}`);
+      return result.data;
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  }
+
   const handleDelete = async (post: IPost) => {
     const hasConfirmed = confirm(
       'Are you sure you want to delete this recipe?'
@@ -40,6 +50,8 @@ const MyProfile = () => {
         await fetch(`/api/recipe/${post?._id?.toString()}`, {
           method: 'DELETE',
         });
+
+        deleteImage(post.photo);
 
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 

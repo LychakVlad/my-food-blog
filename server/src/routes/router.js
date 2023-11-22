@@ -7,6 +7,8 @@ const router = new Router();
 
 router.get('/images/:key', ImageController.getOne);
 
+router.delete('/images/:key', ImageController.deleteOne);
+
 router.post('/images', upload.single('image'), ImageController.create);
 
 export default router;
