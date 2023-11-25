@@ -183,7 +183,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           </Link>
 
           <button type="submit" disabled={isSubmitting} className="submit_btn">
-            {isSubmitting ? `${type}...` : type}
+            {isSubmitting ? `${type} is in process...` : type}
           </button>
         </div>
       </form>

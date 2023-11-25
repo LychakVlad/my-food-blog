@@ -11,6 +11,7 @@ import RatingDescription from '../UI/RatingBar/RatingDescription';
 import RecipeComment from './RecipeComment';
 import Textarea from '../UI/Textarea/Textarea';
 import { FieldValues, useForm } from 'react-hook-form';
+import ContentLoader from 'react-content-loader';
 
 const Recipe = ({ post }: { post: IPost }) => {
   const {
@@ -19,6 +20,7 @@ const Recipe = ({ post }: { post: IPost }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const data = [
     { label: 'Cook time:', value: post.timeToDo.cookTime },
@@ -90,7 +92,7 @@ const Recipe = ({ post }: { post: IPost }) => {
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
       <p className="desc my-10">{post.description}</p>{' '}
       <Image
-        src={`http://localhost:3001/api${post.photo}`}
+        src={`https://food-blog-server1.onrender.com/api${post.photo}`}
         alt="food_image"
         width={772}
         height={500}

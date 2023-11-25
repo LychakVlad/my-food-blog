@@ -1,11 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { IPost } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
+import { Skeleton } from '@mui/material';
 
 interface IRecipeCardData {
   post: IPost;
@@ -18,6 +19,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
   handleEdit,
   handleDelete,
 }) => {
+  const [loaded, setLoaded] = useState(false);
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -30,15 +32,23 @@ const RecipeCard: FC<IRecipeCardData> = ({
     <>
       {' '}
       <div className="recipe_card">
-        <div className="relative  max-w-[500px] overflow-hidden h-[300px] flex items-center ">
-          {' '}
+        <div className="relative max-w-[500px] overflow-hidden h-[300px] flex items-center">
           <Image
-            src={`http://localhost:3001/api${post.photo}`}
             alt="recipe-photo"
+            src={`https://food-blog-server1.onrender.com/api${post.photo}`}
             width={500}
-            height={40}
-            className="object-cover object-center  absolute"
+            height={300}
+            className={`${!loaded ? 'opacity-0' : 'opacity-100'}}`}
+            onLoadingComplete={() => setLoaded(true)}
           />
+          {!loaded && (
+            <Skeleton
+              className={'bg-gray-500'}
+              variant="rectangular"
+              width="500px"
+              height="300px"
+            />
+          )}
         </div>
 
         <p className="mt-4 font-satoshi text-3xl font-semibold text-gray-700">
