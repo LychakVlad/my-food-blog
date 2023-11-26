@@ -9,11 +9,10 @@ const Feed: FC = () => {
   const [recipes, setRecipes] = useState<IPost[]>([]);
   const { data: session } = useSession();
   const [searchText, setSearchText] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searchedResults, setSearchedResults] = useState<IPost[]>([]);
 
   useEffect(() => {
-    setLoading(true);
     const fetchRecipes = async () => {
       try {
         const response = await fetch(`/api/recipe`, {

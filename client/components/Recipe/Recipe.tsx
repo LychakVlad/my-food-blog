@@ -11,7 +11,6 @@ import RatingDescription from '../UI/RatingBar/RatingDescription';
 import RecipeComment from './RecipeComment';
 import Textarea from '../UI/Textarea/Textarea';
 import { FieldValues, useForm } from 'react-hook-form';
-import ContentLoader from 'react-content-loader';
 
 const Recipe = ({ post }: { post: IPost }) => {
   const {
@@ -20,7 +19,6 @@ const Recipe = ({ post }: { post: IPost }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   const data = [
     { label: 'Cook time:', value: post.timeToDo.cookTime },

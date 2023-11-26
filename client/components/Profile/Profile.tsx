@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import RecipeCard from '../Recipe/RecipeCard';
 import { IPost } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
+import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner';
 
 interface IProfileProps {
   name: string;
@@ -26,22 +27,26 @@ const Profile: FC<IProfileProps> = ({
         <span className="blue_gradient"> {name} Profile</span>
       </h1>
       <p className="desc text-left">{desc}</p>
-      <div className="mt-10 recipe_layout">
-        {loading ? (
-          <p>Loading...</p>
-        ) : data.length !== 0 ? (
-          data.map((post: IPost) => (
+
+      {loading ? (
+        <div className="flex items-center my-10">
+          <LoadingSpinner />{' '}
+          <p className="text-4xl font-semibold ml-8">Loading...</p>
+        </div>
+      ) : data.length !== 0 ? (
+        <div className="mt-6 recipe_layout w-full ">
+          {data.map((post: IPost) => (
             <RecipeCard
               key={post._id}
               post={post}
-              handleEdit={() => handleEdit && handleEdit(post)}
-              handleDelete={() => handleDelete && handleDelete(post)}
+              handleDelete={() => {}}
+              handleEdit={() => {}}
             />
-          ))
-        ) : (
-          <p>You have no posts yet...</p>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className="my-10 text-xl">There are no posts yet...</p>
+      )}
     </section>
   );
 };
