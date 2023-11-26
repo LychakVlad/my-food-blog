@@ -5,6 +5,10 @@ import { Router } from 'express';
 const upload = multer({ dest: 'uploads/' });
 const router = new Router();
 
+router.get('/test', (req, res) => {
+  res.send('<p>Test is good</p>');
+});
+
 router.get('/images/:key', ImageController.getOne);
 
 router.delete('/images/:key', ImageController.deleteOne);
