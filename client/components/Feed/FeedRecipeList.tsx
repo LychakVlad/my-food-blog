@@ -9,7 +9,6 @@ interface IDataItem {
 }
 
 const FeedRecipeList: FC<IDataItem> = ({ data, loading }) => {
-  console.log(data);
   if (loading) {
     return (
       <div className="flex items-center my-10">

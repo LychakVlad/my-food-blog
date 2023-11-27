@@ -39,8 +39,8 @@ const Profile: FC<IProfileProps> = ({
             <RecipeCard
               key={post._id}
               post={post}
-              handleDelete={() => {}}
-              handleEdit={() => {}}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           ))}
         </div>

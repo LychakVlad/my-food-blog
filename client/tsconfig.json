@@ -27,7 +27,8 @@
     "**/*.tsx",
     "components/Profile/Profile.tsx",
     "app/api/auth/[...nextauth]",
-    "components/UploadImage/UploadImage.jsx"
+    "components/UploadImage/UploadImage.jsx",
+    "next.config.mjs"
   ],
   "exclude": ["node_modules"]
 }

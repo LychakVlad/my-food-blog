@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '../../components/Form/Form';
 import { useSession } from 'next-auth/react';
@@ -10,6 +10,7 @@ import axios from 'axios';
 const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  const [myBlurDataUrl, setMyBlurDataUrl] = useState(null);
 
   const form = useForm<FieldValues>({
     defaultValues: {
@@ -38,6 +39,25 @@ const CreateRecipe: FC = () => {
     },
   });
 
+  const fetchProcessedBase64 = async (imageUrl: string) => {
+    try {
+      const response = await fetch(`/api/image-process?imageUrl=${imageUrl}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        return data.base64;
+      } else {
+        console.error(
+          `Failed to fetch processed image: ${response.status} ${response.statusText}`
+        );
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching processed image:', error);
+      return null;
+    }
+  };
+
   async function postImage(image: any) {
     const formData = new FormData();
     formData.append('image', image);
@@ -60,6 +80,18 @@ const CreateRecipe: FC = () => {
     try {
       const imageLink = await postImage(data.photo[0]);
 
+      console.log(imageLink);
+
+      const loadImageBase64 = async (imageLink: string) => {
+        const base64 = await fetchProcessedBase64(
+          `https://food-blog-server1.onrender.com/api${imageLink}`
+        );
+        console.log(base64);
+        setMyBlurDataUrl(base64);
+      };
+
+      await loadImageBase64(imageLink.imagePath);
+
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify({
@@ -69,7 +101,10 @@ const CreateRecipe: FC = () => {
           steps: data.steps,
           tag: data.tag,
           title: data.title,
-          photo: imageLink.imagePath,
+          photo: {
+            imageLink: imageLink.imagePath,
+            base64: myBlurDataUrl,
+          },
           servings: {
             servings: data.servings,
             yield: data.yield,

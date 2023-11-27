@@ -15,7 +15,10 @@ export interface IPost {
   description: string;
   tag: string;
   ingredients: string[];
-  photo: string;
+  photo: {
+    imageLink: string;
+    base64: string;
+  };
   steps: string[];
   _id: string | undefined | null;
   time?: ReactNode;
