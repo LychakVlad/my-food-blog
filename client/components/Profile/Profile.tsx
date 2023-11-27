@@ -4,13 +4,14 @@ import { IPost } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
 import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner';
 
+//TODO fix types
 interface IProfileProps {
   name: string;
   desc: string;
   data: IPost[];
   loading: boolean;
-  handleEdit: (post: IPost) => void;
-  handleDelete: (post: IPost) => void;
+  handleEdit: any;
+  handleDelete: any;
 }
 
 const Profile: FC<IProfileProps> = ({

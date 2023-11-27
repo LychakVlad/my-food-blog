@@ -10,7 +10,6 @@ import axios from 'axios';
 const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  const [myBlurDataUrl, setMyBlurDataUrl] = useState(null);
 
   const form = useForm<FieldValues>({
     defaultValues: {
@@ -44,19 +43,25 @@ const CreateRecipe: FC = () => {
       const response = await fetch(`/api/image-process?imageUrl=${imageUrl}`);
       const data = await response.json();
 
-      if (response.ok) {
-        return data.base64;
-      } else {
-        console.error(
-          `Failed to fetch processed image: ${response.status} ${response.statusText}`
-        );
-        return null;
-      }
+      return data.base64;
     } catch (error) {
-      console.error('Error fetching processed image:', error);
+      console.log(error);
       return null;
     }
   };
+
+  async function loadImageBase64(imageLink: string) {
+    try {
+      const base64 = await fetchProcessedBase64(
+        `https://food-blog-server1.onrender.com/api${imageLink}`
+      );
+
+      return base64;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
 
   async function postImage(image: any) {
     const formData = new FormData();
@@ -70,9 +75,10 @@ const CreateRecipe: FC = () => {
           headers: { 'content-type': 'multipart/form-data' },
         }
       );
+
       return result.data;
     } catch (error) {
-      console.log('Error:', error);
+      console.log(error);
     }
   }
 
@@ -80,17 +86,7 @@ const CreateRecipe: FC = () => {
     try {
       const imageLink = await postImage(data.photo[0]);
 
-      console.log(imageLink);
-
-      const loadImageBase64 = async (imageLink: string) => {
-        const base64 = await fetchProcessedBase64(
-          `https://food-blog-server1.onrender.com/api${imageLink}`
-        );
-        console.log(base64);
-        setMyBlurDataUrl(base64);
-      };
-
-      await loadImageBase64(imageLink.imagePath);
+      const imageBase64 = await loadImageBase64(imageLink.imagePath);
 
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
@@ -103,7 +99,7 @@ const CreateRecipe: FC = () => {
           title: data.title,
           photo: {
             imageLink: imageLink.imagePath,
-            base64: myBlurDataUrl,
+            base64: imageBase64,
           },
           servings: {
             servings: data.servings,

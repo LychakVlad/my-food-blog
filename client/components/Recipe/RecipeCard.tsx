@@ -7,10 +7,11 @@ import { IPost } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
 import Image from 'next/image';
 
+//TODO fix types
 interface IRecipeCardData {
   post: IPost;
-  handleEdit: (event: React.MouseEvent<HTMLElement>) => void;
-  handleDelete: (event: React.MouseEvent<HTMLElement>) => void;
+  handleEdit: any;
+  handleDelete: any;
 }
 
 const RecipeCard: FC<IRecipeCardData> = ({
@@ -22,6 +23,10 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const pathName = usePathname();
   const router = useRouter();
 
+  const [imageSrc, setImageSrc] = useState(
+    `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+  );
+
   function handleClick() {
     router.push(`/recipes/${post._id}`);
   }
@@ -32,11 +37,14 @@ const RecipeCard: FC<IRecipeCardData> = ({
         <div className="relative max-w-[330px] overflow-hidden h-[300px] flex items-center">
           <Image
             alt="recipe-photo"
-            src={`https://food-blog-server1.onrender.com/api${post.photo.imageLink}`}
+            src={imageSrc}
             width={330}
             height={300}
             placeholder="blur"
             blurDataURL={post.photo.base64}
+            onError={() =>
+              setImageSrc('https://placehold.co/330x300/png?text=Picture')
+            }
           />
         </div>
 
@@ -64,13 +72,13 @@ const RecipeCard: FC<IRecipeCardData> = ({
           <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
             <p
               className="font-inter text-sm green_gradient cursor-pointer"
-              onClick={handleEdit}
+              onClick={() => handleEdit(post)}
             >
               Edit
             </p>
             <p
               className="font-inter text-sm orange_gradient cursor-pointer"
-              onClick={handleDelete}
+              onClick={() => handleDelete(post)}
             >
               Delete
             </p>

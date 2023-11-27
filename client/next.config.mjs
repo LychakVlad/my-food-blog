@@ -9,10 +9,12 @@ const nextConfig = {
   },
   transpilePackages: ['@plaiceholder/ui'],
   images: {
+    formats: ['image/avif', 'image/webp'],
     domains: [
       'lh3.googleusercontent.com',
       'localhost',
       'food-blog-server1.onrender.com',
+      'placehold.co',
     ],
   },
   webpack(config) {
