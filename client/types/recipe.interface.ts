@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export interface IPostComment {
   rating: number;
@@ -22,9 +22,9 @@ export interface IPost {
   steps: string[];
   _id: string | undefined | null;
   time?: ReactNode;
-  comments: any;
+  comments: IPostComment[];
   servings: {
-    servings: any;
+    servings: string;
     yield: string;
   };
   timeToDo: { prepTime: string; cookTime: string };
@@ -66,5 +66,5 @@ export interface RecipeData {
 export interface RecipeFormProps {
   type: string;
   onSubmit: SubmitHandler<FieldValues>;
-  form: any;
+  form: UseFormReturn<FieldValues>;
 }

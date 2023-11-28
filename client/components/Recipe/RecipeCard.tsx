@@ -10,7 +10,7 @@ import Image from 'next/image';
 interface IRecipeCardData {
   post: IPost;
   handleEdit: (post: IPost) => void;
-  handleDelete: (post: IPost) => Promise<void>;
+  handleDelete: (post: IPost) => void;
 }
 
 const RecipeCard: FC<IRecipeCardData> = ({

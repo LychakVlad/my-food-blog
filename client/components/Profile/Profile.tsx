@@ -10,7 +10,7 @@ interface IProfileProps {
   data: IPost[];
   loading: boolean;
   handleEdit: (post: IPost) => void;
-  handleDelete: (post: IPost) => Promise<void>;
+  handleDelete: (post: IPost) => void;
 }
 
 const Profile: FC<IProfileProps> = ({
