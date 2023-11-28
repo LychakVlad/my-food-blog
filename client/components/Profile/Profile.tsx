@@ -10,7 +10,7 @@ interface IProfileProps {
   data: IPost[];
   loading: boolean;
   handleEdit: (post: IPost) => void;
-  handleDelete: (post: IPost) => void;
+  handleDelete: (post: IPost) => Promise<void>;
 }
 
 const Profile: FC<IProfileProps> = ({
@@ -39,8 +39,8 @@ const Profile: FC<IProfileProps> = ({
             <RecipeCard
               key={post._id}
               post={post}
-              handleDelete={() => {}}
-              handleEdit={() => {}}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           ))}
         </div>

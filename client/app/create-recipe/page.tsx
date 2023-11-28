@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '../../components/Form/Form';
 import { useSession } from 'next-auth/react';
@@ -38,6 +38,31 @@ const CreateRecipe: FC = () => {
     },
   });
 
+  const fetchProcessedBase64 = async (imageUrl: string) => {
+    try {
+      const response = await fetch(`/api/image-process?imageUrl=${imageUrl}`);
+      const data = await response.json();
+
+      return data.base64;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  async function loadImageBase64(imageLink: string) {
+    try {
+      const base64 = await fetchProcessedBase64(
+        `https://food-blog-server1.onrender.com/api${imageLink}`
+      );
+
+      return base64;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
   async function postImage(image: any) {
     const formData = new FormData();
     formData.append('image', image);
@@ -50,15 +75,18 @@ const CreateRecipe: FC = () => {
           headers: { 'content-type': 'multipart/form-data' },
         }
       );
+
       return result.data;
     } catch (error) {
-      console.log('Error:', error);
+      console.log(error);
     }
   }
 
   const createRecipe = async (data: FieldValues) => {
     try {
       const imageLink = await postImage(data.photo[0]);
+
+      const imageBase64 = await loadImageBase64(imageLink.imagePath);
 
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
@@ -69,7 +97,10 @@ const CreateRecipe: FC = () => {
           steps: data.steps,
           tag: data.tag,
           title: data.title,
-          photo: imageLink.imagePath,
+          photo: {
+            imageLink: imageLink.imagePath,
+            base64: imageBase64,
+          },
           servings: {
             servings: data.servings,
             yield: data.yield,

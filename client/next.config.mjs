@@ -1,14 +1,20 @@
+import withPlaiceholder from '@plaiceholder/next';
+
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ['mongoose'],
   },
+  transpilePackages: ['@plaiceholder/ui'],
   images: {
+    formats: ['image/avif', 'image/webp'],
     domains: [
       'lh3.googleusercontent.com',
       'localhost',
       'food-blog-server1.onrender.com',
+      'placehold.co',
     ],
   },
   webpack(config) {
@@ -16,8 +22,9 @@ const nextConfig = {
       ...config.experiments,
       topLevelAwait: true,
     };
+
     return config;
   },
 };
 
-module.exports = nextConfig;
+export default withPlaiceholder(nextConfig);

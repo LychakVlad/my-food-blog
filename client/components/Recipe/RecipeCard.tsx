@@ -1,17 +1,16 @@
 'use client';
 
-import Image from 'next/image';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { IPost } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
-import { Skeleton } from '@mui/material';
+import Image from 'next/image';
 
 interface IRecipeCardData {
   post: IPost;
-  handleEdit: (event: React.MouseEvent<HTMLElement>) => void;
-  handleDelete: (event: React.MouseEvent<HTMLElement>) => void;
+  handleEdit: (post: IPost) => void;
+  handleDelete: (post: IPost) => Promise<void>;
 }
 
 const RecipeCard: FC<IRecipeCardData> = ({
@@ -19,10 +18,13 @@ const RecipeCard: FC<IRecipeCardData> = ({
   handleEdit,
   handleDelete,
 }) => {
-  const [loaded, setLoaded] = useState(false);
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
+
+  const [imageSrc, setImageSrc] = useState(
+    `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+  );
 
   function handleClick() {
     router.push(`/recipes/${post._id}`);
@@ -30,25 +32,19 @@ const RecipeCard: FC<IRecipeCardData> = ({
 
   return (
     <>
-      {' '}
       <div className="recipe_card">
-        <div className="relative max-w-[500px] overflow-hidden h-[300px] flex items-center">
+        <div className="relative max-w-[330px] overflow-hidden h-[300px] flex items-center">
           <Image
             alt="recipe-photo"
-            src={`https://food-blog-server1.onrender.com/api${post.photo}`}
-            width={500}
+            src={imageSrc}
+            width={330}
             height={300}
-            className={`${!loaded ? 'opacity-0' : 'opacity-100'}}`}
-            onLoadingComplete={() => setLoaded(true)}
+            placeholder="blur"
+            blurDataURL={post.photo.base64}
+            onError={() =>
+              setImageSrc('https://placehold.co/330x300/png?text=Picture')
+            }
           />
-          {!loaded && (
-            <Skeleton
-              className={'bg-gray-500'}
-              variant="rectangular"
-              width="500px"
-              height="300px"
-            />
-          )}
         </div>
 
         <p className="mt-4 font-satoshi text-3xl font-semibold text-gray-700">
@@ -75,13 +71,13 @@ const RecipeCard: FC<IRecipeCardData> = ({
           <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
             <p
               className="font-inter text-sm green_gradient cursor-pointer"
-              onClick={handleEdit}
+              onClick={() => handleEdit(post)}
             >
               Edit
             </p>
             <p
               className="font-inter text-sm orange_gradient cursor-pointer"
-              onClick={handleDelete}
+              onClick={() => handleDelete(post)}
             >
               Delete
             </p>

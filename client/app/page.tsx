@@ -14,7 +14,6 @@ const Home: FC = () => {
           height={1200}
           alt="Photo of food"
           className=" absolute object-cover object-center h-[650px]"
-          priority={true}
         />
         <div className="relative flex flex-col justify-center  text-white bg-slate-900  bg-opacity-30 h-full md:p-16 p-5 ">
           <h1 className="head_text font-inter">

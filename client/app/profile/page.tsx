@@ -33,7 +33,9 @@ const MyProfile = () => {
 
   async function deleteImage(id: string) {
     try {
-      const result = await axios.delete(`http://localhost:3001/api${id}`);
+      const result = await axios.delete(
+        `https://food-blog-server1.onrender.com/api${id}`
+      );
       return result.data;
     } catch (error) {
       console.log('Error:', error);
@@ -51,7 +53,7 @@ const MyProfile = () => {
           method: 'DELETE',
         });
 
-        deleteImage(post.photo);
+        await deleteImage(post.photo.imageLink);
 
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 
