@@ -1,4 +1,11 @@
-import { Control, FieldValues, UseFormRegister } from 'react-hook-form';
+import {
+  Control,
+  FieldError,
+  FieldErrorsImpl,
+  FieldValues,
+  Merge,
+  UseFormRegister,
+} from 'react-hook-form';
 
 export interface FormListProps {
   data: {
@@ -18,7 +25,7 @@ export interface CustomTextAreatProps {
   name: string;
   register: UseFormRegister<FieldValues>;
   required: boolean;
-  errors?: any;
+  errors?: FieldError | Merge<FieldError, FieldErrorsImpl>;
 }
 
 export interface CustomInputProps {
@@ -29,9 +36,9 @@ export interface CustomInputProps {
   name: string;
   accept?: string;
   className?: string;
-  errors?: any;
+  errors?: FieldError | Merge<FieldError, FieldErrorsImpl>;
   register: UseFormRegister<FieldValues>;
-  autoComplete?: any;
+  autoComplete?: string;
   required: boolean;
   id?: string;
 }

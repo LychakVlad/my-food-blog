@@ -7,11 +7,10 @@ import { IPost } from '../../types/recipe.interface';
 import dateConvert from '../../utils/dateConvert';
 import Image from 'next/image';
 
-//TODO fix types
 interface IRecipeCardData {
   post: IPost;
-  handleEdit: any;
-  handleDelete: any;
+  handleEdit: (post: IPost) => void;
+  handleDelete: (post: IPost) => void;
 }
 
 const RecipeCard: FC<IRecipeCardData> = ({

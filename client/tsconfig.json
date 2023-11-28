@@ -28,7 +28,8 @@
     "components/Profile/Profile.tsx",
     "app/api/auth/[...nextauth]",
     "components/UploadImage/UploadImage.jsx",
-    "next.config.mjs"
+    "next.config.mjs",
+    "utils/base64-mainImg.js"
   ],
   "exclude": ["node_modules"]
 }
