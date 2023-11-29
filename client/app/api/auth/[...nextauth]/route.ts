@@ -20,6 +20,7 @@ export const authOptions: NextAuthOptions = {
         await connectToDB();
 
         if (!credentials?.email || !credentials.password) {
+          console.log('Failed to get email or password');
           return null;
         }
 
@@ -28,6 +29,7 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!user) {
+          console.log('User not found');
           return null;
         }
 
@@ -37,6 +39,7 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!passwordsMatch) {
+          console.log('Passwords do no match');
           return null;
         }
 

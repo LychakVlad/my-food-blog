@@ -4,14 +4,13 @@ import { IPost } from '../../types/recipe.interface';
 import withAuth from '../Routes/withAuth';
 import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner';
 
-//TODO fix types
 interface IProfileProps {
   name: string;
   desc: string;
   data: IPost[];
   loading: boolean;
-  handleEdit: any;
-  handleDelete: any;
+  handleEdit: (post: IPost) => void;
+  handleDelete: (post: IPost) => void;
 }
 
 const Profile: FC<IProfileProps> = ({
@@ -34,9 +33,9 @@ const Profile: FC<IProfileProps> = ({
           <LoadingSpinner />{' '}
           <p className="text-4xl font-semibold ml-8">Loading...</p>
         </div>
-      ) : data.length !== 0 ? (
+      ) : data?.length !== 0 ? (
         <div className="mt-6 recipe_layout w-full ">
-          {data.map((post: IPost) => (
+          {data?.map((post: IPost) => (
             <RecipeCard
               key={post._id}
               post={post}
