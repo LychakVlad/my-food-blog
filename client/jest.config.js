@@ -8,7 +8,7 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/components/$1',
-
+    '^next/(.*)': '<rootDir>/node_modules/next/$1',
     '^@/pages/(.*)$': '<rootDir>/pages/$1',
     '^next/navigation$': '<rootDir>/__mocks__/mockRouter.ts',
   },

@@ -11,7 +11,6 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
     control,
     rules: { minLength: 1 },
   });
-
   return (
     <>
       <h2 className="font-satoshi font-semibold text-base text-gray-700">

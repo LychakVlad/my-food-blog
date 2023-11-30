@@ -154,7 +154,7 @@ const Recipe = ({ post }: { post: IPost }) => {
           </div>
         ))}
       </div>
-      <div className="bg-gray-200 mb-16 p-8 ">
+      <div className="bg-gray-200 p-8 mb-16">
         {session?.user ? (
           <form
             onSubmit={handleSubmit(submitFunc)}
@@ -188,7 +188,7 @@ const Recipe = ({ post }: { post: IPost }) => {
             </button>
           </form>
         ) : (
-          <p>
+          <div>
             Please{' '}
             <Link href={'/login'} className="underline">
               log in
@@ -198,7 +198,7 @@ const Recipe = ({ post }: { post: IPost }) => {
               sign up
             </Link>{' '}
             to leave a comments!
-          </p>
+          </div>
         )}
       </div>
       {post.comments.map((item: IPostComment, index: number) => (

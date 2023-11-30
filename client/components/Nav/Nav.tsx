@@ -17,7 +17,7 @@ const Nav = () => {
   const handleSignOutClick = async () => {
     try {
       const response = await signOut();
-      console.log(response);
+
       return response;
     } catch (error) {
       console.log(`Failed to sign out, ${error}`);
