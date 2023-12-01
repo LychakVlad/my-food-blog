@@ -25,7 +25,7 @@ const MyProfile = () => {
     };
 
     fetchPosts();
-  }, [session]);
+  }, []);
 
   const handleEdit = (post: IPost) => {
     router.push(`/update-recipe?id=${post._id}`);

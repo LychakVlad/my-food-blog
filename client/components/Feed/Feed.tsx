@@ -27,7 +27,7 @@ const Feed: FC = () => {
     };
 
     fetchRecipes();
-  }, [session]);
+  }, []);
 
   const filterRecipes = (text: string) => {
     const regex = new RegExp(text, 'i');
