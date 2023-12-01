@@ -62,6 +62,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           placeholder="Enter the title"
           type="text"
           required={true}
+          cytest="title-input"
         />
 
         <Textarea
@@ -71,6 +72,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           name="description"
           required={true}
           errors={errors?.description}
+          cytest="description-input"
         />
 
         <FormList
@@ -95,6 +97,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           register={register}
           errors={errors?.tag}
           required={true}
+          cytest="tag-input"
         />
 
         <div className="flex gap-10">
@@ -182,7 +185,12 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             Cancel
           </Link>
 
-          <button type="submit" disabled={isSubmitting} className="submit_btn">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="submit_btn"
+            data-cy="submit-form-btn"
+          >
             {isSubmitting ? `${type} is in process...` : type}
           </button>
         </div>

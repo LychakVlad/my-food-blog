@@ -21,7 +21,14 @@ const Recipe = ({ post }: { post: IPost }) => {
   } = useForm();
 
   const [imageSrc, setImageSrc] = useState(
-    `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+    post.photo.imageLink
+      ? `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+      : 'https://placehold.co/600x900/png?text=Picture'
+  );
+  const [base64Image, setBase64Image] = useState(
+    post.photo.base64
+      ? post.photo.base64
+      : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
   );
 
   const data = [
@@ -100,7 +107,7 @@ const Recipe = ({ post }: { post: IPost }) => {
           placeholder="blur"
           fill
           style={{ objectFit: 'cover' }}
-          blurDataURL={post.photo.base64}
+          blurDataURL={base64Image}
           onError={() =>
             setImageSrc('https://placehold.co/600x900/png?text=Picture')
           }

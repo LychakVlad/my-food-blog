@@ -82,9 +82,13 @@ const CreateRecipe: FC = () => {
 
   const createRecipe = async (data: FieldValues) => {
     try {
-      const imageLink = await postImage(data.photo[0]);
+      let imageLink = null;
+      let imageBase64 = null;
 
-      const imageBase64 = await loadImageBase64(imageLink.imagePath);
+      if (data.photo && data.photo[0]) {
+        imageLink = await postImage(data.photo[0]);
+        imageBase64 = await loadImageBase64(imageLink.imagePath);
+      }
 
       const response = await fetch('/api/recipe/new', {
         method: 'POST',
@@ -96,7 +100,7 @@ const CreateRecipe: FC = () => {
           tag: data.tag,
           title: data.title,
           photo: {
-            imageLink: imageLink.imagePath,
+            imageLink: imageLink?.imagePath,
             base64: imageBase64,
           },
           servings: {

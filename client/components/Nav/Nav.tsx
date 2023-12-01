@@ -26,7 +26,11 @@ const Nav = () => {
 
   return (
     <nav className="flex-between w-full mb-5 mt-5 ">
-      <Link href="/" className="flex gap-2 flex-center">
+      <Link
+        href="/"
+        className="flex gap-2 flex-center"
+        data-cy="back-to-home-btn"
+      >
         <Image
           src={logoPic}
           width={36}
@@ -39,16 +43,25 @@ const Nav = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex ">
-            <Link href="/create-recipe" className="black_btn mr-4">
+            <Link
+              href="/create-recipe"
+              className="black_btn mr-4"
+              data-cy="link-to-create-recipe"
+            >
               Create new recipe
             </Link>
-            <Link href="/profile" className="black_btn mr-4">
+            <Link
+              href="/profile"
+              className="black_btn mr-4"
+              data-cy="profile-btn"
+            >
               Profile
             </Link>
             <button
               type="button"
               onClick={handleSignOutClick}
               className="outline_btn"
+              data-cy="logout-btn"
             >
               Sign out
             </button>

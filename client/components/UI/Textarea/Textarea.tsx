@@ -8,6 +8,7 @@ const Textarea = ({
   name,
   required,
   errors,
+  cytest,
 }: CustomTextAreatProps) => {
   return (
     <label>
@@ -20,6 +21,7 @@ const Textarea = ({
           required: required ? `${name} is required` : false,
         })}
         className={`form_textarea ${errors && 'border-red-500'} `}
+        data-cy={cytest}
       ></textarea>
       {errors && (
         <p className="text-red-500 mt-2">{`${label} field is required`}</p>

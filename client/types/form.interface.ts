@@ -26,6 +26,7 @@ export interface CustomTextAreatProps {
   register: UseFormRegister<FieldValues>;
   required: boolean;
   errors?: FieldError | Merge<FieldError, FieldErrorsImpl>;
+  cytest?: string;
 }
 
 export interface CustomInputProps {

@@ -23,7 +23,14 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const router = useRouter();
 
   const [imageSrc, setImageSrc] = useState(
-    `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+    post.photo.imageLink
+      ? `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+      : 'https://placehold.co/600x900/png?text=Picture'
+  );
+  const [base64Image, setBase64Image] = useState(
+    post.photo.base64
+      ? post.photo.base64
+      : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
   );
 
   function handleClick() {
@@ -32,10 +39,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
 
   return (
     <>
-      <div
-        className="recipe_card"
-        data-testid={`test-recipe-card-${post.title}`}
-      >
+      <div className="recipe_card" data-cy={`test-recipe-card-${post.title}`}>
         <div className="relative max-w-[330px] overflow-hidden h-[300px] flex items-center">
           <Image
             alt="recipe-photo"
@@ -43,7 +47,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
             width={330}
             height={300}
             placeholder="blur"
-            blurDataURL={post.photo.base64}
+            blurDataURL={base64Image}
             onError={() =>
               setImageSrc('https://placehold.co/330x300/png?text=Picture')
             }
@@ -55,7 +59,11 @@ const RecipeCard: FC<IRecipeCardData> = ({
         </p>
         <p className="font-inter text-lg mt-1 mb-4">#{post.tag}</p>
 
-        <button className="outline_btn" onClick={handleClick}>
+        <button
+          className="outline_btn"
+          onClick={handleClick}
+          data-cy="go-to-recipe-btn"
+        >
           Go to recipe
         </button>
 
@@ -75,12 +83,14 @@ const RecipeCard: FC<IRecipeCardData> = ({
             <p
               className="font-inter text-sm green_gradient cursor-pointer"
               onClick={() => handleEdit(post)}
+              data-cy={`edit-recipe-btn-${post.title}`}
             >
               Edit
             </p>
             <p
               className="font-inter text-sm orange_gradient cursor-pointer"
               onClick={() => handleDelete(post)}
+              data-cy={`delete-recipe-btn-${post.title}`}
             >
               Delete
             </p>

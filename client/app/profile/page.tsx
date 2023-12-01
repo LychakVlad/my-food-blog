@@ -53,7 +53,9 @@ const MyProfile = () => {
           method: 'DELETE',
         });
 
-        await deleteImage(post.photo.imageLink);
+        {
+          post.photo.imageLink ? await deleteImage(post.photo.imageLink) : null;
+        }
 
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 
