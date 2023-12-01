@@ -33,9 +33,9 @@ const Profile: FC<IProfileProps> = ({
           <LoadingSpinner />{' '}
           <p className="text-4xl font-semibold ml-8">Loading...</p>
         </div>
-      ) : data.length !== 0 ? (
+      ) : data?.length !== 0 ? (
         <div className="mt-6 recipe_layout w-full ">
-          {data.map((post: IPost) => (
+          {data?.map((post: IPost) => (
             <RecipeCard
               key={post._id}
               post={post}

@@ -14,6 +14,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   required,
   accept,
   id,
+  cytest,
 }) => {
   return (
     <div className="w-full">
@@ -37,6 +38,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           accept={accept}
           autoComplete={autoComplete}
           placeholder={placeholder}
+          data-cy={cytest}
           className={`form_input w-full  ${className} ${
             errors && 'border-red-500'
           } `}

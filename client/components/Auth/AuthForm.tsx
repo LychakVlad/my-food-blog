@@ -40,6 +40,7 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
               register={register}
               errors={errors.email}
               required={true}
+              cytest="auth-email"
             />
 
             {type !== 'signin' && (
@@ -53,6 +54,7 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
                 register={register}
                 errors={errors.name}
                 required={true}
+                cytest="auth-name"
               />
             )}
 
@@ -66,6 +68,7 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
               register={register}
               errors={errors.password}
               required={true}
+              cytest="auth-password"
             />
 
             <div>
@@ -74,7 +77,7 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
                 className="black_btn w-full"
                 disabled={isSubmitting}
               >
-                {type === 'signup' ? 'Sign up' : 'Sign in'}
+                {type === 'signup' ? 'Sign up' : 'Log in'}
               </button>
             </div>
           </form>
@@ -84,6 +87,7 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
               <Link
                 href="/login"
                 className="font-semibold leading-6 text-gray-600 hover:text-gray-400 transition-colors "
+                data-cy="link-to-login-page"
               >
                 Sign in
               </Link>
@@ -94,6 +98,7 @@ const AuthForm = ({ onSubmit, type, error }: AuthForm) => {
               <Link
                 href="/sign-up"
                 className="font-semibold leading-6 text-gray-600 hover:text-gray-400 transition-colors "
+                data-cy="link-to-signup-page"
               >
                 Sign up
               </Link>

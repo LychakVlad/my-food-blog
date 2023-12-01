@@ -41,4 +41,5 @@ export interface CustomInputProps {
   autoComplete?: string;
   required: boolean;
   id?: string;
+  cytest?: string;
 }

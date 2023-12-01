@@ -34,7 +34,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
       <h1 className="head_text text-left">
         <span className="blue_gradient"> {type} Post</span>
       </h1>
-      <p className="desc text-left max-w-md">
+      <p className="desc text-left max-w-md" data-testid="form-title">
         {type} and share your best recipes
       </p>
 
@@ -45,7 +45,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
         {type === 'Create' && (
           <CustomInput
             register={register}
-            errors={errors.photo}
+            errors={errors?.photo}
             label="Photo (optional)"
             type="file"
             name="photo"
@@ -57,7 +57,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
         <CustomInput
           name="title"
           register={register}
-          errors={errors.title}
+          errors={errors?.title}
           label="Recipe Title"
           placeholder="Enter the title"
           type="text"
@@ -70,7 +70,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           register={register}
           name="description"
           required={true}
-          errors={errors.description}
+          errors={errors?.description}
         />
 
         <FormList
@@ -93,7 +93,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           name="tag"
           type="text"
           register={register}
-          errors={errors.tag}
+          errors={errors?.tag}
           required={true}
         />
 
@@ -104,7 +104,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             type="number"
             name="servings"
             register={register}
-            errors={errors.servings}
+            errors={errors?.servings}
             required={true}
           />
           <CustomInput
@@ -113,7 +113,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             type="text"
             name="yield"
             register={register}
-            errors={errors.yield}
+            errors={errors?.yield}
             required={true}
           />
         </div>
@@ -125,7 +125,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             type="number"
             name="prepTime"
             register={register}
-            errors={errors.prepTime}
+            errors={errors?.prepTime}
             required={true}
           />
           <CustomInput
@@ -134,7 +134,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             type="number"
             name="cookTime"
             register={register}
-            errors={errors.cookTime}
+            errors={errors?.cookTime}
             required={true}
           />
         </div>
@@ -146,7 +146,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             placeholder="200"
             type="number"
             register={register}
-            errors={errors.calories}
+            errors={errors?.calories}
             required={true}
           />
           <CustomInput
@@ -155,7 +155,7 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             type="number"
             name="carbs"
             register={register}
-            errors={errors.carbs}
+            errors={errors?.carbs}
             required={true}
           />
           <CustomInput
@@ -164,13 +164,13 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             placeholder="30"
             type="number"
             register={register}
-            errors={errors.protein}
+            errors={errors?.protein}
             required={true}
           />
           <CustomInput
             name="fats"
             register={register}
-            errors={errors.fats}
+            errors={errors?.fats}
             label="Fats"
             placeholder="10"
             type="number"

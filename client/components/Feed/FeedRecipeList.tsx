@@ -20,7 +20,7 @@ const FeedRecipeList: FC<IDataItem> = ({ data, loading }) => {
 
   if (data.length !== 0) {
     return (
-      <div className="mt-6 recipe_layout w-full ">
+      <div className="mt-6 recipe_layout w-full">
         {data.map((post: IPost) => (
           <RecipeCard
             key={post._id}

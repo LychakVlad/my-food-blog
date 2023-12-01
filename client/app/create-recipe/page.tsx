@@ -45,8 +45,7 @@ const CreateRecipe: FC = () => {
 
       return data.base64;
     } catch (error) {
-      console.log(error);
-      return null;
+      console.log('Failed to fetch processed image', error);
     }
   };
 
@@ -58,8 +57,7 @@ const CreateRecipe: FC = () => {
 
       return base64;
     } catch (error) {
-      console.log(error);
-      return null;
+      console.log('Failed to load base64 image', error);
     }
   }
 
@@ -78,7 +76,7 @@ const CreateRecipe: FC = () => {
 
       return result.data;
     } catch (error) {
-      console.log(error);
+      console.log('Failed to post image', error);
     }
   }
 
@@ -122,7 +120,7 @@ const CreateRecipe: FC = () => {
         router.push('/');
       }
     } catch (error) {
-      console.log(error);
+      console.log('Failed to create recipe', error);
     }
   };
 

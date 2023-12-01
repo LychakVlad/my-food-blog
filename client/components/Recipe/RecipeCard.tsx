@@ -32,7 +32,10 @@ const RecipeCard: FC<IRecipeCardData> = ({
 
   return (
     <>
-      <div className="recipe_card">
+      <div
+        className="recipe_card"
+        data-testid={`test-recipe-card-${post.title}`}
+      >
         <div className="relative max-w-[330px] overflow-hidden h-[300px] flex items-center">
           <Image
             alt="recipe-photo"

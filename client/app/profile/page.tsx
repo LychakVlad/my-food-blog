@@ -25,7 +25,7 @@ const MyProfile = () => {
     };
 
     fetchPosts();
-  }, [session]);
+  }, []);
 
   const handleEdit = (post: IPost) => {
     router.push(`/update-recipe?id=${post._id}`);
@@ -38,7 +38,7 @@ const MyProfile = () => {
       );
       return result.data;
     } catch (error) {
-      console.log('Error:', error);
+      console.log('Failed to delete image', error);
     }
   }
 
@@ -59,7 +59,7 @@ const MyProfile = () => {
 
         setPosts(filteredPosts);
       } catch (error) {
-        console.log(error);
+        console.log('Failed to delete recipe', error);
       }
     }
   };

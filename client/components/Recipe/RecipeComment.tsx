@@ -12,6 +12,8 @@ interface RecipeCommentProps {
   deleteComment: (id: string) => void;
 }
 
+//TODO fix margin bottom
+
 const RecipeComment = ({ item, name, deleteComment }: RecipeCommentProps) => {
   return (
     <div className=" border-gray-400 border mb-8 p-4">
