@@ -29,7 +29,7 @@ describe('Signup Component', () => {
     cy.get('p').should('contain', 'Password field is required');
   });
 
-  it('should display an error when wrong credentials', () => {
+  it('should sign up new user and redirect to new page', () => {
     cy.get('[data-cy="auth-email"]').click().type(randomEmail);
     cy.get('[data-cy="auth-name"]').click().type('Test User');
     cy.get('[data-cy="auth-password"]').click().type('123456');

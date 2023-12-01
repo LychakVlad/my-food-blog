@@ -19,6 +19,9 @@ const Recipe = ({ post }: { post: IPost }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
+  const [postComment, setPostComment] = useState(post.comments);
+
+  console.log(postComment);
 
   const [imageSrc, setImageSrc] = useState(
     post.photo.imageLink
@@ -67,12 +70,16 @@ const Recipe = ({ post }: { post: IPost }) => {
           rating: rating,
         }),
       });
+
+      const newComment = await response.json();
+
+      setPostComment((prevComments) => [...prevComments, newComment]);
+
       reset();
     } catch (error) {
       console.log(error);
     }
   }
-
   async function deleteComment(id: string) {
     const hasConfirmed = confirm(
       'Are you sure you want to delete this comment?'
@@ -87,6 +94,10 @@ const Recipe = ({ post }: { post: IPost }) => {
             postId: post._id,
           }),
         });
+
+        const newCommentArray = postComment.filter((item) => item._id !== id);
+
+        setPostComment(newCommentArray);
       } catch (error) {
         console.log(error);
       }
@@ -208,7 +219,7 @@ const Recipe = ({ post }: { post: IPost }) => {
           </div>
         )}
       </div>
-      {post.comments.map((item: IPostComment, index: number) => (
+      {postComment.map((item: IPostComment, index: number) => (
         <RecipeComment
           item={item}
           key={index}

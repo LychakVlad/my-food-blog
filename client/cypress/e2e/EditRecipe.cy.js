@@ -1,4 +1,4 @@
-describe('Create recipe component usage', () => {
+describe('Edit recipe component usage', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/login');
     cy.get('[data-cy="auth-email"]').click().type('testing-user@gmail.com');
@@ -10,10 +10,20 @@ describe('Create recipe component usage', () => {
   });
 
   afterEach(() => {
+    cy.get('[data-cy="profile-btn"]').click();
+
+    cy.wait(1000);
+
+    cy.get('[data-cy="delete-recipe-btn-Test recipe Change"]')
+      .should('exist')
+      .click();
+
+    cy.on('window:confirm', () => true);
+
     cy.get('[data-cy="logout-btn"]').should('exist').click();
   });
 
-  it('should create and display recipe', () => {
+  it('should edit recipe and display right title', () => {
     cy.get('[data-cy="link-to-create-recipe"]').should('exist').click();
 
     cy.get('h1').should('contain', 'Create Post');
@@ -32,10 +42,16 @@ describe('Create recipe component usage', () => {
 
     cy.get('[data-cy="profile-btn"]').click();
 
-    cy.get('[data-cy="delete-recipe-btn-Test recipe"]').should('exist').click();
+    cy.get('[data-cy="edit-recipe-btn-Test recipe"]').should('exist').click();
 
-    cy.on('window:confirm', () => true);
+    cy.get('[data-cy="title-input"]').click().type(' Change');
+
+    cy.get('[data-cy="submit-form-btn"]').click();
 
     cy.get('[data-cy="back-to-home-btn"]').click();
+
+    cy.wait(1000);
+
+    cy.get('p').should('contain', 'Test recipe Change');
   });
 });
