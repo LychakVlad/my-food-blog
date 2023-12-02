@@ -16,8 +16,6 @@ A place to store and share your favorite recipes effortlessly.
 </div>
 <!-- ABOUT THE PROJECT -->
 
-[![Next.js][nextjs-badge]][nextjs-url] [![React][react-badge]][react-url] [![Tailwind CSS][tailwind-badge]][tailwind-url] [![TypeScript][typescript-badge]][typescript-url] [![Node.js][nodejs-badge]][nodejs-url] [![Express.js][expressjs-badge]][expressjs-url] [![MongoDB][mongodb-badge]][mongodb-url] [![AWS S3][aws-s3-badge]][aws-s3-url] [![NextAuth.js][nextauthjs-badge]][nextauthjs-url]
-
 ## Overview
 
 My Recipe Blog is a web application built to help users organize and share their favorite recipes. It provides a platform for users to create, edit, and delete recipes, as well as leave ratings and comments on others' recipes. The website is designed with a clean and intuitive interface, making it easy for users to manage their recipes and quickly access them whenever needed from any device.
@@ -94,26 +92,3 @@ Vladislav Lychak - [@LinkedIn](https://www.linkedin.com/in/vladislav-lychak/) - 
 Project Link: [https://my-food-blog-two.vercel.app/](https://my-food-blog-two.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[Next.js][nextjs-url]: https://nextjs.org/
-[React][react-url]: https://reactjs.org/
-[Tailwind CSS][tailwind-url]: https://tailwindcss.com/
-[TypeScript][typescript-url]: https://www.typescriptlang.org/
-[Node.js][nodejs-url]: https://nodejs.org/
-[Express.js][expressjs-url]: https://expressjs.com/
-[MongoDB][mongodb-url]: https://www.mongodb.com/
-[Mongoose][mongoose-url]: https://mongoosejs.com/
-[AWS S3][aws-s3-url]: https://aws.amazon.com/s3/
-[NextAuth.js][nextauthjs-url]: https://next-auth.js.org/
-[nextjs-badge]: https://img.shields.io/badge/Next.js-20232A?style=for-the-badge&logo=next.js&logoColor=61DAFB
-[react-badge]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[tailwind-badge]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
-[typescript-badge]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
-[nodejs-badge]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
-[expressjs-badge]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white
-[mongodb-badge]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
-[aws-s3-badge]: https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazon-aws&logoColor=white
-[nextauthjs-badge]: https://img.shields.io/badge/NextAuth.js-000000?style=for-the-badge&logo=next.js&logoColor=61DAFB
