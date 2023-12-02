@@ -185,6 +185,7 @@ const Recipe = ({ post }: { post: IPost }) => {
               name="review"
               required={true}
               errors={errors.review}
+              cytest="comment-cy-text"
             />
             <div className="sm:flex sm:flex-row flex-col items-center gap-8">
               <RatingBar
@@ -201,12 +202,13 @@ const Recipe = ({ post }: { post: IPost }) => {
               type="submit"
               className="outline_btn ml-2 max-w-[100px]"
               disabled={isSubmitting}
+              data-cy="submit-comment-btn"
             >
               Send
             </button>
           </form>
         ) : (
-          <div>
+          <div data-cy="login-or-signup-required">
             Please{' '}
             <Link href={'/login'} className="underline">
               log in

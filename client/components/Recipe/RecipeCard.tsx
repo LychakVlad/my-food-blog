@@ -62,7 +62,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
         <button
           className="outline_btn"
           onClick={handleClick}
-          data-cy="go-to-recipe-btn"
+          data-cy={`go-to-recipe-btn-${post.title}`}
         >
           Go to recipe
         </button>

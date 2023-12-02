@@ -23,7 +23,7 @@ describe('Edit recipe component usage', () => {
     cy.get('[data-cy="logout-btn"]').should('exist').click();
   });
 
-  it('should edit recipe and display right title', () => {
+  it('should edit recipe and display right title ', () => {
     cy.get('[data-cy="link-to-create-recipe"]').should('exist').click();
 
     cy.get('h1').should('contain', 'Create Post');

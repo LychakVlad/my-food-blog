@@ -39,13 +39,16 @@ const RecipeComment = ({ item, name, deleteComment }: RecipeCommentProps) => {
             className="rounded-full mr-6 cursor-pointer"
             alt="close-icon"
             onClick={(e) => deleteComment(item._id)}
+            data-cy={`delete-comment-${item.text}`}
           />
         )}
       </div>
 
       <RatingBar rating={item.rating} clickable={false} />
       <p className="my-3"> {dateConvert(item.date)}</p>
-      <p className="text-lg">{item.text}</p>
+      <p className="text-lg" data-cy={`comment-cy-${item.text}`}>
+        {item.text}
+      </p>
     </div>
   );
 };
