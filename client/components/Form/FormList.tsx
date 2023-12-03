@@ -24,7 +24,7 @@ const FormList = ({ data, register, name, control }: FormListProps) => {
               <section className={'flex items-center mt-5'} key={field.id}>
                 <CustomInput
                   register={register}
-                  placeholder={'placeholder'}
+                  placeholder={'Add one more'}
                   name={`${name}.${index}` as const}
                   className="form_input w-full"
                   type="text"

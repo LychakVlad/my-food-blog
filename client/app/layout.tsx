@@ -5,6 +5,7 @@ import '../styles/global.css';
 import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
 import { authOptions } from './api/auth/[...nextauth]/route';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "Cook's Compass",
@@ -20,6 +21,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="h-full">
+      <head>
+        <link rel="icon" href="/logo.ico" sizes="any" />
+      </head>
       <body suppressHydrationWarning={true} className="h-full scroll-smooth">
         <Provider session={session}>
           <main className="app">
