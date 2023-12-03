@@ -111,14 +111,15 @@ const Recipe = ({ post }: { post: IPost }) => {
       <p className="mt-2">Created {dateConvert(post.time)}</p>
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
       <p className="desc mt-10 mb-4">{post.description}</p>{' '}
-      <div className="relative w-full h-full max-h-[900px] max-w-[600px] ">
+      <div className="relative w-full max-h-[900px] max-w-[600px]">
         <Image
           src={imageSrc}
           alt="food_image"
           placeholder="blur"
-          fill
           style={{ objectFit: 'cover' }}
           blurDataURL={base64Image}
+          width={600}
+          height={900}
           onError={() =>
             setImageSrc('https://placehold.co/600x900/png?text=Picture')
           }

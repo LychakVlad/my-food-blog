@@ -22,7 +22,7 @@ export default async function RootLayout({
     <html lang="en" className="h-full">
       <body suppressHydrationWarning={true} className="h-full scroll-smooth">
         <Provider session={session}>
-          <main className="app h-full">
+          <main className="app">
             <Nav />
             {children}
           </main>
