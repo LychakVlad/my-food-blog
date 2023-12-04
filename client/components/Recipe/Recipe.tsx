@@ -114,7 +114,7 @@ const Recipe = ({ post }: { post: IPost }) => {
           src={imageSrc}
           alt="food_image"
           placeholder="blur"
-          style={{ objectFit: 'cover' }}
+          className="object-cover"
           blurDataURL={base64Image}
           width={600}
           height={900}

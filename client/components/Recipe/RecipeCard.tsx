@@ -45,7 +45,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
             alt="recipe-photo"
             src={imageSrc}
             fill
-            objectFit="cover"
+            className="object-cover"
             placeholder="blur"
             blurDataURL={base64Image}
             onError={() =>

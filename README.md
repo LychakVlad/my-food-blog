@@ -46,6 +46,11 @@ My Recipe Blog is a web application built to help users organize and share their
 
 - React Hook Form
 
+### Hosting
+
+- Vercel (Frontend)
+- AWS EC2 (Backend)
+
 ## Testing
 
 - End-to-End (E2E) Tests: Core functionality covered with Cypress.
