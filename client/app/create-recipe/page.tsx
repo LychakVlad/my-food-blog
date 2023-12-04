@@ -52,7 +52,7 @@ const CreateRecipe: FC = () => {
   async function loadImageBase64(imageLink: string) {
     try {
       const base64 = await fetchProcessedBase64(
-        `https://food-blog-server1.onrender.com/api${imageLink}`
+        `${process.env.SERVER_URL}${imageLink}`
       );
 
       return base64;
@@ -67,7 +67,7 @@ const CreateRecipe: FC = () => {
 
     try {
       const result = await axios.post(
-        'https://food-blog-server1.onrender.com/api/images',
+        `${process.env.SERVER_URL}/images`,
         formData,
         {
           headers: { 'content-type': 'multipart/form-data' },

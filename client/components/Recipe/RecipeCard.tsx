@@ -22,9 +22,11 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const pathName = usePathname();
   const router = useRouter();
 
+  console.log('NEXT_PUBLIC_SERVER_URL:', process.env.NEXT_PUBLIC_SERVER_URL);
+
   const [imageSrc, setImageSrc] = useState(
     post.photo.imageLink
-      ? `https://food-blog-server1.onrender.com/api${post.photo.imageLink}`
+      ? `${process.env.NEXT_PUBLIC_SERVER_URL}${post.photo.imageLink}`
       : 'https://placehold.co/600x900/png?text=Picture'
   );
   const [base64Image, setBase64Image] = useState(

@@ -33,9 +33,7 @@ const MyProfile = () => {
 
   async function deleteImage(id: string) {
     try {
-      const result = await axios.delete(
-        `https://food-blog-server1.onrender.com/api${id}`
-      );
+      const result = await axios.delete(`${process.env.SERVER_URL}${id}`);
       return result.data;
     } catch (error) {
       console.log('Failed to delete image', error);
