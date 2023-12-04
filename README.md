@@ -3,7 +3,9 @@
 <br />
 <div align="center">
   <a href="https://my-food-blog-two.vercel.app/" target='_blank'>
-    <img src="./client/assets/images/main-screen.png" alt="main-page-screen" width='900'>
+
+https://github.com/LychakVlad/my-food-blog/assets/110523693/b38967b5-480b-4e8b-b22c-ecf00e2199ba
+
 <h3 align="center">My Recipe Blog</h3>
   <p align="center">
 A place to store and share your favorite recipes effortlessly.
