@@ -21,8 +21,6 @@ const Recipe = ({ post }: { post: IPost }) => {
   } = useForm();
   const [postComment, setPostComment] = useState(post.comments);
 
-  console.log(postComment);
-
   const [imageSrc, setImageSrc] = useState(
     post.photo.imageLink
       ? `${process.env.NEXT_PUBLIC_SERVER_URL}${post.photo.imageLink}`

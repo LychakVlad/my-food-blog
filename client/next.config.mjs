@@ -13,6 +13,7 @@ const nextConfig = {
       'localhost',
       'food-blog-server1.onrender.com',
       'placehold.co',
+      '3.85.78.111',
     ],
   },
   webpack(config) {

@@ -22,8 +22,6 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const pathName = usePathname();
   const router = useRouter();
 
-  console.log('NEXT_PUBLIC_SERVER_URL:', process.env.NEXT_PUBLIC_SERVER_URL);
-
   const [imageSrc, setImageSrc] = useState(
     post.photo.imageLink
       ? `${process.env.NEXT_PUBLIC_SERVER_URL}${post.photo.imageLink}`
