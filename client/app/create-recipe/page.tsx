@@ -52,7 +52,7 @@ const CreateRecipe: FC = () => {
   async function loadImageBase64(imageLink: string) {
     try {
       const base64 = await fetchProcessedBase64(
-        `${process.env.SERVER_URL}${imageLink}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}${imageLink}`
       );
 
       return base64;
@@ -67,7 +67,7 @@ const CreateRecipe: FC = () => {
 
     try {
       const result = await axios.post(
-        `${process.env.SERVER_URL}/images`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/images`,
         formData,
         {
           headers: { 'content-type': 'multipart/form-data' },
@@ -88,6 +88,7 @@ const CreateRecipe: FC = () => {
       if (data.photo && data.photo[0]) {
         imageLink = await postImage(data.photo[0]);
         imageBase64 = await loadImageBase64(imageLink.imagePath);
+        console.log(imageBase64);
       }
 
       const response = await fetch('/api/recipe/new', {

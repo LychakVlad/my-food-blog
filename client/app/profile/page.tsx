@@ -32,8 +32,11 @@ const MyProfile = () => {
   };
 
   async function deleteImage(id: string) {
+    console.log(id);
     try {
-      const result = await axios.delete(`${process.env.SERVER_URL}${id}`);
+      const result = await axios.delete(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}${id}`
+      );
       return result.data;
     } catch (error) {
       console.log('Failed to delete image', error);
