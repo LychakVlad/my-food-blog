@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const PORT = 3001;
+const PORT = 'https://food-blog-server.cyclic.app' || 3001;
 
 const app = express();
 
