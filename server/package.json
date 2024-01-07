@@ -4,10 +4,13 @@
   "description": "",
   "type": "module",
   "main": "server.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node server.js",
     "build": "npm i",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon server.js"
   },
   "author": "Lychak Vlad",
   "license": "ISC",
