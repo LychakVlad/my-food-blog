@@ -88,10 +88,6 @@ This project includes a small API built with Node.js and Express to manage image
 - **Method:** `GET`
 - **Description:** Retrieves an image from AWS S3.
 
-## Purpose
-
-This website is designed for individuals who are passionate about maintaining a healthy diet and want a convenient place to store and access their favorite recipes. Whether you're a cooking enthusiast or someone trying to adopt a healthier lifestyle, My Recipe Blog simplifies the process of managing and sharing your culinary creations.
-
 ## Contact
 
 Vladislav Lychak - [@LinkedIn](https://www.linkedin.com/in/vladislav-lychak/) - lycakvladislav@gmail.com
