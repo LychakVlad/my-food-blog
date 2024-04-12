@@ -23,16 +23,18 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const pathName = usePathname();
   const router = useRouter();
 
+  console.log(post);
+
   const [imageSrc, setImageSrc] = useState(
     post.photo.imageLink
-      ? `${process.env.NEXT_PUBLIC_SERVER_URL}${post.photo.imageLink}`
+      ? `/api/s3-bucket/${post.photo.imageLink}`
       : "https://placehold.co/600x900/png?text=Picture",
   );
-  const [base64Image, setBase64Image] = useState(
-    post.photo.base64
-      ? post.photo.base64
-      : "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
-  );
+  // const [base64Image, setBase64Image] = useState(
+  //   post.photo.base64
+  //     ? post.photo.base64
+  //     : "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
+  // );
 
   function handleClick() {
     router.push(`/recipes/${post._id}`);
@@ -47,8 +49,8 @@ const RecipeCard: FC<IRecipeCardData> = ({
             src={imageSrc}
             fill
             className="object-cover"
-            placeholder="blur"
-            blurDataURL={base64Image}
+            // placeholder="blur"
+            // blurDataURL={base64Image}
             onError={() =>
               setImageSrc("https://placehold.co/330x300/png?text=Picture")
             }

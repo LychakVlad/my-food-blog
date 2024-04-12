@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import Profile from '../../components/Profile/Profile';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { IPost } from '../../types/recipe.interface';
-import axios from 'axios';
+import Profile from "../../components/Profile/Profile";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { IPost } from "../../types/recipe.interface";
+import axios from "axios";
 
 const MyProfile = () => {
   const router = useRouter();
@@ -32,26 +32,23 @@ const MyProfile = () => {
   };
 
   async function deleteImage(id: string) {
-    console.log(id);
     try {
-      const result = await axios.delete(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}${id}`
-      );
+      const result = await axios.delete(`/api/s3-bucket/${id}`);
       return result.data;
     } catch (error) {
-      console.log('Failed to delete image', error);
+      console.log("Failed to delete image", error);
     }
   }
 
   const handleDelete = async (post: IPost) => {
     const hasConfirmed = confirm(
-      'Are you sure you want to delete this recipe?'
+      "Are you sure you want to delete this recipe?",
     );
 
     if (hasConfirmed) {
       try {
         await fetch(`/api/recipe/${post?._id?.toString()}`, {
-          method: 'DELETE',
+          method: "DELETE",
         });
 
         {
@@ -62,7 +59,7 @@ const MyProfile = () => {
 
         setPosts(filteredPosts);
       } catch (error) {
-        console.log('Failed to delete recipe', error);
+        console.log("Failed to delete recipe", error);
       }
     }
   };

@@ -1,5 +1,10 @@
 {
   "devDependencies": {
+    "@types/uuid": "^9.0.8",
     "cypress": "^13.6.0"
+  },
+  "dependencies": {
+    "@aws-sdk/s3-request-presigner": "^3.554.0",
+    "uuid": "^9.0.1"
   }
 }

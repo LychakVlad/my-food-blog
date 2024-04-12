@@ -38,23 +38,21 @@ const CreateRecipe: FC = () => {
     },
   });
 
-  // const fetchProcessedBase64 = async (imageUrl: string) => {
-  //   try {
-  //     const response = await fetch(`/api/image-process?imageUrl=${imageUrl}`);
-  //     const data = await response.json();
+  const fetchProcessedBase64 = async (imageUrl: string) => {
+    try {
+      const response = await fetch(`/api/image-process?imageUrl=${imageUrl}`);
+      const data = await response.json();
 
-  //     return data.base64;
-  //   } catch (error) {
-  //     console.log("Failed to fetch processed image", error);
-  //   }
-  // };
+      return data.base64;
+    } catch (error) {
+      console.log("Failed to fetch processed image", error);
+    }
+  };
 
   async function loadImageBase64(imageLink: string) {
     try {
-      // const base64 = await fetchProcessedBase64(
-      //   `${process.env.NEXT_PUBLIC_SERVER_URL}${imageLink}`,
-      // );
-      // return base64;
+      const base64 = await fetchProcessedBase64(`/api/s3-bucket/${imageLink}`);
+      return base64;
     } catch (error) {
       console.log("Failed to load base64 image", error);
     }
@@ -65,7 +63,7 @@ const CreateRecipe: FC = () => {
     formData.append("image", image);
 
     try {
-      const result = await axios.post(`api/s3-upload`, formData, {
+      const result = await axios.post(`api/s3-bucket`, formData, {
         headers: { "content-type": "multipart/form-data" },
       });
 
@@ -83,42 +81,41 @@ const CreateRecipe: FC = () => {
       if (data.photo && data.photo[0]) {
         imageLink = await postImage(data.photo[0]);
         imageBase64 = await loadImageBase64(imageLink.imagePath);
-        console.log(imageBase64);
       }
 
-      // const response = await fetch("/api/recipe/new", {
-      //   method: "POST",
-      //   body: JSON.stringify({
-      //     description: data.description,
-      //     userId: session?.user?.id,
-      //     ingredients: data.ingredients,
-      //     steps: data.steps,
-      //     tag: data.tag,
-      //     title: data.title,
-      //     photo: {
-      //       imageLink: imageLink?.imagePath,
-      //       base64: imageBase64,
-      //     },
-      //     servings: {
-      //       servings: data.servings,
-      //       yield: data.yield,
-      //     },
-      //     timeToDo: {
-      //       prepTime: data.prepTime,
-      //       cookTime: data.cookTime,
-      //     },
-      //     nutrition: {
-      //       cal: data.calories,
-      //       protein: data.protein,
-      //       carbs: data.carbs,
-      //       fats: data.fats,
-      //     },
-      //   }),
-      // });
+      const response = await fetch("/api/recipe/new", {
+        method: "POST",
+        body: JSON.stringify({
+          description: data.description,
+          userId: session?.user?.id,
+          ingredients: data.ingredients,
+          steps: data.steps,
+          tag: data.tag,
+          title: data.title,
+          photo: {
+            imageLink: imageLink.fileKey,
+            base64: imageBase64,
+          },
+          servings: {
+            servings: data.servings,
+            yield: data.yield,
+          },
+          timeToDo: {
+            prepTime: data.prepTime,
+            cookTime: data.cookTime,
+          },
+          nutrition: {
+            cal: data.calories,
+            protein: data.protein,
+            carbs: data.carbs,
+            fats: data.fats,
+          },
+        }),
+      });
 
-      // if (response.ok) {
-      //   router.push("/");
-      // }
+      if (response.ok) {
+        router.push("/");
+      }
     } catch (error) {
       console.log("Failed to create recipe", error);
     }
