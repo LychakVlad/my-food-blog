@@ -4,7 +4,7 @@ import {
   GetObjectCommand,
 } from "@aws-sdk/client-s3";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const bucketName = process.env.MY_AWS_BUCKET_NAME as string;
@@ -50,7 +50,8 @@ export const DELETE = async (req: Request, { params }: any) => {
   }
 };
 
-export const GET = async (req: NextApiRequest, res: CustomApiResponse) => {
+export const GET = async (req: NextRequest, res: CustomApiResponse) => {
+  console.log(req);
   const { id } = res.params || {};
 
   try {

@@ -36,10 +36,11 @@ const Recipe = ({ post }: { post: IPost }) => {
       <Image
         alt="recipe-photo"
         src={data?.src || "https://placehold.co/330x300/png?text=Picture"}
-        fill
         className="object-cover"
         placeholder="blur"
         blurDataURL={base64Image}
+        width={600}
+        height={900}
       />
     );
   };
@@ -120,8 +121,8 @@ const Recipe = ({ post }: { post: IPost }) => {
       <h3 className="mt-2 text-lg">Recipe by {post?.creator?.name}</h3>
       <p className="mt-2">Created {dateConvert(post.time)}</p>
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
-      <p className="desc mt-10 mb-4">{post.description}</p>{" "}
-      <div className="relative w-full max-h-[900px] max-w-[600px]">
+      <p className="desc mt-10 mb-4">{post.description}</p>
+      <div className="relative w-full min-h-full max-h-[900px] max-w-[600px]">
         <S3Image Key={post.photo.imageLink} />
       </div>
       <div className="bg-gray-200 mt-10 p-8 ">
