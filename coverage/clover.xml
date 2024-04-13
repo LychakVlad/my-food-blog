@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1701431032848" clover="3.2.0">
+  <project timestamp="1701431032848" name="All files">
+    <metrics statements="185" coveredstatements="148" conditionals="61" coveredconditionals="37" methods="51" coveredmethods="26" elements="297" coveredelements="211" complexity="0" loc="185" ncloc="185" packages="11" files="16" classes="16"/>
+    <package name="components.Feed">
+      <metrics statements="34" coveredstatements="28" conditionals="3" coveredconditionals="2" methods="10" coveredmethods="5"/>
+      <file name="Feed.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Feed/Feed.tsx">
+        <metrics statements="26" coveredstatements="20" conditionals="1" coveredconditionals="0" methods="6" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+      </file>
+      <file name="FeedRecipeList.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Feed/FeedRecipeList.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Form">
+      <metrics statements="22" coveredstatements="19" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="2"/>
+      <file name="Form.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Form/Form.tsx">
+        <metrics statements="11" coveredstatements="11" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="202" count="4" type="stmt"/>
+      </file>
+      <file name="FormList.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Form/FormList.tsx">
+        <metrics statements="11" coveredstatements="8" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="64" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Nav">
+      <metrics statements="20" coveredstatements="14" conditionals="3" coveredconditionals="3" methods="6" coveredmethods="2"/>
+      <file name="Nav.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Nav/Nav.tsx">
+        <metrics statements="20" coveredstatements="14" conditionals="3" coveredconditionals="3" methods="6" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="119" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Profile">
+      <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
+      <file name="Profile.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Profile/Profile.tsx">
+        <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Recipe">
+      <metrics statements="61" coveredstatements="44" conditionals="23" coveredconditionals="14" methods="17" coveredmethods="6"/>
+      <file name="Recipe.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Recipe/Recipe.tsx">
+        <metrics statements="36" coveredstatements="24" conditionals="12" coveredconditionals="9" methods="10" coveredmethods="5"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="53" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="81" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="119" count="15" type="stmt"/>
+        <line num="137" count="9" type="stmt"/>
+        <line num="146" count="9" type="stmt"/>
+        <line num="156" count="12" type="stmt"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="223" count="3" type="stmt"/>
+      </file>
+      <file name="RecipeCard.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Recipe/RecipeCard.tsx">
+        <metrics statements="16" coveredstatements="12" conditionals="10" coveredconditionals="5" methods="5" coveredmethods="1"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="98" count="3" type="stmt"/>
+      </file>
+      <file name="RecipeComment.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Recipe/RecipeComment.tsx">
+        <metrics statements="9" coveredstatements="8" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Routes">
+      <metrics statements="12" coveredstatements="10" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="withAuth.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/Routes/withAuth.tsx">
+        <metrics statements="12" coveredstatements="10" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="17" count="5" type="cond" truecount="0" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.UI.Input">
+      <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
+      <file name="Input.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/UI/Input/Input.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="54" count="42" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.UI.LoadingSpinner">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="LoadingSpinner.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/UI/LoadingSpinner/LoadingSpinner.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.UI.RatingBar">
+      <metrics statements="10" coveredstatements="9" conditionals="10" coveredconditionals="4" methods="4" coveredmethods="3"/>
+      <file name="RatingBar.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/UI/RatingBar/RatingBar.tsx">
+        <metrics statements="5" coveredstatements="4" conditionals="8" coveredconditionals="3" methods="3" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="36" count="2" type="stmt"/>
+      </file>
+      <file name="RatingDescription.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/UI/RatingBar/RatingDescription.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.UI.Textarea">
+      <metrics statements="3" coveredstatements="3" conditionals="7" coveredconditionals="5" methods="1" coveredmethods="1"/>
+      <file name="Textarea.tsx" path="/Users/Vlad/Documents/projects/food-blog/client/components/UI/Textarea/Textarea.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="7" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="10" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="dateConvert.ts" path="/Users/Vlad/Documents/projects/food-blog/client/utils/dateConvert.ts">
+        <metrics statements="10" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
