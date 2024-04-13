@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { ReactNode } from "react";
+import { FieldValues, SubmitHandler, UseFormReturn } from "react-hook-form";
 
 export interface IPostComment {
   rating: number;
@@ -67,4 +67,10 @@ export interface RecipeFormProps {
   type: string;
   onSubmit: SubmitHandler<FieldValues>;
   form: UseFormReturn<FieldValues>;
+}
+
+export interface RecipeCommentProps {
+  item: IPostComment;
+  name?: string | null | undefined;
+  deleteComment: (id: string) => void;
 }

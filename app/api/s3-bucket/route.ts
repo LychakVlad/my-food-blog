@@ -1,37 +1,5 @@
-import {
-  S3Client,
-  PutObjectCommand,
-  DeleteObjectCommand,
-} from "@aws-sdk/client-s3";
 import { NextResponse } from "next/server";
-import { v4 as uuidv4 } from "uuid";
-
-const bucketName = process.env.MY_AWS_BUCKET_NAME as string;
-const region = process.env.MY_AWS_BUCKET_REGION as string;
-const accessKeyId = process.env.MY_AWS_ACCESS_KEY_ID as string;
-const secretAccessKey = process.env.MY_AWS_SECRET_ACCESS_KEY as string;
-
-const s3 = new S3Client({
-  region,
-  credentials: {
-    accessKeyId,
-    secretAccessKey,
-  },
-});
-
-async function uploadFileToS3(file: Buffer, fileName: string) {
-  const fileBuffer = file;
-
-  const params = {
-    Bucket: bucketName,
-    Key: `${uuidv4()}`,
-    Body: fileBuffer,
-  };
-
-  const command = new PutObjectCommand(params);
-  await s3.send(command);
-  return params.Key;
-}
+import { uploadFileToS3 } from "utils/s3";
 
 export const POST = async (req: Request, res: Response) => {
   try {

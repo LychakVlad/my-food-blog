@@ -1,11 +1,11 @@
-import Recipe from '../../../components/Recipe/Recipe';
-import { IPost } from '../../../types/recipe.interface';
+import Recipe from "../../../components/Recipe/Recipe";
+import { IPost } from "../../../types/recipe.interface";
 
 interface Params {
   id: string;
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);

@@ -1,0 +1,19 @@
+{
+  "/page": "/",
+  "/create-recipe/page": "/create-recipe",
+  "/login/page": "/login",
+  "/profile/page": "/profile",
+  "/sign-up/page": "/sign-up",
+  "/update-recipe/page": "/update-recipe",
+  "/api/image-process/route": "/api/image-process",
+  "/api/sign-up/route": "/api/sign-up",
+  "/api/comment/route": "/api/comment",
+  "/api/s3-bucket/route": "/api/s3-bucket",
+  "/api/recipe/route": "/api/recipe",
+  "/recipes/[id]/page": "/recipes/[id]",
+  "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
+  "/api/recipe/new/route": "/api/recipe/new",
+  "/api/recipe/[id]/route": "/api/recipe/[id]",
+  "/api/s3-bucket/[id]/route": "/api/s3-bucket/[id]",
+  "/api/users/[id]/posts/route": "/api/users/[id]/posts"
+}

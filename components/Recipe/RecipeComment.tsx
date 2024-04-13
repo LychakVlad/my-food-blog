@@ -1,16 +1,10 @@
-import Image from 'next/image';
-import React from 'react';
-import RatingBar from '../UI/RatingBar/RatingBar';
-import dateConvert from '../../utils/dateConvert';
-import { IPostComment } from '../../types/recipe.interface';
-import userImage from '/assets/icons/profile-undefined.svg';
-import deleteIcon from '/assets/icons/delete.svg';
-
-interface RecipeCommentProps {
-  item: IPostComment;
-  name?: string | null | undefined;
-  deleteComment: (id: string) => void;
-}
+import Image from "next/image";
+import React from "react";
+import RatingBar from "../UI/RatingBar/RatingBar";
+import dateConvert from "../../utils/dateConvert";
+import { RecipeCommentProps } from "../../types/recipe.interface";
+import userImage from "/assets/icons/profile-undefined.svg";
+import deleteIcon from "/assets/icons/delete.svg";
 
 const RecipeComment = ({ item, name, deleteComment }: RecipeCommentProps) => {
   return (

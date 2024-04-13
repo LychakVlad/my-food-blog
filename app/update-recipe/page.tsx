@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Form from '../../components/Form/Form';
-import { FieldValues, useForm } from 'react-hook-form';
+import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Form from "../../components/Form/Form";
+import { FieldValues, useForm } from "react-hook-form";
 
 const EditRecipe = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const recipeId = searchParams.get('id');
+  const recipeId = searchParams.get("id");
 
   const form = useForm<FieldValues>();
 
@@ -41,11 +41,11 @@ const EditRecipe = () => {
   }, [recipeId]);
 
   const updateRecipe = async (data: FieldValues) => {
-    if (!recipeId) return alert('Recipe ID not found');
+    if (!recipeId) return alert("Recipe ID not found");
 
     try {
       const response = await fetch(`/api/recipe/${recipeId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         body: JSON.stringify({
           title: data.title,
           description: data.description,
@@ -73,10 +73,10 @@ const EditRecipe = () => {
       });
 
       if (response.ok) {
-        router.push('/');
+        router.push("/");
       }
     } catch (error) {
-      console.log('Failed to update recipe', error);
+      console.log("Failed to update recipe", error);
     }
   };
 

@@ -1,17 +1,9 @@
-import React, { FC } from 'react';
-import RecipeCard from '../Recipe/RecipeCard';
-import { IPost } from '../../types/recipe.interface';
-import withAuth from '../Routes/withAuth';
-import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner';
-
-interface IProfileProps {
-  name: string;
-  desc: string;
-  data: IPost[];
-  loading: boolean;
-  handleEdit: (post: IPost) => void;
-  handleDelete: (post: IPost) => void;
-}
+import React, { FC } from "react";
+import RecipeCard from "../Recipe/RecipeCard";
+import { IPost } from "../../types/recipe.interface";
+import withAuth from "../Routes/withAuth";
+import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
+import { IProfileProps } from "types/profile.interface";
 
 const Profile: FC<IProfileProps> = ({
   name,
@@ -30,7 +22,7 @@ const Profile: FC<IProfileProps> = ({
 
       {loading ? (
         <div className="flex items-center my-10">
-          <LoadingSpinner />{' '}
+          <LoadingSpinner />{" "}
           <p className="text-4xl font-semibold ml-8">Loading...</p>
         </div>
       ) : data?.length !== 0 ? (
