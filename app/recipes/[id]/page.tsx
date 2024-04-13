@@ -1,28 +1,40 @@
 import Recipe from "../../../components/Recipe/Recipe";
 import { IPost } from "../../../types/recipe.interface";
 
-interface Params {
-  id: string;
-}
-
 export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
-  const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
-  const data = await posts.json();
-
-  return data.map((post: IPost) => ({
-    id: post._id,
-  }));
+  try {
+    const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
+    const data = await posts.json();
+    return data.map((post: IPost) => ({
+      id: post._id,
+    }));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function getRecipe(id: string) {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe/${id}`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export default async function RecipePage({ params }: { params: Params }) {
-  const recipe = await getRecipe(params.id);
-  return <Recipe post={recipe} />;
+export default async function RecipePage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  try {
+    const recipe = await getRecipe(params.id);
+    return <Recipe post={recipe} />;
+  } catch (error) {
+    console.error("Error fetching recipe:", error);
+    return <div>Error fetching recipe. Please try again later.</div>;
+  }
 }
