@@ -1,31 +1,29 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { IPost } from "../../types/recipe.interface";
-import { useSession } from "next-auth/react";
 import FeedRecipeList from "./FeedRecipeList";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const Feed: FC = () => {
   const [recipes, setRecipes] = useState<IPost[]>([]);
-  const { data: session } = useSession();
   const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(true);
   const [searchedResults, setSearchedResults] = useState<IPost[]>([]);
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch(`/api/recipe`);
-        const data = await response.json();
-        setRecipes(data.reverse());
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-      setLoading(false);
-    };
+  const getAllRecipes = async () => {
+    try {
+      const { data } = await axios.get(`/api/recipe`);
+      setRecipes(data.reverse());
+    } catch (error) {
+      console.error("Error fetching all recipes:", error);
+    }
+  };
 
-    fetchRecipes();
-  }, []);
+  const { isError, isLoading } = useQuery({
+    queryKey: ["recipes"],
+    queryFn: getAllRecipes,
+  });
 
   const filterRecipes = (text: string) => {
     const regex = new RegExp(text, "i");
@@ -53,9 +51,9 @@ const Feed: FC = () => {
       </form>
 
       {searchText ? (
-        <FeedRecipeList data={searchedResults} loading={loading} />
+        <FeedRecipeList data={searchedResults} loading={isLoading} />
       ) : (
-        <FeedRecipeList data={recipes} loading={loading} />
+        <FeedRecipeList data={recipes} loading={isLoading} />
       )}
     </section>
   );

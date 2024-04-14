@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { Metadata } from "next";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import TanstackProvider from "@/components/Provider/TanstackProvider";
 
 export const metadata: Metadata = {
   title: "Cook's Compass",
@@ -26,10 +27,14 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning={true} className="h-full scroll-smooth">
         <Provider session={session}>
-          <main className="app">
-            <Nav />
-            {children}
-          </main>
+          <TanstackProvider>
+            {" "}
+            <main className="app">
+              <Nav />
+              {children}
+              <SpeedInsights />
+            </main>
+          </TanstackProvider>
         </Provider>
       </body>
     </html>

@@ -7,29 +7,26 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { IPost } from "../../types/recipe.interface";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const MyProfile = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(`/api/users/${session?.user?.id}/posts`);
-        const data = await response.json();
+  const getPostsForUser = async () => {
+    try {
+      const { data } = await axios.get(`/api/users/${session?.user?.id}/posts`);
+      setPosts(data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
 
-        setPosts(data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-      setLoading(false);
-    };
-
-    fetchPosts();
-  }, []);
+  const { isError, isLoading } = useQuery({
+    queryKey: ["recipes-for-user"],
+    queryFn: getPostsForUser,
+  });
 
   const handleEdit = (post: IPost) => {
     router.push(`/update-recipe?id=${post._id}`);
@@ -51,14 +48,10 @@ const MyProfile = () => {
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/recipe/${post?._id?.toString()}`, {
-          method: "DELETE",
-        });
-
+        await axios.delete(`/api/recipe/${post?._id?.toString()}`);
         {
           post.photo.imageLink ? await deleteImage(post.photo.imageLink) : null;
         }
-
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 
         setPosts(filteredPosts);
@@ -72,7 +65,7 @@ const MyProfile = () => {
     <Profile
       name="My"
       desc="Welcome to your profile page"
-      loading={loading}
+      loading={isLoading}
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

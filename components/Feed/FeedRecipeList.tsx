@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { IPost } from '../../types/recipe.interface';
-import RecipeCard from '../Recipe/RecipeCard';
-import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner';
+import React, { FC } from "react";
+import { IPost } from "../../types/recipe.interface";
+import RecipeCard from "../Recipe/RecipeCard";
+import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 
 interface IDataItem {
   data: IPost[];
@@ -12,7 +12,7 @@ const FeedRecipeList: FC<IDataItem> = ({ data, loading }) => {
   if (loading) {
     return (
       <div className="flex items-center my-10">
-        <LoadingSpinner />{' '}
+        <LoadingSpinner />{" "}
         <p className="text-4xl font-semibold ml-8">Loading...</p>
       </div>
     );
