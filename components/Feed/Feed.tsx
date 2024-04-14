@@ -15,9 +15,7 @@ const Feed: FC = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`, {
-          method: "GET",
-        });
+        const response = await fetch(`/api/recipe`);
         const data = await response.json();
         setRecipes(data.reverse());
       } catch (error) {
