@@ -3,17 +3,22 @@ import { IPost } from "../../../types/recipe.interface";
 
 export const dynamic = "force-dynamic";
 
-export async function generateStaticParams() {
-  try {
-    const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
-    const data = await posts.json();
-    return data.map((post: IPost) => ({
-      id: post._id,
-    }));
-  } catch (error) {
-    console.log(error);
-  }
-}
+// export async function generateStaticParams() {
+//   try {
+//     const posts = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`);
+//     const data = await posts.json();
+//     console.log(
+//       data.map((post: IPost) => ({
+//         id: post._id,
+//       })),
+//     );
+//     return data.map((post: IPost) => ({
+//       id: post._id,
+//     }));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 async function getRecipe(id: string) {
   try {
