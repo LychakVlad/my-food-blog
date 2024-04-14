@@ -1,24 +1,19 @@
 import { connectToDB } from "../../../../../utils/database";
 import Recipe from "../../../../../models/recipe";
 import { NextResponse } from "next/server";
-import { CustomApiResponse } from "types/env.interface";
 
-export const GET = async (request: Request, res: CustomApiResponse) => {
+export const dynamic = "force-dynamic";
+
+export const GET = async (request: Request, { params }: any) => {
   try {
     await connectToDB();
 
-    if (!res.params?.id) {
-      return new NextResponse("Id is missing", { status: 500 });
-    }
-
-    const postId = res.params.id;
-
     const recipes = await Recipe.find({
-      creator: postId,
+      creator: params.id,
     }).populate("creator");
 
     return NextResponse.json(recipes, { status: 200 });
   } catch (error) {
-    return new NextResponse("Failed to fetch all posts", { status: 500 });
+    return NextResponse.json("Failed to fetch all recipes", { status: 500 });
   }
 };
