@@ -17,10 +17,14 @@ const MyProfile = () => {
   useEffect(() => {
     setLoading(true);
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user?.id}/posts`);
-      const data = await response.json();
+      try {
+        const response = await fetch(`/api/users/${session?.user?.id}/posts`);
+        const data = await response.json();
 
-      setPosts(data);
+        setPosts(data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
       setLoading(false);
     };
 

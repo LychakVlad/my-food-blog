@@ -19,6 +19,7 @@
     "@plaiceholder/next": "^3.0.0",
     "@types/bcrypt": "^5.0.1",
     "@types/node": "^20.10.0",
+    "@vercel/speed-insights": "^1.0.10",
     "autoprefixer": "10.4.14",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",

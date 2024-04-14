@@ -5,6 +5,7 @@ import "../styles/global.css";
 import { getServerSession } from "next-auth";
 import { Metadata } from "next";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Cook's Compass",
