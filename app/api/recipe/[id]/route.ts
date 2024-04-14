@@ -1,7 +1,7 @@
-import { connectToDB } from '../../../../utils/database';
-import Recipe from '../../../../models/recipe';
-import Comment from '../../../../models/comment';
-import { NextResponse } from 'next/server';
+import { connectToDB } from "../../../../utils/database";
+import Recipe from "../../../../models/recipe";
+import Comment from "../../../../models/comment";
+import { NextResponse } from "next/server";
 
 export const GET = async (request: Request, { params }: any) => {
   try {
@@ -9,18 +9,18 @@ export const GET = async (request: Request, { params }: any) => {
     let recipeWithComments;
 
     recipeWithComments = await Recipe.findById(params.id)
-      .populate('creator')
-      .populate('comments');
+      .populate("creator")
+      .populate("comments");
 
     if (!recipeWithComments) {
-      return new NextResponse('Recipe not found', { status: 404 });
+      return new NextResponse("Recipe not found", { status: 404 });
     }
 
-    return new NextResponse(JSON.stringify(recipeWithComments), {
+    return NextResponse.json(recipeWithComments, {
       status: 200,
     });
   } catch (error) {
-    return new NextResponse('Failed to fetch recipe', { status: 500 });
+    return new NextResponse("Failed to fetch recipe", { status: 500 });
   }
 };
 
@@ -43,7 +43,7 @@ export const PATCH = async (request: Request, { params }: any) => {
 
     const existingRecipe = await Recipe.findById(params.id);
     if (!existingRecipe)
-      return new Response('Recipe not found', { status: 404 });
+      return new Response("Recipe not found", { status: 404 });
 
     existingRecipe.description = description;
     existingRecipe.tag = tag;
@@ -61,7 +61,7 @@ export const PATCH = async (request: Request, { params }: any) => {
     return new Response(JSON.stringify(existingRecipe), { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response('Failed to update recipe', { status: 500 });
+    return new Response("Failed to update recipe", { status: 500 });
   }
 };
 
@@ -73,8 +73,8 @@ export const DELETE = async (request: Request, { params }: any) => {
 
     await Recipe.findByIdAndRemove(params.id);
 
-    return new Response('Recipe deleted successfully', { status: 200 });
+    return new Response("Recipe deleted successfully", { status: 200 });
   } catch (error) {
-    return new Response('Failed to delete recipe', { status: 500 });
+    return new Response("Failed to delete recipe", { status: 500 });
   }
 };

@@ -1,5 +1,6 @@
-import { connectToDB } from '../../../../../utils/database';
-import Recipe from '../../../../../models/recipe';
+import { connectToDB } from "../../../../../utils/database";
+import Recipe from "../../../../../models/recipe";
+import { NextResponse } from "next/server";
 
 export const GET = async (request: Request, { params }: any) => {
   try {
@@ -7,10 +8,10 @@ export const GET = async (request: Request, { params }: any) => {
 
     const recipes = await Recipe.find({
       creator: params.id,
-    }).populate('creator');
+    }).populate("creator");
 
-    return new Response(JSON.stringify(recipes), { status: 200 });
+    return NextResponse.json(recipes, { status: 200 });
   } catch (error) {
-    return new Response('Failed to fetch all recipes', { status: 500 });
+    return NextResponse.json("Failed to fetch all recipes", { status: 500 });
   }
 };
