@@ -1,9 +1,9 @@
 import { connectToDB } from "../../../utils/database";
 import Recipe from "../../../models/recipe";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
-export const GET = async (request: NextRequest, { params }: any) => {
+// export const dynamic = "force-dynamic";
+export const GET = async (req: Request, res: Response) => {
   try {
     await connectToDB();
 
@@ -13,7 +13,6 @@ export const GET = async (request: NextRequest, { params }: any) => {
 
     return NextResponse.json(recipes, { status: 200 });
   } catch (error) {
-    console.log(JSON.stringify(error));
-    return new NextResponse(JSON.stringify(error), { status: 500 });
+    return new NextResponse("Failed to fetch all recipes", { status: 500 });
   }
 };
