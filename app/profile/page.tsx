@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { IPost } from "../../types/recipe.interface";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { API_URL } from "utils/consts";
 
 const MyProfile = () => {
   const router = useRouter();
@@ -16,7 +17,9 @@ const MyProfile = () => {
 
   const getPostsForUser = async () => {
     try {
-      const { data } = await axios.get(`/api/users/${session?.user?.id}/posts`);
+      const { data } = await axios.get(
+        `${API_URL}/api/users/${session?.user?.id}/posts`,
+      );
       setPosts(data);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -49,7 +52,7 @@ const MyProfile = () => {
     if (hasConfirmed) {
       try {
         await axios.delete(`/api/recipe/${post?._id?.toString()}`);
-        
+
         {
           post.photo.imageLink ? await deleteImage(post.photo.imageLink) : null;
         }
