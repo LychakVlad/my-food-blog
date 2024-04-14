@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import React, { FC, useEffect, useState } from 'react';
-import { IPost } from '../../types/recipe.interface';
-import { useSession } from 'next-auth/react';
-import FeedRecipeList from './FeedRecipeList';
+import React, { FC, useEffect, useState } from "react";
+import { IPost } from "../../types/recipe.interface";
+import { useSession } from "next-auth/react";
+import FeedRecipeList from "./FeedRecipeList";
 
 const Feed: FC = () => {
   const [recipes, setRecipes] = useState<IPost[]>([]);
   const { data: session } = useSession();
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
   const [searchedResults, setSearchedResults] = useState<IPost[]>([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch(`/api/recipe`, {
-          method: 'GET',
+        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/recipe`, {
+          method: "GET",
         });
         const data = await response.json();
         setRecipes(data.reverse());
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
       setLoading(false);
     };
@@ -30,7 +30,7 @@ const Feed: FC = () => {
   }, []);
 
   const filterRecipes = (text: string) => {
-    const regex = new RegExp(text, 'i');
+    const regex = new RegExp(text, "i");
     return recipes.filter((item) => regex.test(item.title));
   };
 
