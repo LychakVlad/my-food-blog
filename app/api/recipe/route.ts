@@ -13,7 +13,7 @@ export const GET = async (request: NextRequest, { params }: any) => {
 
     return NextResponse.json(recipes, { status: 200 });
   } catch (error) {
-    console.log(error);
-    return new NextResponse("Failed to fetch all recipes", { status: 500 });
+    console.log(JSON.stringify(error));
+    return new NextResponse(JSON.stringify(error), { status: 500 });
   }
 };
