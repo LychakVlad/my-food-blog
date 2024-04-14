@@ -16,7 +16,7 @@ const Feed: FC = () => {
       const { data } = await axios.get(`/api/recipe`);
       setRecipes(data.reverse());
     } catch (error) {
-      console.error("Error fetching all recipes:", error);
+      console.error({ error });
     }
   };
 

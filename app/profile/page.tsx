@@ -49,9 +49,11 @@ const MyProfile = () => {
     if (hasConfirmed) {
       try {
         await axios.delete(`/api/recipe/${post?._id?.toString()}`);
+        
         {
           post.photo.imageLink ? await deleteImage(post.photo.imageLink) : null;
         }
+
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 
         setPosts(filteredPosts);
