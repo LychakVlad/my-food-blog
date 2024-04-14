@@ -1,7 +1,7 @@
 import Recipe from "../../../components/Recipe/Recipe";
 import { IPost } from "../../../types/recipe.interface";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 // export async function generateStaticParams() {
 //   try {
