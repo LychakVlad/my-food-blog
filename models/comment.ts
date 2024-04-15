@@ -1,4 +1,6 @@
-const { Schema, default: mongoose, models, model } = require('mongoose');
+import Recipe from "./recipe";
+
+const { Schema, default: mongoose, models, model } = require("mongoose");
 
 const CommentSchema = new Schema({
   text: {
@@ -19,10 +21,10 @@ const CommentSchema = new Schema({
   },
   postId: {
     type: Schema.Types.ObjectId,
-    ref: 'Recipe',
+    ref: Recipe,
   },
 });
 
-const Comment = models.Comment || model('Comment', CommentSchema);
+const Comment = models.Comment || model("Comment", CommentSchema);
 
 export default Comment;
