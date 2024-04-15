@@ -1,9 +1,10 @@
+import { API_URL } from "utils/consts";
 import Recipe from "../../../components/Recipe/Recipe";
+import axios from "axios";
 
 async function getRecipe(id: string) {
   try {
-    const res = await fetch(`/api/recipe/${id}`);
-    const data = await res.json();
+    const { data } = await axios.get(`${API_URL}/api/recipe/${id}`);
     return data;
   } catch (error) {
     console.log(error);

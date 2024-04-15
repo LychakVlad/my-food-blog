@@ -20,6 +20,7 @@ const Recipe = ({ post }: { post: IPost }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
+
   const [postComment, setPostComment] = useState(post.comments);
 
   const [base64Image, setBase64Image] = useState(

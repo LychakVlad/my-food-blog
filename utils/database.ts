@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-require("../models/comment");
 
 let isConnected = false;
 const uri = process.env.MONGODB_URI as string;
