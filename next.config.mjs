@@ -11,7 +11,6 @@ const nextConfig = {
     domains: [
       "lh3.googleusercontent.com",
       "localhost",
-      "food-blog-server1.onrender.com",
       "placehold.co",
       "cooks-compass.s3.us-east-1.amazonaws.com",
     ],
