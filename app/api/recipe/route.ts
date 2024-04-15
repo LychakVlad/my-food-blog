@@ -14,6 +14,6 @@ export const GET = async (req: Request, res: Response) => {
 
     return NextResponse.json(recipes, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 };
