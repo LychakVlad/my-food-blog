@@ -14,6 +14,15 @@ export const GET = async (req: Request, res: Response) => {
 
     return NextResponse.json(recipes, { status: 200 });
   } catch (error) {
-    return new NextResponse("Failed to fetch all recipes", { status: 500 });
+    if (error instanceof Error) {
+      return new NextResponse(JSON.stringify({ error: error.message }), {
+        status: 500,
+      });
+    } else {
+      return new NextResponse(
+        JSON.stringify({ error: "An unknown error occurred" }),
+        { status: 500 },
+      );
+    }
   }
 };
