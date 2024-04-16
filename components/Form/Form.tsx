@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import React, { FC } from 'react';
-import { RecipeFormProps } from '../../types/recipe.interface';
-import withAuth from '../Routes/withAuth';
-import CustomInput from '../UI/Input/Input';
-import FormList from './FormList';
-import Textarea from '../UI/Textarea/Textarea';
+import Link from "next/link";
+import React, { FC } from "react";
+import { RecipeFormProps } from "../../types/recipe.interface";
+import withAuth from "../Routes/withAuth";
+import CustomInput from "../UI/Input/Input";
+import FormList from "./FormList";
+import Textarea from "../UI/Textarea/Textarea";
 
 const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
   const {
@@ -15,18 +15,18 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
   } = form;
 
   const stepData = {
-    label: 'Directions',
+    label: "Directions",
     description:
-      'Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes, etc. Use optional headers to organize the different parts of the recipe (i.e. Prep, Bake, Decorate).',
-    addButton: 'Add step',
-    subTitle: 'Step',
+      "Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes, etc. Use optional headers to organize the different parts of the recipe (i.e. Prep, Bake, Decorate).",
+    addButton: "Add step",
+    subTitle: "Step",
   };
 
   const ingredientData = {
-    label: 'Ingredients',
+    label: "Ingredients",
     description:
-      'Enter one ingredient per line. Include the quantity (i.e. cups, tablespoons) and any special preparation (i.e. sifted, softened, chopped). Use optional headers to organize the different parts of the recipe (i.e. Cake, Frosting, Dressing).',
-    addButton: 'Add ingredient',
+      "Enter one ingredient per line. Include the quantity (i.e. cups, tablespoons) and any special preparation (i.e. sifted, softened, chopped). Use optional headers to organize the different parts of the recipe (i.e. Cake, Frosting, Dressing).",
+    addButton: "Add ingredient",
   };
 
   return (
@@ -42,15 +42,15 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
-        {type === 'Create' && (
+        {type === "Create" && (
           <CustomInput
             register={register}
             errors={errors?.photo}
-            label="Photo (optional)"
+            label="Photo"
             type="file"
             name="photo"
             accept="image/*"
-            required={false}
+            required={true}
           />
         )}
 
@@ -79,13 +79,13 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
           data={ingredientData}
           register={register}
           control={control}
-          name={'ingredients'}
+          name={"ingredients"}
         />
         <FormList
           data={stepData}
           register={register}
           control={control}
-          name={'steps'}
+          name={"steps"}
         />
 
         <CustomInput

@@ -33,10 +33,14 @@ const Recipe = ({ post }: { post: IPost }) => {
 
   const S3Image = ({ Key }: { Key: string }) => {
     const { data } = useSWR<{ src: string }>(`/api/s3-bucket/${Key}`, fetcher);
+    const picture =
+      data?.src ||
+      post.photo.base64 ||
+      "https://placehold.co/330x300/png?text=Picture";
     return (
       <Image
         alt="recipe-photo"
-        src={data?.src || "https://placehold.co/330x300/png?text=Picture"}
+        src={picture}
         className="object-cover"
         placeholder="blur"
         blurDataURL={base64Image}
