@@ -24,8 +24,8 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const router = useRouter();
 
   const [base64Image, setBase64Image] = useState(
-    post.photo.base64
-      ? post.photo.base64
+    post?.photo?.base64
+      ? post?.photo?.base64
       : "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
   );
 
@@ -53,7 +53,7 @@ const RecipeCard: FC<IRecipeCardData> = ({
     <>
       <div className="recipe_card" data-cy={`test-recipe-card-${post.title}`}>
         <div className="relative max-w-[330px] overflow-hidden h-[300px] flex items-center">
-          <S3Image Key={post.photo.imageLink} />
+          <S3Image Key={post.photo?.imageLink} />
         </div>
 
         <p className="mt-4 font-satoshi text-3xl font-semibold text-gray-700">

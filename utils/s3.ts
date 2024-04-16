@@ -20,12 +20,14 @@ export const s3 = new S3Client({
   },
 });
 
-export async function uploadFileToS3(file: Buffer, fileName: string) {
+export async function uploadFileToS3(file: Buffer, contentType: string) {
   const fileBuffer = file;
+
+  const imageType = contentType.split("/");
 
   const params = {
     Bucket: bucketName,
-    Key: `${uuidv4()}`,
+    Key: `${uuidv4()}.${imageType[1]}`,
     Body: fileBuffer,
   };
 

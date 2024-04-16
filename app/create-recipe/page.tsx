@@ -38,26 +38,6 @@ const CreateRecipe: FC = () => {
     },
   });
 
-  const fetchProcessedBase64 = async (imageUrl: string) => {
-    try {
-      const response = await fetch(`/api/image-process?imageUrl=${imageUrl}`);
-      const data = await response.json();
-
-      return data.base64;
-    } catch (error) {
-      console.log("Failed to fetch processed image", error);
-    }
-  };
-
-  async function loadImageBase64(imageLink: string) {
-    try {
-      const base64 = await fetchProcessedBase64(`/api/s3-bucket/${imageLink}`);
-      return base64;
-    } catch (error) {
-      console.log("Failed to load base64 image", error);
-    }
-  }
-
   async function postImage(image: any) {
     const formData = new FormData();
     formData.append("image", image);
@@ -75,13 +55,11 @@ const CreateRecipe: FC = () => {
 
   const createRecipe = async (data: FieldValues) => {
     try {
-      let imageLink = null;
-      let imageBase64 = null;
-
-      if (data.photo && data.photo[0]) {
-        imageLink = await postImage(data.photo[0]);
-        imageBase64 = await loadImageBase64(imageLink.imagePath);
+      if (!data.photo || !data.photo[0]) {
+        throw new Error("Image is missing");
       }
+
+      const imageLink = await postImage(data.photo[0]);
 
       const response = await fetch("/api/recipe/new", {
         method: "POST",
@@ -94,7 +72,7 @@ const CreateRecipe: FC = () => {
           title: data.title,
           photo: {
             imageLink: imageLink.fileKey,
-            base64: imageBase64,
+            base64: imageLink.base64,
           },
           servings: {
             servings: data.servings,
