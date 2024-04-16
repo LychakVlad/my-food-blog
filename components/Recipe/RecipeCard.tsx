@@ -1,12 +1,10 @@
-"use client";
-
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { IPost } from "../../types/recipe.interface";
 import dateConvert from "../../utils/dateConvert";
 import Image from "next/image";
-import useSWR from "swr";
+import { IMAGE_URL } from "utils/consts";
 
 interface IRecipeCardData {
   post: IPost;
@@ -23,31 +21,14 @@ const RecipeCard: FC<IRecipeCardData> = ({
   const pathName = usePathname();
   const router = useRouter();
 
-  const [base64Image, setBase64Image] = useState(
-    post.photo.base64
-      ? post.photo.base64
-      : "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
-  );
+  const base64Image =
+    post.photo.base64 ||
+    "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
-  const fetcher = (path: string) => fetch(path).then((res) => res.json());
-
-  const S3Image = ({ Key }: { Key: string }) => {
-    const { data } = useSWR<{ src: string }>(`/api/s3-bucket/${Key}`, fetcher);
-    const picture =
-      data?.src ||
-      post.photo.base64 ||
-      "https://placehold.co/330x300/png?text=Picture";
-    return (
-      <Image
-        alt="recipe-photo"
-        src={picture}
-        fill
-        className="object-cover"
-        placeholder="blur"
-        blurDataURL={base64Image}
-      />
-    );
-  };
+  const pictureSrc =
+    `${IMAGE_URL}${post.photo.imageLink}` ||
+    post.photo.base64 ||
+    "https://placehold.co/330x300/png?text=Picture";
 
   function handleClick() {
     router.push(`/recipes/${post._id}`);
@@ -57,7 +38,14 @@ const RecipeCard: FC<IRecipeCardData> = ({
     <>
       <div className="recipe_card" data-cy={`test-recipe-card-${post.title}`}>
         <div className="relative max-w-[330px] overflow-hidden h-[300px] flex items-center">
-          <S3Image Key={post.photo.imageLink} />
+          <Image
+            alt="recipe-photo"
+            src={pictureSrc}
+            fill
+            className="object-cover"
+            placeholder="blur"
+            blurDataURL={base64Image}
+          />
         </div>
 
         <p className="mt-4 font-satoshi text-3xl font-semibold text-gray-700">

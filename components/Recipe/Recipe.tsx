@@ -11,7 +11,7 @@ import RatingDescription from "../UI/RatingBar/RatingDescription";
 import RecipeComment from "./RecipeComment";
 import Textarea from "../UI/Textarea/Textarea";
 import { FieldValues, useForm } from "react-hook-form";
-import useSWR from "swr";
+import { IMAGE_URL } from "utils/consts";
 
 const Recipe = ({ post }: { post: IPost }) => {
   const {
@@ -23,32 +23,14 @@ const Recipe = ({ post }: { post: IPost }) => {
 
   const [postComment, setPostComment] = useState(post.comments);
 
-  const [base64Image, setBase64Image] = useState(
-    post.photo.base64
-      ? post.photo.base64
-      : "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
-  );
+  const base64Image =
+    post.photo.base64 ||
+    "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
-  const fetcher = (path: string) => fetch(path).then((res) => res.json());
-
-  const S3Image = ({ Key }: { Key: string }) => {
-    const { data } = useSWR<{ src: string }>(`/api/s3-bucket/${Key}`, fetcher);
-    const picture =
-      data?.src ||
-      post.photo.base64 ||
-      "https://placehold.co/330x300/png?text=Picture";
-    return (
-      <Image
-        alt="recipe-photo"
-        src={picture}
-        className="object-cover"
-        placeholder="blur"
-        blurDataURL={base64Image}
-        width={600}
-        height={900}
-      />
-    );
-  };
+  const imageSrc =
+    `${IMAGE_URL}${post.photo.imageLink}` ||
+    post.photo.base64 ||
+    "https://placehold.co/330x300/png?text=Picture";
 
   const data = [
     { label: "Cook time:", value: post.timeToDo.cookTime },
@@ -127,8 +109,16 @@ const Recipe = ({ post }: { post: IPost }) => {
       <p className="mt-2">Created {dateConvert(post.time)}</p>
       <h3 className="mt-2 text-lg">#{post.tag}</h3>
       <p className="desc mt-10 mb-4">{post.description}</p>
-      <div className="relative w-full min-h-full max-h-[900px] max-w-[600px]">
-        <S3Image Key={post.photo.imageLink} />
+      <div className="relative w-full max-h-[900px] max-w-[600px]">
+        <Image
+          alt="recipe-photo"
+          src={imageSrc}
+          className="object-cover"
+          placeholder="blur"
+          blurDataURL={base64Image}
+          width={600}
+          height={900}
+        />
       </div>
       <div className="bg-gray-200 mt-10 p-8 ">
         <div className="sm:grid-cols-3 sm:grid-rows-2 grid gap-8 mb-6 ">

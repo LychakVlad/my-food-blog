@@ -1,15 +1,14 @@
 import React, { FC } from "react";
-import RecipeCard from "../Recipe/RecipeCard";
-import { IPost } from "../../types/recipe.interface";
 import withAuth from "../Routes/withAuth";
-import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import { IProfileProps } from "types/profile.interface";
+import RecipeList from "../Recipe/RecipeList";
 
 const Profile: FC<IProfileProps> = ({
   name,
   desc,
   data,
   loading,
+  isError,
   handleEdit,
   handleDelete,
 }) => {
@@ -20,25 +19,13 @@ const Profile: FC<IProfileProps> = ({
       </h1>
       <p className="desc text-left">{desc}</p>
 
-      {loading ? (
-        <div className="flex items-center my-10">
-          <LoadingSpinner />{" "}
-          <p className="text-4xl font-semibold ml-8">Loading...</p>
-        </div>
-      ) : data?.length !== 0 ? (
-        <div className="mt-6 recipe_layout w-full ">
-          {data?.map((post: IPost) => (
-            <RecipeCard
-              key={post._id}
-              post={post}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-            />
-          ))}
-        </div>
-      ) : (
-        <p className="my-10 text-xl">There are no posts yet...</p>
-      )}
+      <RecipeList
+        data={data}
+        loading={loading}
+        isError={isError}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      />
     </section>
   );
 };

@@ -5,6 +5,7 @@ export interface IProfileProps {
   desc: string;
   data: IPost[];
   loading: boolean;
+  isError: boolean;
   handleEdit: (post: IPost) => void;
   handleDelete: (post: IPost) => void;
 }

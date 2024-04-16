@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Profile from "../../components/Profile/Profile";
 import { useSession } from "next-auth/react";
@@ -21,6 +21,8 @@ const MyProfile = () => {
         `${API_URL}/api/users/${session?.user?.id}/posts`,
       );
       setPosts(data);
+
+      return data;
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
@@ -71,6 +73,7 @@ const MyProfile = () => {
       name="My"
       desc="Welcome to your profile page"
       loading={isLoading}
+      isError={isError}
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

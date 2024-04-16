@@ -2,7 +2,7 @@
 
 import React, { FC, useState } from "react";
 import { IPost } from "../../types/recipe.interface";
-import FeedRecipeList from "./FeedRecipeList";
+import RecipeList from "../Recipe/RecipeList";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API_URL } from "utils/consts";
@@ -15,7 +15,10 @@ const Feed: FC = () => {
   const getAllRecipes = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/api/recipe`);
+
       setRecipes(data.reverse());
+
+      return data;
     } catch (error) {
       console.error(error);
     }
@@ -52,9 +55,13 @@ const Feed: FC = () => {
       </form>
 
       {searchText ? (
-        <FeedRecipeList data={searchedResults} loading={isLoading} />
+        <RecipeList
+          data={searchedResults}
+          loading={isLoading}
+          isError={isError}
+        />
       ) : (
-        <FeedRecipeList data={recipes} loading={isLoading} />
+        <RecipeList data={recipes} loading={isLoading} isError={isError} />
       )}
     </section>
   );

@@ -8,7 +8,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "localhost",
       "placehold.co",
-      "cooks-compass.s3.us-east-1.amazonaws.com",
+      "cooks-compass.s3.amazonaws.com",
     ],
   },
 };

@@ -74,3 +74,11 @@ export interface RecipeCommentProps {
   name?: string | null | undefined;
   deleteComment: (id: string) => void;
 }
+
+export interface RecipeListItem {
+  data: IPost[];
+  loading: boolean;
+  isError: boolean;
+  handleEdit?: (post: IPost) => void;
+  handleDelete?: (post: IPost) => void;
+}
