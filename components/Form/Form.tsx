@@ -14,8 +14,6 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form, submitError }) => {
     formState: { errors, isSubmitting },
   } = form;
 
-  console.log(submitError);
-
   const stepData = {
     label: "Directions",
     description:

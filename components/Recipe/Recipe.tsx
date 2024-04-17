@@ -75,7 +75,7 @@ const Recipe = ({ post }: { post: IPost }) => {
 
       reset();
     } catch (error) {
-      console.log(error);
+      console.log(`Failed to add comment, ${error}`);
     }
   }
 
@@ -98,7 +98,7 @@ const Recipe = ({ post }: { post: IPost }) => {
 
         setPostComment(newCommentArray);
       } catch (error) {
-        console.log(error);
+        console.log(`Failed to delete comment, ${error}`);
       }
     }
   }

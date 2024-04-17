@@ -20,8 +20,7 @@ export const POST = async (req: Request, res: Response) => {
 
     return new Response(JSON.stringify(newComment), { status: 201 });
   } catch (error) {
-    console.log("internal error");
-    console.dir(error);
+    return new Response("Failed to add comment", { status: 500 });
   }
 };
 

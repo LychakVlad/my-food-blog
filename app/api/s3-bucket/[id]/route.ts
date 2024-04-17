@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { deleteFileFromS3, getFileFromS3, s3 } from "utils/s3";
-import { CustomApiResponse } from "types/env.interface";
+import { NextResponse } from "next/server";
+import { deleteFileFromS3 } from "utils/s3";
 
 export const DELETE = async (req: Request, { params }: any) => {
   const fileId = params.id;
@@ -12,22 +11,5 @@ export const DELETE = async (req: Request, { params }: any) => {
     return NextResponse.json({ fileKey });
   } catch (error) {
     return NextResponse.json({ error });
-  }
-};
-
-export const GET = async (req: NextRequest, res: CustomApiResponse) => {
-  const { id } = res.params || {};
-
-  try {
-    if (!id) {
-      return res.status(400).json({ error: "Key is required" });
-    }
-
-    const src = await getFileFromS3(id);
-
-    return NextResponse.json({ src });
-  } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
   }
 };

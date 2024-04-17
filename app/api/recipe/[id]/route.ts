@@ -60,7 +60,6 @@ export const PATCH = async (request: Request, { params }: any) => {
 
     return new Response(JSON.stringify(existingRecipe), { status: 200 });
   } catch (error) {
-    console.log(error);
     return new Response("Failed to update recipe", { status: 500 });
   }
 };

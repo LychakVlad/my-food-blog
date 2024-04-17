@@ -7,7 +7,7 @@ async function getRecipe(id: string) {
     const { data } = await axios.get(`${API_URL}/api/recipe/${id}`);
     return data;
   } catch (error) {
-    console.log(error);
+    console.log("Failed to fetch recipe: ", error);
   }
 }
 

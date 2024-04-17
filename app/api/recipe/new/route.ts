@@ -1,5 +1,5 @@
-import { connectToDB } from '../../../../utils/database';
-import Recipe from '../../../../models/recipe';
+import { connectToDB } from "../../../../utils/database";
+import Recipe from "../../../../models/recipe";
 
 export const POST = async (req: Request, res: Response) => {
   const {
@@ -35,7 +35,6 @@ export const POST = async (req: Request, res: Response) => {
 
     return new Response(JSON.stringify(newRecipe), { status: 201 });
   } catch (error) {
-    console.log('internal error');
-    console.dir(error);
+    return new Response("Failed to create recipe", { status: 500 });
   }
 };
