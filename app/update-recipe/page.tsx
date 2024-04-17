@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "../../components/Form/Form";
 import { FieldValues, useForm } from "react-hook-form";
@@ -9,6 +9,7 @@ const EditRecipe = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const recipeId = searchParams.get("id");
+  const [submitError, setSubmitError] = useState(false);
 
   const form = useForm<FieldValues>();
 
@@ -41,6 +42,7 @@ const EditRecipe = () => {
   }, [recipeId]);
 
   const updateRecipe = async (data: FieldValues) => {
+    setSubmitError(false);
     if (!recipeId) return alert("Recipe ID not found");
 
     try {
@@ -76,11 +78,19 @@ const EditRecipe = () => {
         router.push("/");
       }
     } catch (error) {
+      setSubmitError(true);
       console.log("Failed to update recipe", error);
     }
   };
 
-  return <Form type="Edit" onSubmit={updateRecipe} form={form} />;
+  return (
+    <Form
+      type="Edit"
+      onSubmit={updateRecipe}
+      form={form}
+      submitError={submitError}
+    />
+  );
 };
 
 export default EditRecipe;

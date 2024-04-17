@@ -67,6 +67,7 @@ export interface RecipeFormProps {
   type: string;
   onSubmit: SubmitHandler<FieldValues>;
   form: UseFormReturn<FieldValues>;
+  submitError?: string;
 }
 
 export interface RecipeCommentProps {

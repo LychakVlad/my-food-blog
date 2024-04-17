@@ -6,13 +6,15 @@ import CustomInput from "../UI/Input/Input";
 import FormList from "./FormList";
 import Textarea from "../UI/Textarea/Textarea";
 
-const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
+const Form: FC<RecipeFormProps> = ({ type, onSubmit, form, submitError }) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
   } = form;
+
+  console.log(submitError);
 
   const stepData = {
     label: "Directions",
@@ -180,19 +182,28 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form }) => {
             required={true}
           />
         </div>
-        <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className="text-gray-500 text-sm">
-            Cancel
-          </Link>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="submit_btn"
-            data-cy="submit-form-btn"
+        <div className=" justify-between mx-3 mb-5 gap-4">
+          <div className="gap-4 mb-4">
+            {" "}
+            <Link href="/" className="text-gray-500 text-lg">
+              Cancel
+            </Link>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="submit_btn ml-4 text-2xl"
+              data-cy="submit-form-btn"
+            >
+              {isSubmitting ? `${type} is in process...` : type}
+            </button>
+          </div>
+          <div
+            className={`text-red-500 text-lg font-bold bg-red-100 text-center p-4 transition-all ${
+              submitError ? "opacity-100" : "opacity-0"
+            }`}
           >
-            {isSubmitting ? `${type} is in process...` : type}
-          </button>
+            Something went wrong, please retry later
+          </div>
         </div>
       </form>
     </section>

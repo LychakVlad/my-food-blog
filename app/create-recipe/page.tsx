@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import Form from "../../components/Form/Form";
 import { useSession } from "next-auth/react";
@@ -10,6 +10,7 @@ import axios from "axios";
 const CreateRecipe: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  const [submitError, setSubmitError] = useState(false);
 
   const form = useForm<FieldValues>({
     defaultValues: {
@@ -54,6 +55,7 @@ const CreateRecipe: FC = () => {
   }
 
   const createRecipe = async (data: FieldValues) => {
+    setSubmitError(false);
     try {
       if (!data.photo || !data.photo[0]) {
         throw new Error("Image is missing");
@@ -95,11 +97,19 @@ const CreateRecipe: FC = () => {
         router.push("/");
       }
     } catch (error) {
+      setSubmitError(true);
       console.log("Failed to create recipe", error);
     }
   };
 
-  return <Form type="Create" onSubmit={createRecipe} form={form} />;
+  return (
+    <Form
+      type="Create"
+      onSubmit={createRecipe}
+      form={form}
+      submitError={submitError}
+    />
+  );
 };
 
 export default CreateRecipe;

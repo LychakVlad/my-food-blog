@@ -57,7 +57,7 @@ const Recipe = ({ post }: { post: IPost }) => {
     setRating(selectedRating);
   };
 
-  async function submitFunc(data: FieldValues) {
+  async function addComment(data: FieldValues) {
     try {
       const response = await fetch("/api/comment", {
         method: "POST",
@@ -78,6 +78,7 @@ const Recipe = ({ post }: { post: IPost }) => {
       console.log(error);
     }
   }
+
   async function deleteComment(id: string) {
     const hasConfirmed = confirm(
       "Are you sure you want to delete this comment?",
@@ -171,7 +172,7 @@ const Recipe = ({ post }: { post: IPost }) => {
       <div className="bg-gray-200 p-8 mb-16">
         {session?.user ? (
           <form
-            onSubmit={handleSubmit(submitFunc)}
+            onSubmit={handleSubmit(addComment)}
             className="flex gap-10 flex-col"
           >
             <Textarea

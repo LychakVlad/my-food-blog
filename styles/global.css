@@ -19,7 +19,7 @@ html {
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex  flex-col max-w-7xl mx-auto sm:px-16 px-10;
+  @apply relative z-10 flex  flex-col max-w-7xl mx-auto sm:px-16 px-10 h-full;
 }
 
 .black_btn {
@@ -27,7 +27,7 @@ html {
 }
 
 .submit_btn {
-  @apply px-5 py-1.5 text-sm bg-green-600 rounded-xl text-white hover:bg-green-400 disabled:bg-gray-500 transition-all;
+  @apply px-5 py-1.5 text-lg bg-green-600 rounded-xl text-white hover:bg-green-400 disabled:bg-gray-500 transition-all;
 }
 
 .outline_btn {
