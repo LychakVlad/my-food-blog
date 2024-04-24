@@ -1,5 +1,5 @@
-import React from 'react';
-import { CustomInputProps } from '../../../types/form.interface';
+import React from "react";
+import { CustomInputProps } from "../../../types/form.interface";
 
 const CustomInput: React.FC<CustomInputProps> = ({
   placeholder,
@@ -39,8 +39,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
           autoComplete={autoComplete}
           placeholder={placeholder}
           data-cy={cytest}
+          min="0"
           className={`form_input w-full  ${className} ${
-            errors && 'border-red-500'
+            errors && "border-red-500"
           } `}
         />
         {errors && (

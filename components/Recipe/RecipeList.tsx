@@ -35,7 +35,7 @@ const RecipeList: FC<RecipeListItem> = ({
       ))}
     </div>
   ) : (
-    <p className="my-10 text-xl">There are no posts yet...</p>
+    <p className="my-10 text-xl">There are no posts yet.</p>
   );
 };
 

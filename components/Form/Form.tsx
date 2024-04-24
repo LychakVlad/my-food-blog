@@ -46,10 +46,10 @@ const Form: FC<RecipeFormProps> = ({ type, onSubmit, form, submitError }) => {
           <CustomInput
             register={register}
             errors={errors?.photo}
-            label="Photo"
+            label="Photo (png, jpeg only)"
             type="file"
             name="photo"
-            accept="image/*"
+            accept="image/png, image/jpeg"
             required={true}
           />
         )}
