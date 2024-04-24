@@ -26,16 +26,14 @@ My Recipe Blog is a web application built to help users organize and share their
 
 ### Frontend
 
-- Next.js
-- React
+- React (Next.js)
 - Tailwind CSS
 - TypeScript
 
 ### Backend
 
-- Node.js
-- Express.js
-- MongoDB and Mongoose
+- MongoDB
+- Mongoose
 - AWS S3
 
 ### Authentication
@@ -49,7 +47,6 @@ My Recipe Blog is a web application built to help users organize and share their
 ### Hosting
 
 - Vercel (Frontend)
-- AWS EC2 (Backend)
 
 ## Testing
 
@@ -59,34 +56,10 @@ My Recipe Blog is a web application built to help users organize and share their
 ## Features
 
 - Create recipes with multiple inputs using React Hook Form.
-- Save recipe photos using AWS S3 and Node.js.
+- Save recipe photos using AWS S3.
 - Edit or delete recipes easily.
 - Leave ratings and comments on recipes.
 - User authentication to create and save personal recipes.
-
-## AWS S3 Image API
-
-This project includes a small API built with Node.js and Express to manage images stored on AWS S3. The API provides endpoints to store, delete, and request images. This functionality is crucial for handling recipe photos in the My Recipe Blog application.
-
-### Endpoints
-
-#### 1. Upload Image
-
-- **Endpoint:** `/api/images`
-- **Method:** `POST`
-- **Description:** Uploads an image to AWS S3.
-
-#### 2. Delete Image
-
-- **Endpoint:** `/api/images/:key`
-- **Method:** `DELETE`
-- **Description:** Deletes an image from AWS S3.
-
-#### 3. Get Image
-
-- **Endpoint:** `/api/images/:key`
-- **Method:** `GET`
-- **Description:** Retrieves an image from AWS S3.
 
 ## Purpose
 
