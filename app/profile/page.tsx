@@ -14,6 +14,8 @@ const MyProfile = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recipesPerPage = 6;
 
   const getPostsForUser = async () => {
     try {
@@ -68,15 +70,25 @@ const MyProfile = () => {
     }
   };
 
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = posts.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
   return (
     <Profile
       name="My"
       desc="Welcome to your profile page"
       loading={isLoading}
       isError={isError}
-      data={posts}
+      data={currentRecipes}
+      totalRecipes={posts.length}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
+      paginate={paginate}
     />
   );
 };

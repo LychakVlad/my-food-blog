@@ -7,11 +7,14 @@ const Profile: FC<IProfileProps> = ({
   name,
   desc,
   data,
+  totalRecipes,
   loading,
   isError,
   handleEdit,
   handleDelete,
+  paginate,
 }) => {
+  console.log(data);
   return (
     <section className="w-full">
       <h1 className="head_text text-left">
@@ -21,8 +24,10 @@ const Profile: FC<IProfileProps> = ({
 
       <RecipeList
         data={data}
+        totalRecipes={totalRecipes}
         loading={loading}
         isError={isError}
+        paginate={paginate}
         handleDelete={handleDelete}
         handleEdit={handleEdit}
       />
