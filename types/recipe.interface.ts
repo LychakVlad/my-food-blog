@@ -78,8 +78,10 @@ export interface RecipeCommentProps {
 
 export interface RecipeListItem {
   data: IPost[];
+  totalRecipes: number;
   loading: boolean;
   isError: boolean;
+  paginate: (number: number) => void;
   handleEdit?: (post: IPost) => void;
   handleDelete?: (post: IPost) => void;
 }

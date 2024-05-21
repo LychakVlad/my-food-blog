@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { IPost } from "../../types/recipe.interface";
 import RecipeList from "../Recipe/RecipeList";
 import { useQuery } from "@tanstack/react-query";
@@ -11,6 +11,9 @@ const Feed: FC = () => {
   const [recipes, setRecipes] = useState<IPost[]>([]);
   const [searchText, setSearchText] = useState("");
   const [searchedResults, setSearchedResults] = useState<IPost[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const recipesPerPage = 6;
 
   const getAllRecipes = async () => {
     try {
@@ -29,15 +32,21 @@ const Feed: FC = () => {
     queryFn: getAllRecipes,
   });
 
-  const filterRecipes = (text: string) => {
-    const regex = new RegExp(text, "i");
-    return recipes.filter((item) => regex.test(item.title));
-  };
+  const searchedRecipes = useMemo(() => {
+    return recipes.filter((recipe) => {
+      return recipe.title.toLowerCase().includes(searchText.toLowerCase());
+    });
+  }, [searchText, recipes]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-    const searchResult = filterRecipes(e.target.value);
-    setSearchedResults(searchResult);
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = searchedRecipes.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe,
+  );
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -47,22 +56,20 @@ const Feed: FC = () => {
         <input
           type="text"
           value={searchText}
-          onChange={handleSearchChange}
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder="Search recipe by title"
           className="search_input"
           id="recipe-list"
         />
       </form>
 
-      {searchText ? (
-        <RecipeList
-          data={searchedResults}
-          loading={isLoading}
-          isError={isError}
-        />
-      ) : (
-        <RecipeList data={recipes} loading={isLoading} isError={isError} />
-      )}
+      <RecipeList
+        data={currentRecipes}
+        totalRecipes={searchedRecipes.length}
+        loading={isLoading}
+        isError={isError}
+        paginate={paginate}
+      />
     </section>
   );
 };
